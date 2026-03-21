@@ -30,6 +30,13 @@ position = Vector2(160, 175)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBody" unique_id=124142584]
 shape = SubResource("ground_shape")
 
+[node name="ColorRect" type="ColorRect" parent="GroundBody" unique_id=1497129089]
+offset_left = -171.0
+offset_top = -5.0
+offset_right = 170.0
+offset_bottom = 35.0
+color = Color(0, 0, 0, 1)
+
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1417010715]
 position = Vector2(-5, 90)
 
