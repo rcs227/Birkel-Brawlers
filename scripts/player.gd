@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Horizontal movement
 	
-	var direction := 0.0 if block_held else Input.get_axis("left", "right")
+	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
+	var direction := 0.0 if block_held or abs(raw) < 0.2 else raw
 
 	if direction != 0.0:
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
@@ -28,9 +29,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 
 	# vertical movement
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump") and !block_held:
-			velocity.y = jump_force
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	else:
 		# apply gravity while airborne
 		velocity.y += gravity * delta
@@ -40,6 +40,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.device != device_id or block_held:
 		return
+	if event.is_action_pressed("jump") and is_on_floor():
+		velocity.y = jump_force
 	if event.is_action_pressed("light_attack"):
 		light_attack()
 	if event.is_action_pressed("medium_attack"):

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bshhgpf106j1o"]
 
+[ext_resource type="Script" uid="uid://cq43gbcg075eg" path="res://scripts/game_manager.gd" id="1_jrcg6"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
 [ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/character.tscn" id="3_wnv5a"]
@@ -17,6 +18,7 @@ size = Vector2(10, 180)
 default_font = ExtResource("3_7lokh")
 
 [node name="Main" type="Node2D" unique_id=393302278]
+script = ExtResource("1_jrcg6")
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
 offset_top = 170.0
@@ -65,7 +67,6 @@ position = Vector2(74, 150)
 scale = Vector2(0.245, 0.245)
 
 [node name="character2" parent="." unique_id=1304211670 instance=ExtResource("3_wnv5a")]
-visible = false
 position = Vector2(219, 150)
 scale = Vector2(0.245, 0.245)
 device_id = 1
