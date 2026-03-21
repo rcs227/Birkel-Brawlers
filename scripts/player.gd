@@ -45,11 +45,10 @@ func _input(event: InputEvent) -> void:
 	if event.device != device_id or block_held:
 		return
 	if event.is_action_pressed("jump"):
-		if is_on_floor():
+		if is_on_floor() or has_flip:
 			velocity.y = jump_force
-		elif has_flip:
-			velocity.y = jump_force
-			has_flip = false
+			if not is_on_floor():
+				has_flip = false
 	if event.is_action_pressed("light_attack"):
 		light_attack()
 	if event.is_action_pressed("medium_attack"):
