@@ -63,11 +63,20 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		_try_jump()
 	if event.is_action_pressed("light_attack"):
-		light_attack()
+		if !special_held:
+			light_attack()
+		else:
+			light_special()
 	if event.is_action_pressed("medium_attack"):
-		medium_attack()
+		if !special_held:
+			medium_attack()
+		else:
+			medium_special()
 	if event.is_action_pressed("heavy_attack"):
-		heavy_attack()
+		if !special_held:
+			heavy_attack()
+		else:
+			heavy_special()
 	if event.is_action_pressed("grab") and jump_grace_timer == 0:
 		grab()
 
@@ -131,22 +140,22 @@ func grab():
 	print("grab")
 
 func light_attack():
-	if special_held:
-		print("light special")
-	else:
-		print("light attack")
+	print("light attack")
 
 func medium_attack():
-	if special_held:
-		print("medium special")
-	else:
-		print("medium attack")
+	print("medium attack")
 
 func heavy_attack():
-	if special_held:
-		print("heavy special")
-	else:
-		print("heavy attack")
+	print("heavy attack")
+
+func light_special():
+	print("light special")
+
+func medium_special():
+	print("medium special")
+
+func heavy_special():
+	print("heavy special")
 
 func damage_player(amount: float):
 	health -= amount

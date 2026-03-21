@@ -155,11 +155,6 @@ animations = [{
 "name": &"light_attack",
 "speed": 6.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vyd52")
@@ -183,8 +178,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_plgq0")
 }],
 "loop": false,
-"name": &"special_medium",
+"name": &"medium_special",
 "speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewyxd"]
@@ -197,6 +197,7 @@ script = ExtResource("1_fl8a4")
 position = Vector2(0, 1)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_0v5ke")
+animation = &"medium_special"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671035564]
 position = Vector2(0, -1)
