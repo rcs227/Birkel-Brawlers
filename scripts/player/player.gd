@@ -72,6 +72,8 @@ func apply_friction(delta: float) -> void:
 func apply_horizontal(delta: float) -> void:
 	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
 	var dir := 0.0 if abs(raw) < STICK_DEADZONE else raw
+	if dir != 0.0:
+		anim_sprite.flip_h = dir < 0.0
 	velocity.x = move_toward(velocity.x, dir * speed, acceleration * delta)
 
 func apply_stun(duration: float):
