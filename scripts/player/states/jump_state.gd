@@ -4,7 +4,6 @@ extends State
 func enter() -> void:
 	player.safe_play("jump")
 	player.velocity.y = player.jump_force
-	player.has_flip = true
  
 func physics_process(delta: float) -> String:
 	player.apply_horizontal(delta)
@@ -12,6 +11,8 @@ func physics_process(delta: float) -> String:
 	player.move_and_slide()
 	if player.velocity.y > 0.0:
 		return "Fall"
+	if player.block_held:
+		return "Block"
 	return ""
  
 func input(event: InputEvent) -> String:

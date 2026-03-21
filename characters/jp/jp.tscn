@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://45l7sbbr4pnk" path="res://sprites/jp/jp_crouch.png" id="3_0ii53"]
 [ext_resource type="Resource" uid="uid://cvk0hf2lsaaln" path="res://characters/jp/attacks/light_special.tres" id="3_8hlw2"]
 [ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp/jp_idle.png" id="4_8hlw2"]
+[ext_resource type="Texture2D" uid="uid://cf503hx2f27w5" path="res://sprites/jp/jp_block.png" id="5_h5w7u"]
 [ext_resource type="Texture2D" uid="uid://b7hi8yirtlfnh" path="res://sprites/jp/jp_shadow_light_attack.png" id="5_mi45g"]
 [ext_resource type="Texture2D" uid="uid://cmy6o2835akwx" path="res://sprites/jp/jp_shadow_medium_attack.png" id="6_h4wjq"]
 [ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_h5w7u"]
@@ -24,6 +25,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
 size = Vector2(20, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d0xu"]
+atlas = ExtResource("5_h5w7u")
+region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k224"]
 atlas = ExtResource("2_vflki")
@@ -135,6 +140,14 @@ region = Rect2(900, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70irc"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d0xu")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4k224")
@@ -364,9 +377,7 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(0, 1)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"light_special"
-frame = 4
-frame_progress = 1.0
+animation = &"block"
 
 [node name="StateMachine" type="Node" parent="." unique_id=776769573]
 script = ExtResource("7_h5w7u")

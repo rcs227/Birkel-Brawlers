@@ -53,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > TRIGGER_THRESHOLD
 	block_held   = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > TRIGGER_THRESHOLD
 	state_machine.physics_process(delta)
+	if is_on_floor():
+		has_flip = true
 
 func _input(event: InputEvent) -> void:
 	if event.device != device_id:
