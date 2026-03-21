@@ -20,13 +20,23 @@ var health = 100
 
 var has_flip: bool = true
 
+var stun_timer: float = 0.0
+
+var knockback: Vector2 = Vector2.ZERO
+
 func _ready():
 	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
+	if stun_timer > 0.0:
+		stun_timer -= delta
+		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		velocity.y = gravity * delta
+		move_and_slide()
+		return
+	
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > 0.5
 	block_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > 0.5
-	
 	
 	# Horizontal movement
 	# prevent stick drift
@@ -44,10 +54,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		has_flip = true
 
+	velocity += knockback
+	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.device != device_id or block_held:
+	if event.device != device_id or block_held or stun_timer > 0.0:
 		return
 	if event.is_action_pressed("jump"):
 		if is_on_floor() or has_flip:
@@ -60,6 +72,12 @@ func _input(event: InputEvent) -> void:
 		medium_attack()
 	if event.is_action_pressed("heavy_attack"):
 		heavy_attack()
+
+func apply_stun(duration: float):
+	stun_timer = duration
+	
+func apply_knockback(force: Vector2):
+	knockback = force
 
 func grab():
 	print("grab")
@@ -91,3 +109,6 @@ func damage_player(amount: float):
 func die():
 	print("u died lol")
 	queue_free()
+
+func execute_attack(attack: Attack):
+	pass
