@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://pfw54tk432e0"]
+
+[ext_resource type="Script" uid="uid://dtp6xfjgwttr2" path="res://scripts/character_select.gd" id="1_cs"]
+[ext_resource type="Texture2D" uid="uid://d0hbkqf33njwb" path="res://icon.svg" id="2_icon"]
+[ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp_idle.png" id="3_jp"]
+[ext_resource type="Theme" path="res://resources/character_selection_theme.tres" id="4_theme"]
+
+[sub_resource type="AtlasTexture" id="AT_jp0"]
+atlas = ExtResource("3_jp")
+region = Rect2(0, 0, 29, 74)
+
+[sub_resource type="AtlasTexture" id="AT_jp1"]
+atlas = ExtResource("3_jp")
+region = Rect2(29, 0, 29, 74)
+
+[sub_resource type="AtlasTexture" id="AT_jp2"]
+atlas = ExtResource("3_jp")
+region = Rect2(58, 0, 29, 74)
+
+[sub_resource type="AtlasTexture" id="AT_jp3"]
+atlas = ExtResource("3_jp")
+region = Rect2(87, 0, 29, 74)
+
+[sub_resource type="AtlasTexture" id="AT_jp4"]
+atlas = ExtResource("3_jp")
+region = Rect2(116, 0, 29, 74)
+
+[sub_resource type="SpriteFrames" id="SF_jp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AT_jp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_jp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_jp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_jp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_jp4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_preview"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_icon")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_filter = 1
+theme = ExtResource("4_theme")
+script = ExtResource("1_cs")
+player_count = 2
+default_sprite_frames = SubResource("SpriteFrames_preview")
+character_sprite_frames = Array[SpriteFrames]([SubResource("SF_jp"), null, null, null])
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.93, 0.88, 0.8, 1)
+
+[node name="PreviewBg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+color = Color(0.35, 0.2, 0.08, 1)
+
+[node name="TopAccent" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(0.45, 0.28, 0.12, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 9
+theme_override_colors/font_color = Color(0.98, 0.95, 0.9, 1)
+text = "CHOOSE YOUR CHARACTER"
+horizontal_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 13.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = ""
+horizontal_alignment = 1
+
+[node name="ButtonPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 96.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="VBox" type="VBoxContainer" parent="ButtonPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="ButtonGrid" type="GridContainer" parent="ButtonPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 4
+
+[node name="ActionBar" type="HBoxContainer" parent="ButtonPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4

@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_sg"]
+[ext_resource type="Theme" path="res://resources/menu_theme.tres" id="2_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+bg_color = Color(0.98, 0.95, 0.9, 1)
+border_color = Color(0.45, 0.28, 0.12, 1)
+border_width_top = 1
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_filter = 1
+theme = ExtResource("2_theme")
+script = ExtResource("1_sg")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.98, 0.95, 0.9, 1)
+
+[node name="TopAccent" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(0.45, 0.28, 0.12, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 9
+theme_override_colors/font_color = Color(0.45, 0.28, 0.12, 1)
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="SettingsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 168.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
