@@ -12,4 +12,3 @@ script = ExtResource("1_0vdsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1973135715]
 shape = SubResource("RectangleShape2D_qugoh")
-disabled = true

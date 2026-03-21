@@ -23,6 +23,8 @@ const CROUCH_THRESHOLD := 0.6
 @export var jump_force := -225.0
 @export var gravity := 600.0
 
+var facing := 1.0
+
 @export_group("UI")
 @export var health_bar: ProgressBar
 
@@ -77,6 +79,7 @@ func apply_horizontal(delta: float) -> void:
 	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
 	var dir := 0.0 if abs(raw) < STICK_DEADZONE else raw
 	if dir != 0.0:
+		facing = sign(dir)
 		anim_sprite.flip_h = dir < 0.0
 	velocity.x = move_toward(velocity.x, dir * speed, acceleration * delta)
 
@@ -118,7 +121,8 @@ func _on_animation_finished() -> void:
 # In player.gd — called by AnimationPlayer method track
 func activate_hitbox() -> void:
 	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
-	hitbox.enable(atk.hitbox_size, atk.hitbox_offset)
+	var offset := Vector2(atk.hitbox_offset.x * facing, atk.hitbox_offset.y)
+	hitbox.enable(atk.hitbox_size, offset)
 
 func deactivate_hitbox() -> void:
 	hitbox.disable()
