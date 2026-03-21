@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxpgkoay126ka" path="res://characters/jp/jp.gd" id="1_vflki"]
 [ext_resource type="Resource" uid="uid://p1l47v38fsfu" path="res://characters/jp/attacks/heavy_attack.tres" id="2_0ii53"]
+[ext_resource type="Resource" uid="uid://cmtyjj7teu8wk" path="res://characters/jp/attacks/light_attack.tres" id="2_mi45g"]
 [ext_resource type="Texture2D" uid="uid://p2pm8oyt21lo" path="res://sprites/jp/jp_shadow.png" id="2_vflki"]
 [ext_resource type="Texture2D" uid="uid://45l7sbbr4pnk" path="res://sprites/jp/jp_crouch.png" id="3_0ii53"]
 [ext_resource type="Resource" uid="uid://cvk0hf2lsaaln" path="res://characters/jp/attacks/light_special.tres" id="3_8hlw2"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b7hi8yirtlfnh" path="res://sprites/jp/jp_shadow_light_attack.png" id="5_mi45g"]
 [ext_resource type="Texture2D" uid="uid://cmy6o2835akwx" path="res://sprites/jp/jp_shadow_medium_attack.png" id="6_h4wjq"]
 [ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_h5w7u"]
+[ext_resource type="Texture2D" uid="uid://cidwveqyvjmw7" path="res://sprites/jp/jp_light_attack.png" id="8_8hlw2"]
 [ext_resource type="Script" uid="uid://kfxfdpxy4muh" path="res://scripts/player/states/idle_state.gd" id="8_fy61o"]
 [ext_resource type="Script" uid="uid://w2w0s7v86jh4" path="res://scripts/player/states/walk_state.gd" id="9_qwne8"]
 [ext_resource type="Script" uid="uid://cqwqubgkmfh58" path="res://scripts/player/states/attack_state.gd" id="10_v3aiu"]
@@ -82,6 +84,30 @@ region = Rect2(87, 0, 29, 74)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2utmg"]
 atlas = ExtResource("4_8hlw2")
 region = Rect2(116, 0, 29, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi45g"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4wjq"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5w7u"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(128, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy61o"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwne8"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(256, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3aiu"]
+atlas = ExtResource("8_8hlw2")
+region = Rect2(320, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0v5ke"]
 atlas = ExtResource("5_mi45g")
@@ -175,6 +201,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mi45g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4wjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5w7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy61o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwne8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3aiu")
+}],
+"loop": false,
+"name": &"light_attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0v5ke")
 }, {
 "duration": 1.0,
@@ -205,6 +254,7 @@ size = Vector2(20, 72)
 [node name="jp" type="CharacterBody2D" unique_id=1985438771]
 collision_layer = 2
 script = ExtResource("1_vflki")
+light_attack_data = ExtResource("2_mi45g")
 heavy_attack_data = ExtResource("2_0ii53")
 light_special_data = ExtResource("3_8hlw2")
 
@@ -212,7 +262,9 @@ light_special_data = ExtResource("3_8hlw2")
 position = Vector2(0, 1)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"heavy_attack"
+animation = &"light_attack"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 position = Vector2(0, -1)
