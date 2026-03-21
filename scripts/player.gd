@@ -16,6 +16,8 @@ var block_held: bool = false
 var max_health = 100
 var health = 100
 
+var has_flip: bool = true
+
 func _physics_process(delta: float) -> void:
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > 0.5
 	block_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > 0.5
@@ -35,16 +37,18 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		# apply gravity while airborne
-		velocity.y += gravity * delta
+		has_flip = true
 
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.device != device_id or block_held:
 		return
-	if event.is_action_pressed("jump") and is_on_floor():
-		velocity.y = jump_force
+	if event.is_action_pressed("jump"):
+		if is_on_floor() or has_flip:
+			velocity.y = jump_force
+			if not is_on_floor():
+				has_flip = false
 	if event.is_action_pressed("light_attack"):
 		light_attack()
 	if event.is_action_pressed("medium_attack"):
