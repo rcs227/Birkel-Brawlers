@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://scenes/characters/basic_character.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_0wfyh"]
-[ext_resource type="FontFile" uid="uid://cqkaupyw3j172" path="res://fonts/Ithaca-LVB75.ttf" id="3_sugp2"]
+[ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_sugp2"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
