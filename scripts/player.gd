@@ -13,10 +13,15 @@ var block_held: bool = false
 @export var jump_force := -225.0
 @export var gravity := 600.0
 
+@export var health_bar: ProgressBar
+
 var max_health = 100
 var health = 100
 
 var has_flip: bool = true
+
+func _ready():
+	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > 0.5
@@ -79,6 +84,7 @@ func heavy_attack():
 
 func damage_player(amount: float):
 	health -= amount
+	health_bar.value = health
 	if health <= 0:
 		die()
 

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://5j6q5at670lb"]
 
-[ext_resource type="PackedScene" uid="uid://b1541pc7prjg2" path="res://scenes/characters/basic_character.tscn" id="1"]
+[ext_resource type="Script" uid="uid://clekbkfdm0enw" path="res://scripts/testing/bar_test.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/character.tscn" id="3_jyhfs"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_sugp2"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
@@ -16,7 +17,12 @@ size = Vector2(10, 180)
 [sub_resource type="Theme" id="Theme_jyhfs"]
 default_font = ExtResource("3_sugp2")
 
-[node name="Main" type="Node2D" unique_id=393302278]
+[sub_resource type="Theme" id="Theme_sugp2"]
+default_font = ExtResource("3_sugp2")
+
+[node name="Main" type="Node2D" unique_id=393302278 node_paths=PackedStringArray("player")]
+script = ExtResource("1_jyhfs")
+player = NodePath("character")
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
 offset_top = 170.0
@@ -49,12 +55,6 @@ position = Vector2(325, 90)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=2104789226]
 shape = SubResource("right_wall_shape")
 
-[node name="Player" parent="." unique_id=1099851293 instance=ExtResource("1")]
-position = Vector2(160, 160)
-
-[node name="Player2" parent="." unique_id=2054766971 instance=ExtResource("1")]
-position = Vector2(74, 160)
-
 [node name="health_bar" parent="." unique_id=89258707 instance=ExtResource("2_0wfyh")]
 offset_top = 2.0
 offset_bottom = 15.0
@@ -65,3 +65,15 @@ offset_left = 215.0
 offset_top = 2.0
 offset_right = 318.0
 offset_bottom = 15.0
+theme = SubResource("Theme_sugp2")
+
+[node name="character" parent="." unique_id=1985438771 node_paths=PackedStringArray("health_bar") instance=ExtResource("3_jyhfs")]
+position = Vector2(59, 150)
+scale = Vector2(0.28, 0.28)
+health_bar = NodePath("../health_bar")
+
+[node name="character2" parent="." unique_id=1175189339 node_paths=PackedStringArray("health_bar") instance=ExtResource("3_jyhfs")]
+position = Vector2(235, 150)
+scale = Vector2(0.28, 0.28)
+device_id = 1
+health_bar = NodePath("../health_bar2")
