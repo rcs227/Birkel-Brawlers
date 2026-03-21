@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
 [ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/character.tscn" id="3_wnv5a"]
-[ext_resource type="PackedScene" path="res://scenes/jp.tscn" id="5_7lokh"]
+[ext_resource type="PackedScene" uid="uid://dpn8w8cfts0so" path="res://scenes/jp.tscn" id="5_7lokh"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
@@ -21,7 +21,7 @@ default_font = ExtResource("3_7lokh")
 [sub_resource type="Theme" id="Theme_7lokh"]
 default_font = ExtResource("3_7lokh")
 
-[node name="Main" type="Node2D" unique_id=393302278]
+[node name="Main2" type="Node2D" unique_id=393302278]
 script = ExtResource("1_jrcg6")
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
@@ -67,15 +67,17 @@ offset_right = 318.0
 offset_bottom = 15.0
 theme = SubResource("Theme_7lokh")
 
-[node name="character" parent="." unique_id=1985438771 instance=ExtResource("3_wnv5a")]
-position = Vector2(97, 66)
-scale = Vector2(0.245, 0.245)
-device_id = -1
-
-[node name="character2" parent="." unique_id=1304211670 instance=ExtResource("3_wnv5a")]
+[node name="character2" parent="." unique_id=1304211670 node_paths=PackedStringArray("health_bar") instance=ExtResource("3_wnv5a")]
 position = Vector2(219, 150)
 scale = Vector2(0.245, 0.245)
 device_id = 1
+speed = 150.0
+acceleration = 1000.0
+friction = 750.0
+jump_force = -225.0
+gravity = 600.0
+health_bar = NodePath("../health_bar")
 
-[node name="character3" parent="." unique_id=2073528848 instance=ExtResource("5_7lokh")]
+[node name="character3" parent="." unique_id=2073528848 node_paths=PackedStringArray("health_bar") instance=ExtResource("5_7lokh")]
 position = Vector2(130, 134)
+health_bar = NodePath("../health_bar2")

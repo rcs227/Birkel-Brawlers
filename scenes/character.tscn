@@ -20,8 +20,14 @@ size = Vector2(129, 130)
 [node name="character" type="CharacterBody2D" unique_id=1985438771]
 collision_layer = 2
 script = ExtResource("1_rkhd4")
+device_id = null
+speed = null
+acceleration = null
+friction = null
+jump_force = null
+gravity = null
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=418215774]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=418215774]
 sprite_frames = SubResource("SpriteFrames_lrhn5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671035564]

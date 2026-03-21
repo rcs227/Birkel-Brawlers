@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://soeq7lv6b6yo"]
+[gd_scene format=3 uid="uid://dpn8w8cfts0so"]
 
 [ext_resource type="Script" uid="uid://cxpgkoay126ka" path="res://scripts/jp.gd" id="1_fl8a4"]
 [ext_resource type="Texture2D" uid="uid://45l7sbbr4pnk" path="res://sprites/jp_crouch.png" id="2_4k224"]
 [ext_resource type="Texture2D" uid="uid://p2pm8oyt21lo" path="res://sprites/jp_shadow.png" id="3_4k224"]
 [ext_resource type="Texture2D" uid="uid://b7hi8yirtlfnh" path="res://sprites/jp_shadow_light_attack.png" id="3_yuwmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k224"]
+atlas = ExtResource("3_4k224")
+region = Rect2(0, 0, 22, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yuwmx"]
 atlas = ExtResource("2_4k224")
@@ -37,12 +41,16 @@ region = Rect2(240, 0, 80, 84)
 atlas = ExtResource("3_yuwmx")
 region = Rect2(320, 0, 80, 84)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k224"]
-atlas = ExtResource("3_4k224")
-region = Rect2(0, 0, 22, 66)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_0v5ke"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k224")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yuwmx")
@@ -54,7 +62,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jph63")
 }],
 "loop": false,
-"name": &"crouch",
+"name": &"crouch_old",
 "speed": 6.0
 }, {
 "frames": [{
@@ -81,16 +89,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vwyf3")
 }],
-"loop": true,
+"loop": false,
 "name": &"light_attack",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4k224")
-}],
-"loop": true,
-"name": &"shadow",
 "speed": 6.0
 }]
 
@@ -100,11 +100,11 @@ size = Vector2(20, 72)
 [node name="character2" type="CharacterBody2D" unique_id=1985438771]
 script = ExtResource("1_fl8a4")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1541236945]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1541236945]
 position = Vector2(0, 1)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_0v5ke")
-animation = &"shadow"
+animation = &"light_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671035564]
 position = Vector2(0, -1)
