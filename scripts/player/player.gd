@@ -98,7 +98,7 @@ func _on_animation_finished() -> void:
 	if state_machine.current_state == state_machine.get_node("Dead"):
 		queue_free()
 	else:
-		safe_play("idle")
+		state_machine.transition_to("Idle")
 
 # ---- Attacks -----
 func grab():

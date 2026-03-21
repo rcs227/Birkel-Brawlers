@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p2pm8oyt21lo"
-path="res://.godot/imported/jp_shadow.png-2991d6e14b38757e7cad713fceefd7a5.ctex"
+uid="uid://lsgld8yayhbj"
+path="res://.godot/imported/jp_idle.png-f791e89c66ed5b19656999ad31d0dcff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/jp_shadow.png"
-dest_files=["res://.godot/imported/jp_shadow.png-2991d6e14b38757e7cad713fceefd7a5.ctex"]
+source_file="res://sprites/jp/jp_idle.png"
+dest_files=["res://.godot/imported/jp_idle.png-f791e89c66ed5b19656999ad31d0dcff.ctex"]
 
 [params]
 

@@ -1,104 +1,105 @@
 [gd_scene format=3 uid="uid://dpn8w8cfts0so"]
 
-[ext_resource type="Script" uid="uid://dag1scwrrpwpm" path="res://scripts/player/player.gd" id="1_rtdo2"]
-[ext_resource type="Texture2D" uid="uid://p2pm8oyt21lo" path="res://sprites/jp_shadow.png" id="2_rhx5l"]
-[ext_resource type="Texture2D" uid="uid://45l7sbbr4pnk" path="res://sprites/jp_crouch.png" id="3_2k1us"]
-[ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp_idle.png" id="4_xhysh"]
-[ext_resource type="Texture2D" uid="uid://b7hi8yirtlfnh" path="res://sprites/jp_shadow_light_attack.png" id="5_mbd8x"]
-[ext_resource type="Texture2D" uid="uid://cmy6o2835akwx" path="res://sprites/jp_shadow_medium_attack.png" id="6_4upre"]
-[ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_nvncu"]
-[ext_resource type="Script" uid="uid://kfxfdpxy4muh" path="res://scripts/player/states/idle_state.gd" id="8_slpf5"]
-[ext_resource type="Script" uid="uid://w2w0s7v86jh4" path="res://scripts/player/states/walk_state.gd" id="9_p13as"]
-[ext_resource type="Script" uid="uid://cqwqubgkmfh58" path="res://scripts/player/states/attack_state.gd" id="10_y4m2j"]
-[ext_resource type="Script" uid="uid://45ekjxna8ejp" path="res://scripts/player/states/block_state.gd" id="11_5o8y8"]
-[ext_resource type="Script" uid="uid://b4yoke10a24wp" path="res://scripts/player/states/fall_state.gd" id="12_w3ti0"]
-[ext_resource type="Script" uid="uid://dasi0wqpu3rx5" path="res://scripts/player/states/stun_state.gd" id="13_2xixi"]
-[ext_resource type="Script" uid="uid://q3nurp1k1vi" path="res://scripts/player/states/jump_state.gd" id="14_qr0ha"]
-[ext_resource type="Script" uid="uid://cywlcivnbd2d" path="res://scripts/player/states/crouch_state.gd" id="15_h70ow"]
-[ext_resource type="Script" uid="uid://c7gw3f1dmo8pf" path="res://scripts/player/states/dead_state.gd" id="16_4cx3d"]
+[ext_resource type="Script" uid="uid://cxpgkoay126ka" path="res://characters/jp/jp.gd" id="1_vflki"]
+[ext_resource type="Resource" uid="uid://cmtyjj7teu8wk" path="res://characters/jp/attacks/light_attack.tres" id="2_0ii53"]
+[ext_resource type="Texture2D" uid="uid://p2pm8oyt21lo" path="res://sprites/jp/jp_shadow.png" id="2_vflki"]
+[ext_resource type="Texture2D" uid="uid://45l7sbbr4pnk" path="res://sprites/jp/jp_crouch.png" id="3_0ii53"]
+[ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp/jp_idle.png" id="4_8hlw2"]
+[ext_resource type="Texture2D" uid="uid://b7hi8yirtlfnh" path="res://sprites/jp/jp_shadow_light_attack.png" id="5_mi45g"]
+[ext_resource type="Texture2D" uid="uid://cmy6o2835akwx" path="res://sprites/jp/jp_shadow_medium_attack.png" id="6_h4wjq"]
+[ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_h5w7u"]
+[ext_resource type="Script" uid="uid://kfxfdpxy4muh" path="res://scripts/player/states/idle_state.gd" id="8_fy61o"]
+[ext_resource type="Script" uid="uid://w2w0s7v86jh4" path="res://scripts/player/states/walk_state.gd" id="9_qwne8"]
+[ext_resource type="Script" uid="uid://cqwqubgkmfh58" path="res://scripts/player/states/attack_state.gd" id="10_v3aiu"]
+[ext_resource type="Script" uid="uid://45ekjxna8ejp" path="res://scripts/player/states/block_state.gd" id="11_7d0xu"]
+[ext_resource type="Script" uid="uid://b4yoke10a24wp" path="res://scripts/player/states/fall_state.gd" id="12_4cwt5"]
+[ext_resource type="Script" uid="uid://dasi0wqpu3rx5" path="res://scripts/player/states/stun_state.gd" id="13_u6jbq"]
+[ext_resource type="Script" uid="uid://q3nurp1k1vi" path="res://scripts/player/states/jump_state.gd" id="14_3y1rc"]
+[ext_resource type="Script" uid="uid://cywlcivnbd2d" path="res://scripts/player/states/crouch_state.gd" id="15_1518n"]
+[ext_resource type="Script" uid="uid://c7gw3f1dmo8pf" path="res://scripts/player/states/dead_state.gd" id="16_gov72"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k224"]
-atlas = ExtResource("2_rhx5l")
+atlas = ExtResource("2_vflki")
 region = Rect2(0, 0, 22, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yuwmx"]
-atlas = ExtResource("3_2k1us")
+atlas = ExtResource("3_0ii53")
 region = Rect2(0, 0, 67, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfrnv"]
-atlas = ExtResource("3_2k1us")
+atlas = ExtResource("3_0ii53")
 region = Rect2(67, 0, 67, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jph63"]
-atlas = ExtResource("3_2k1us")
+atlas = ExtResource("3_0ii53")
 region = Rect2(134, 0, 67, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfd5a"]
-atlas = ExtResource("4_xhysh")
+atlas = ExtResource("4_8hlw2")
 region = Rect2(0, 0, 29, 74)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j174a"]
-atlas = ExtResource("4_xhysh")
+atlas = ExtResource("4_8hlw2")
 region = Rect2(29, 0, 29, 74)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u10nd"]
-atlas = ExtResource("4_xhysh")
+atlas = ExtResource("4_8hlw2")
 region = Rect2(58, 0, 29, 74)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr3pk"]
-atlas = ExtResource("4_xhysh")
+atlas = ExtResource("4_8hlw2")
 region = Rect2(87, 0, 29, 74)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2utmg"]
-atlas = ExtResource("4_xhysh")
+atlas = ExtResource("4_8hlw2")
 region = Rect2(116, 0, 29, 74)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0v5ke"]
-atlas = ExtResource("5_mbd8x")
+atlas = ExtResource("5_mi45g")
 region = Rect2(0, 0, 80, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nucey"]
-atlas = ExtResource("5_mbd8x")
+atlas = ExtResource("5_mi45g")
 region = Rect2(80, 0, 80, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ei0xq"]
-atlas = ExtResource("5_mbd8x")
+atlas = ExtResource("5_mi45g")
 region = Rect2(160, 0, 80, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2m7x"]
-atlas = ExtResource("5_mbd8x")
+atlas = ExtResource("5_mi45g")
 region = Rect2(240, 0, 80, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwyf3"]
-atlas = ExtResource("5_mbd8x")
+atlas = ExtResource("5_mi45g")
 region = Rect2(320, 0, 80, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vyd52"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(0, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6w2d"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(150, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bimso"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lqjt"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0euut"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(600, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqum3"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(750, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plgq0"]
-atlas = ExtResource("6_4upre")
+atlas = ExtResource("6_h4wjq")
 region = Rect2(900, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70irc"]
@@ -142,7 +143,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2utmg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 6.0
 }, {
 "frames": [{
@@ -202,44 +203,45 @@ size = Vector2(20, 72)
 
 [node name="jp" type="CharacterBody2D" unique_id=1985438771]
 collision_layer = 2
-script = ExtResource("1_rtdo2")
+script = ExtResource("1_vflki")
+light_attack_data = ExtResource("2_0ii53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66600063]
 position = Vector2(0, 1)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"medium_special"
+animation = &"crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_hr5o0")
 
 [node name="StateMachine" type="Node" parent="." unique_id=776769573]
-script = ExtResource("7_nvncu")
+script = ExtResource("7_h5w7u")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=782065869]
-script = ExtResource("8_slpf5")
+script = ExtResource("8_fy61o")
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1518608991]
-script = ExtResource("9_p13as")
+script = ExtResource("9_qwne8")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=306541195]
-script = ExtResource("10_y4m2j")
+script = ExtResource("10_v3aiu")
 
 [node name="Block" type="Node" parent="StateMachine" unique_id=2049410459]
-script = ExtResource("11_5o8y8")
+script = ExtResource("11_7d0xu")
 
 [node name="Fall" type="Node" parent="StateMachine" unique_id=1416490323]
-script = ExtResource("12_w3ti0")
+script = ExtResource("12_4cwt5")
 
 [node name="Stun" type="Node" parent="StateMachine" unique_id=1962491171]
-script = ExtResource("13_2xixi")
+script = ExtResource("13_u6jbq")
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=784937470]
-script = ExtResource("14_qr0ha")
+script = ExtResource("14_3y1rc")
 
 [node name="Crouch" type="Node" parent="StateMachine" unique_id=971353559]
-script = ExtResource("15_h70ow")
+script = ExtResource("15_1518n")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1905371277]
-script = ExtResource("16_4cx3d")
+script = ExtResource("16_gov72")

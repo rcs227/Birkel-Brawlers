@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://cmtyjj7teu8wk"]
+
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_mghbe"]
+
+[resource]
+script = ExtResource("1_mghbe")
+animation = &"light_attack"
+damage = 1.0
+knockback = Vector2(1, 0)
+stun_duration = 0.1
+hitbox_size = Vector2(10, 30)
+hitbox_offset = Vector2(6, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmy6o2835akwx"
-path="res://.godot/imported/jp_shadow_medium_attack.png-1e55d765aa124b066da15f77441e6b94.ctex"
+uid="uid://p2pm8oyt21lo"
+path="res://.godot/imported/jp_shadow.png-a05b6bf38b14c949f0ffb7799f485b4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/jp_shadow_medium_attack.png"
-dest_files=["res://.godot/imported/jp_shadow_medium_attack.png-1e55d765aa124b066da15f77441e6b94.ctex"]
+source_file="res://sprites/jp/jp_shadow.png"
+dest_files=["res://.godot/imported/jp_shadow.png-a05b6bf38b14c949f0ffb7799f485b4f.ctex"]
 
 [params]
 

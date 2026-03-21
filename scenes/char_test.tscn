@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
 [ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/characters/character.tscn" id="3_wnv5a"]
-[ext_resource type="PackedScene" uid="uid://dpn8w8cfts0so" path="res://scenes/characters/jp.tscn" id="5_7lokh"]
+[ext_resource type="PackedScene" uid="uid://dpn8w8cfts0so" path="res://characters/jp/jp.tscn" id="5_7lokh"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
