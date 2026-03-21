@@ -10,8 +10,10 @@ func enter() -> void:
 func physics_process(delta: float) -> String:
 	# Locked out of everything — just apply gravity if airborne
 	if not player.is_on_floor():
+		player.apply_horizontal(delta)
 		player.apply_gravity(delta)
-	player.apply_friction(delta)
+	else:
+		player.apply_friction(delta)
 	player.move_and_slide()
 	return ""
 

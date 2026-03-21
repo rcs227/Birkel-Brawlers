@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://cvk0hf2lsaaln"]
+
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_mma64"]
+
+[resource]
+script = ExtResource("1_mma64")
+animation = &"light_special"
