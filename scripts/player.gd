@@ -13,13 +13,16 @@ var block_held: bool = false
 @export var jump_force := -225.0
 @export var gravity := 600.0
 
+var max_health = 100
+var health = 100
+
 func _physics_process(delta: float) -> void:
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > 0.5
 	block_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > 0.5
 	
 	
 	# Horizontal movement
-	
+	# prevent stick drift
 	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
 	var direction := 0.0 if block_held or abs(raw) < 0.2 else raw
 
@@ -69,3 +72,12 @@ func heavy_attack():
 		print("heavy special")
 	else:
 		print("heavy attack")
+
+func damage_player(amount: float):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	print("u died lol")
+	queue_free()
