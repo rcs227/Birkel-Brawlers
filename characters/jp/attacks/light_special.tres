@@ -4,3 +4,4 @@
 
 [resource]
 script = ExtResource("1_mma64")
+animation = &"light_special"
