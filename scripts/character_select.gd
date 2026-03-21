@@ -1,8 +1,14 @@
+class_name CharacterSelectScreen
 extends Control
 
 # Emitted when every player has chosen a character.
-# selections is an Array[int] of character indices, one per player.
+# selections is an Array[int] of character indices, one per player (duplicates allowed).
 signal all_players_selected(selections: Array[int])
+
+# Filled when START runs; read from gameplay code to spawn one fighter per entry.
+# Same index may appear more than once — each slot is an independent player.
+static var last_selections: Array[int] = []
+static var last_player_count: int = 2
 
 # character_count and grid_columns control how many character buttons appear and how they're laid out.
 # player_count is the starting number of players (can be changed with +/- PLAYER buttons at runtime).
@@ -94,6 +100,12 @@ func _get_frames_for_character(index: int) -> SpriteFrames:
 	if index < character_sprite_frames.size() and character_sprite_frames[index] != null:
 		return character_sprite_frames[index]
 	return default_sprite_frames
+
+
+# Each preview gets its own SpriteFrames copy so two players can pick the same fighter
+# without sharing one resource (independent animation state on the select screen).
+func _duplicate_frames_for_preview(frames: SpriteFrames) -> SpriteFrames:
+	return frames.duplicate(true) as SpriteFrames
 
 
 # Checks whether the SpriteFrames has an animation named "idle", otherwise uses "default".
@@ -259,7 +271,7 @@ func _on_button_pressed(index: int) -> void:
 
 	var preview: AnimatedSprite2D = _previews[current_player]
 	var frames: SpriteFrames = _get_frames_for_character(index)
-	preview.sprite_frames = frames
+	preview.sprite_frames = _duplicate_frames_for_preview(frames)
 
 	var anim_name: String = _get_anim_name(frames)
 	var s: float = _get_preview_scale(frames, anim_name)
@@ -289,7 +301,7 @@ func _on_button_pressed(index: int) -> void:
 		prompt_label.add_theme_color_override("font_color", WARM_WHITE)
 		_flash_ready()
 		_update_action_buttons()
-		all_players_selected.emit(selections)
+		all_players_selected.emit(selections.duplicate())
 	else:
 		_update_prompt()
 		_update_action_buttons()
@@ -332,6 +344,8 @@ func _on_remove_player() -> void:
 func _on_start_pressed() -> void:
 	if current_player < player_count:
 		return
+	last_selections = selections.duplicate()
+	last_player_count = player_count
 	get_tree().change_scene_to_file("res://scenes/char_test.tscn")
 
 
