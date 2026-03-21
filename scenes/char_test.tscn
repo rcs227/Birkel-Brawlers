@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cq43gbcg075eg" path="res://scripts/game_manager.gd" id="1_jrcg6"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
-[ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/character.tscn" id="3_wnv5a"]
-[ext_resource type="PackedScene" uid="uid://dpn8w8cfts0so" path="res://scenes/jp.tscn" id="5_7lokh"]
+[ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/characters/character.tscn" id="3_wnv5a"]
+[ext_resource type="PackedScene" uid="uid://dpn8w8cfts0so" path="res://characters/jp/jp.tscn" id="5_7lokh"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
@@ -15,47 +15,39 @@ size = Vector2(10, 180)
 [sub_resource type="RectangleShape2D" id="right_wall_shape"]
 size = Vector2(10, 180)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar_fill"]
-bg_color = Color(0.45, 0.28, 0.12, 1)
-border_color = Color(0.25, 0.14, 0.05, 1)
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar_bg"]
 bg_color = Color(0.98, 0.95, 0.9, 1)
-border_color = Color(0.25, 0.14, 0.05, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.25, 0.14, 0.05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar_fill"]
+bg_color = Color(0.45, 0.28, 0.12, 1)
+border_color = Color(0.25, 0.14, 0.05, 1)
 
 [sub_resource type="Theme" id="Theme_jyhfs"]
 default_font = ExtResource("3_7lokh")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar_fill")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_hbar_bg")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar_fill")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar2_bg"]
+bg_color = Color(0.98, 0.95, 0.9, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.14, 0.05, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar2_fill"]
 bg_color = Color(0.45, 0.28, 0.12, 1)
 border_color = Color(0.25, 0.14, 0.05, 1)
-border_width_left = 0
-border_width_top = 0
-border_width_right = 0
-border_width_bottom = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbar2_bg"]
-bg_color = Color(0.98, 0.95, 0.9, 1)
-border_color = Color(0.25, 0.14, 0.05, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 
 [sub_resource type="Theme" id="Theme_7lokh"]
 default_font = ExtResource("3_7lokh")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar2_fill")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_hbar2_bg")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar2_fill")
 
 [node name="Main2" type="Node2D" unique_id=393302278]
 script = ExtResource("1_jrcg6")

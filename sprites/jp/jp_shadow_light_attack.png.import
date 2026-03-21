@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lsgld8yayhbj"
-path="res://.godot/imported/jp_idle.png-7ad8adcc8b17331834b53cc4cef505b4.ctex"
+uid="uid://b7hi8yirtlfnh"
+path="res://.godot/imported/jp_shadow_light_attack.png-4c56f56009071c9f65517806610a9ece.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/jp_idle.png"
-dest_files=["res://.godot/imported/jp_idle.png-7ad8adcc8b17331834b53cc4cef505b4.ctex"]
+source_file="res://sprites/jp/jp_shadow_light_attack.png"
+dest_files=["res://.godot/imported/jp_shadow_light_attack.png-4c56f56009071c9f65517806610a9ece.ctex"]
 
 [params]
 
