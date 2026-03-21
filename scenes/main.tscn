@@ -70,10 +70,21 @@ theme = SubResource("Theme_sugp2")
 [node name="character" parent="." unique_id=1985438771 node_paths=PackedStringArray("health_bar") instance=ExtResource("3_jyhfs")]
 position = Vector2(59, 150)
 scale = Vector2(0.28, 0.28)
+device_id = 0
+speed = 150.0
+acceleration = 1000.0
+friction = 750.0
+jump_force = -225.0
+gravity = 600.0
 health_bar = NodePath("../health_bar")
 
 [node name="character2" parent="." unique_id=1175189339 node_paths=PackedStringArray("health_bar") instance=ExtResource("3_jyhfs")]
 position = Vector2(235, 150)
 scale = Vector2(0.28, 0.28)
 device_id = 1
+speed = 150.0
+acceleration = 1000.0
+friction = 750.0
+jump_force = -225.0
+gravity = 600.0
 health_bar = NodePath("../health_bar2")
