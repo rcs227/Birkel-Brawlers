@@ -68,8 +68,9 @@ offset_bottom = 15.0
 theme = SubResource("Theme_7lokh")
 
 [node name="character" parent="." unique_id=1985438771 instance=ExtResource("3_wnv5a")]
-position = Vector2(124, 101)
+position = Vector2(97, 66)
 scale = Vector2(0.245, 0.245)
+device_id = -1
 
 [node name="character2" parent="." unique_id=1304211670 instance=ExtResource("3_wnv5a")]
 position = Vector2(219, 150)
