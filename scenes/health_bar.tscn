@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ckcua3is255on"]
+
+[node name="health_bar" type="ProgressBar" unique_id=89258707]
+offset_left = 1.0
+offset_right = 104.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 6
