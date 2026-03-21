@@ -6,6 +6,9 @@ extends Area2D
 
 var owner_player: Player
 
+func _ready():
+	collision.shape = collision.shape.duplicate()
+
 func enable(size: Vector2, offset: Vector2) -> void:
 	(collision.shape as RectangleShape2D).size = size
 	collision.position = offset
