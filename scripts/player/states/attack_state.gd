@@ -5,7 +5,7 @@ extends State
 var current_attack: Attack
 
 func enter() -> void:
-	player.safe_play(current_attack.animation)
+	player.play_attack(current_attack.animation)
 
 func physics_process(delta: float) -> String:
 	# Locked out of everything — just apply gravity if airborne
