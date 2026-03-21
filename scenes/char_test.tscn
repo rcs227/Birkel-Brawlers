@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
 [ext_resource type="PackedScene" uid="uid://xmwhydyy0d22" path="res://scenes/character.tscn" id="3_wnv5a"]
-[ext_resource type="PackedScene" uid="uid://soeq7lv6b6yo" path="res://scenes/jp.tscn" id="5_7lokh"]
+[ext_resource type="PackedScene" path="res://scenes/jp.tscn" id="5_7lokh"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
@@ -16,6 +16,9 @@ size = Vector2(10, 180)
 size = Vector2(10, 180)
 
 [sub_resource type="Theme" id="Theme_jyhfs"]
+default_font = ExtResource("3_7lokh")
+
+[sub_resource type="Theme" id="Theme_7lokh"]
 default_font = ExtResource("3_7lokh")
 
 [node name="Main" type="Node2D" unique_id=393302278]
@@ -62,6 +65,7 @@ offset_left = 215.0
 offset_top = 2.0
 offset_right = 318.0
 offset_bottom = 15.0
+theme = SubResource("Theme_7lokh")
 
 [node name="character" parent="." unique_id=1985438771 instance=ExtResource("3_wnv5a")]
 position = Vector2(124, 101)
