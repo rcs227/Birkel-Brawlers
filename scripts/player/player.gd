@@ -2,8 +2,10 @@ class_name Player
 extends CharacterBody2D
 
 # child nodes
-@onready var anim_sprite = get_node("AnimatedSprite2D")
+@onready var anim_sprite = get_node("AnimatedSprite2D") as AnimatedSprite2D
+@onready var anim_player = $AnimationPlayer
 @onready var state_machine: StateMachine = get_node("StateMachine")
+@onready var hitbox: Hitbox = get_node("Hitbox")
 
 # constants
 const STICK_DEADZONE := 0.2
@@ -35,8 +37,10 @@ var has_flip := true
 var knockback := Vector2.ZERO
 
 func _ready():
-	health_bar.value = health
 	anim_sprite.animation_finished.connect(_on_animation_finished)
+	hitbox.owner_player = self
+	hitbox.disable()
+	health_bar.value = health
 	state_machine.init(state_machine.get_node("Idle"))
 
 func _process(delta: float) -> void:
@@ -92,10 +96,17 @@ func damage_player(amount: float):
 # --- Animation ---
 
 # safely checks if an animation exists
-func safe_play(animation: StringName) -> void:
-	if anim_sprite.sprite_frames.has_animation(animation):
-		anim_sprite.play(animation)
-		
+func safe_play(anim: StringName) -> void:
+	if anim_sprite.sprite_frames.has_animation(anim):
+		anim_sprite.play(anim)
+	else:
+		push_error("Animation not found: " + anim)
+
+func play_attack(anim: StringName) -> void:
+	anim_sprite.play(anim)
+	if anim_player.has_animation(anim):
+		anim_player.play(anim)
+
 func _on_animation_finished() -> void:
 	if state_machine.current_state == state_machine.get_node("Dead"):
 		queue_free()
@@ -103,23 +114,11 @@ func _on_animation_finished() -> void:
 		state_machine.transition_to("Idle")
 
 # ---- Attacks -----
-func grab():
-	print("grab")
 
-func light_attack():
-	print("light attack")
+# In player.gd — called by AnimationPlayer method track
+func activate_hitbox() -> void:
+	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
+	hitbox.enable(atk.hitbox_size, atk.hitbox_offset)
 
-func medium_attack():
-	print("medium attack")
-
-func heavy_attack():
-	print("heavy attack")
-
-func light_special():
-	print("light special")
-
-func medium_special():
-	print("medium special")
-
-func heavy_special():
-	print("heavy special")
+func deactivate_hitbox() -> void:
+	hitbox.disable()
