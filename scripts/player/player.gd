@@ -212,3 +212,28 @@ func take_block_damage(amount: float, attacker: Player) -> void:
 	block_bar.value = block_health
 	if block_health <= 0.0:
 		break_block()
+
+# duration: how long to freeze the player for
+# attackee: if the player is the one being attacked
+func apply_hit_stop(duration: float, attackee: bool = false) -> void:
+	anim_sprite.pause()
+	if not attackee:
+		anim_player.pause()
+	set_physics_process(false)
+	set_process(false)
+	await get_tree().create_timer(duration).timeout
+	anim_sprite.play()
+	if not attackee:
+		anim_player.play()
+	set_physics_process(true)
+	set_process(true)
+	state_machine.transition_to("Idle")
+
+func apply_hit(amount: float, kb: Vector2, stun: float, hit_stop: float) -> void:
+	damage_player(amount)
+	if state_machine.current_state == state_machine.get_node("Dead"):
+		return
+	apply_hit_stop(hit_stop, true)
+	await get_tree().create_timer(hit_stop).timeout
+	apply_knockback(kb)
+	apply_stun(stun)
