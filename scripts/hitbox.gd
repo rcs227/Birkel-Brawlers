@@ -67,7 +67,9 @@ func _on_area_entered(area: Area2D) -> void:
 	if atk == null:
 		return
 	
-	# check block
+	# check block or death
+	if target.state_machine.current_state == target.state_machine.get_node("Dead"):
+		return
 	if target.state_machine.current_state == target.state_machine.get_node("Block"):
 		target.take_block_damage(atk.damage, owner_player)
 		return

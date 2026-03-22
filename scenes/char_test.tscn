@@ -61,7 +61,7 @@ offset_bottom = 180.0
 color = Color(0.3, 0.3, 0.3, 1)
 
 [node name="GroundBody" type="StaticBody2D" parent="." unique_id=937884161]
-position = Vector2(160, 175)
+position = Vector2(160, 187)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBody" unique_id=124142584]
 shape = SubResource("ground_shape")
@@ -93,7 +93,7 @@ z_index = -1
 offset_top = -24.000002
 offset_right = 5712.0
 offset_bottom = 4260.0
-scale = Vector2(0.055907793, 0.055907793)
+scale = Vector2(0.057, 0.057)
 texture = ExtResource("2_7lokh")
 
 [node name="Sun" type="Marker2D" parent="." unique_id=771234567]
