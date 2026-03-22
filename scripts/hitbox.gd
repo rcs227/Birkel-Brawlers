@@ -75,6 +75,6 @@ func _on_area_entered(area: Area2D) -> void:
 	# Flip knockback if target is to the left
 	var dir := signf(target.global_position.x - owner_player.global_position.x)
 	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
-	target.damage_player(atk.damage)
 	target.apply_knockback(kb)
 	target.apply_stun(atk.stun_duration)
+	target.damage_player(atk.damage)

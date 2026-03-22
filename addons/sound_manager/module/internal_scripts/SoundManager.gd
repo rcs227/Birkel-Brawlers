@@ -340,8 +340,9 @@ func fade_out(sound : String, duration : float) -> void:
 # Returns -1 if it doesn't exist
 func find_sound(sound : String) -> int:
 	var sound_index = -1
-	if not is_audio_file(sound):
-		sound = Audio_Files_Dictionary.get(sound, null)
+	var sound_lookup = Audio_Files_Dictionary.get(sound, null)  # use a separate untyped var
+	if sound_lookup != null:
+		sound = sound_lookup
 	if sound != null and sound != "":
 		sound_index = _playing_sounds.find(sound)
 	return sound_index

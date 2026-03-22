@@ -33,6 +33,26 @@ region = Rect2(256, 384, 128, 128)
 atlas = ExtResource("5_8hlw2")
 region = Rect2(0, 1280, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_30sqf"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(128, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16puh"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(384, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3dc"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(0, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pigdp"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51riw"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(384, 1152, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ii53"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(256, 256, 128, 128)
@@ -298,6 +318,26 @@ animations = [{
 "loop": true,
 "name": &"crouch",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30sqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16puh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it3dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pigdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51riw")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -731,6 +771,7 @@ heavy_attack_data = ExtResource("4_h4wjq")
 light_special_data = ExtResource("3_8hlw2")
 medium_special_data = ExtResource("6_h5w7u")
 heavy_special_data = ExtResource("7_fy61o")
+hurt_sound = &"jp_hurt_2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 position = Vector2(0, -1)
@@ -740,7 +781,9 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(3, -31)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"parry"
+animation = &"death"
+frame = 4
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")

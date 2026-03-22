@@ -45,7 +45,8 @@ var knockback := Vector2.ZERO
 @export var block_regen_rate := 15        # per second when not blocking
 @export var block_break_stun := 2.0         # stun duration on block break
 @export var parry_window := 0.15            # seconds after starting block that counts as parry
-@export var parry_stun_duration := 0.3      # stun applied to attacker on parry
+@export var parry_stun_duration := 0.55      # stun applied to attacker on parry
+@export var block_cost := 1.5                 # the amount it costs to block each time
 
 var block_health := 0.0
 var is_block_broken := false                # prevents re-blocking until trigger released
@@ -54,6 +55,9 @@ var block_regen_timer := 0.0               # delay before regen starts
 @export var block_regen_delay := 1.5        # seconds before regen kicks in
 
 @onready var block_bar: ProgressBar = get_node("BlockBar")
+
+# Sounds
+@export var hurt_sound: StringName
 
 func _ready():
 	block_health = max_block_health
@@ -113,6 +117,7 @@ func apply_knockback(force: Vector2):
 	knockback = force
 
 func damage_player(amount: float):
+	SoundManager.play_sfx(hurt_sound)
 	health -= amount
 	health_bar.value = health
 	if health <= 0:

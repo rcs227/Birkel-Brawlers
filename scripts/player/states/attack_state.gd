@@ -7,6 +7,8 @@ var current_attack: Attack
 func enter() -> void:
 	player.deactivate_hitbox()
 	player.anim_player.stop()
+	if current_attack.sound_effect != null:
+		SoundManager.play_sfx(current_attack.sound_effect)
 	player.play_attack(current_attack.animation)
 
 func physics_process(delta: float) -> String:

@@ -7,3 +7,4 @@ extends Resource
 @export var stun_duration: float
 @export var hitbox_size: Vector2
 @export var hitbox_offset: Vector2
+@export var sound_effect: StringName

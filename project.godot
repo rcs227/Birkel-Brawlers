@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoundManager="*uid://vqnqvndpsftt"
 UiButtonSounds="*res://scripts/ui_button_sounds.gd"
 SettingsManager="*res://scripts/settings_manager.gd"
+SoundManager="*uid://vqnqvndpsftt"
 
 [display]
 

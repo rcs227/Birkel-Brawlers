@@ -3,6 +3,7 @@ extends State
 
 func enter() -> void:
 	player.safe_play("block")
+	player.block_health -= player.block_cost
 	player.start_block()
 
 func exit() -> void:
@@ -15,9 +16,6 @@ func physics_process(delta: float) -> String:
 	player.update_block_health(delta)
 	if player.is_block_broken:
 		return ""
-#		if not player.is_on_floor():
-#			return "Fall"
-#		return "Idle"
 	if not player.block_held:
 		if not player.is_on_floor():
 			return "Fall"
