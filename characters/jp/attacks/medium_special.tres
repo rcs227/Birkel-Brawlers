@@ -6,7 +6,7 @@
 script = ExtResource("1_fio01")
 animation = &"medium_special"
 damage = 9.0
-knockback = Vector2(200, -50)
-stun_duration = 0.4
+knockback = Vector2(200, 0)
+stun_duration = 0.56
 hitbox_size = Vector2(70, 30)
 hitbox_offset = Vector2(25, -8)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cq43gbcg075eg" path="res://scripts/game_manager.gd" id="1_jrcg6"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
+[ext_resource type="Texture2D" uid="uid://cdncvb375g82m" path="res://sprites/maps/basement.png" id="4_jrcg6"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
@@ -51,6 +52,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar2_fill")
 script = ExtResource("1_jrcg6")
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
+visible = false
 offset_top = 170.0
 offset_right = 320.0
 offset_bottom = 180.0
@@ -63,6 +65,7 @@ position = Vector2(160, 175)
 shape = SubResource("ground_shape")
 
 [node name="ColorRect" type="ColorRect" parent="GroundBody" unique_id=1497129089]
+visible = false
 offset_left = -171.0
 offset_top = -5.0
 offset_right = 170.0
@@ -94,3 +97,12 @@ offset_bottom = 15.0
 theme = SubResource("Theme_7lokh")
 
 [node name="Players" type="Node2D" parent="." unique_id=683258137]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=215457273]
+z_index = -1
+offset_left = -5.0
+offset_top = -60.0
+offset_right = 5707.0
+offset_bottom = 4224.0
+scale = Vector2(0.060546074, 0.060546074)
+texture = ExtResource("4_jrcg6")
