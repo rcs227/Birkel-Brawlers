@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://xmwhydyy0d22"]
+[gd_scene format=3 uid="uid://bhs54edopw07e"]
 
 [ext_resource type="Script" uid="uid://dag1scwrrpwpm" path="res://scripts/player/player.gd" id="1_rkhd4"]
 [ext_resource type="Texture2D" uid="uid://d0hbkqf33njwb" path="res://icon.svg" id="2_rkhd4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://q3nurp1k1vi" path="res://scripts/player/states/jump_state.gd" id="9_1j4ge"]
 [ext_resource type="Script" uid="uid://cywlcivnbd2d" path="res://scripts/player/states/crouch_state.gd" id="10_hm0uo"]
 [ext_resource type="Script" uid="uid://c7gw3f1dmo8pf" path="res://scripts/player/states/dead_state.gd" id="11_6mn2q"]
+[ext_resource type="PackedScene" uid="uid://tlv52h3y08p7" path="res://scenes/hitbox.tscn" id="13_6pson"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lrhn5"]
 animations = [{
@@ -67,3 +68,13 @@ script = ExtResource("10_hm0uo")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=373925178]
 script = ExtResource("11_6mn2q")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1264935138]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1946694068]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ewyxd")
+
+[node name="Hitbox" parent="." unique_id=1554323828 instance=ExtResource("13_6pson")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=612789574]
