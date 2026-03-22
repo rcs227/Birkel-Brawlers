@@ -14,9 +14,10 @@ func physics_process(delta: float) -> String:
 	player.move_and_slide()
 	player.update_block_health(delta)
 	if player.is_block_broken:
-		if not player.is_on_floor():
-			return "Fall"
-		return "Idle"
+		return ""
+#		if not player.is_on_floor():
+#			return "Fall"
+#		return "Idle"
 	if not player.block_held:
 		if not player.is_on_floor():
 			return "Fall"

@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var hitbox: Hitbox = get_node("Hitbox")
 
 # constants
-const STICK_DEADZONE := 0.3
+const STICK_DEADZONE := 0.8
 const TRIGGER_THRESHOLD := 0.5
 const CROUCH_THRESHOLD := .4
 
@@ -184,7 +184,6 @@ func update_block_regen(delta: float) -> void:
 	if block_regen_timer > 0.0:
 		block_regen_timer -= delta
 		return
-	print("regenerating block health, block_health = " + str(block_health))
 	block_health = minf(block_health + block_regen_rate * delta, max_block_health)
 	block_bar.value = block_health
 	if block_health >= max_block_health:
@@ -192,6 +191,7 @@ func update_block_regen(delta: float) -> void:
 
 func break_block() -> void:
 	is_block_broken = true
+	block_health = max_block_health
 	block_bar.visible = false
 	apply_stun(block_break_stun)
 
