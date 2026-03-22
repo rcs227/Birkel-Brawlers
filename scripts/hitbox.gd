@@ -4,27 +4,32 @@ extends Area2D
 
 @onready var collision := get_node("CollisionShape2D") as CollisionShape2D
 
-var owner_player: Player
+@onready var owner_player: Player = owner
+
+func _ready():
+	print("hitbox owner: ", owner_player)
+	print("hitbox layer: ", collision_layer)
+	print("hitbox mask: ", collision_mask)
+	collision.shape = collision.shape.duplicate()
+	area_entered.connect(_on_area_entered)
 
 func enable(size: Vector2, offset: Vector2) -> void:
 	(collision.shape as RectangleShape2D).size = size
 	collision.position = offset
 	collision.disabled = false
 	monitoring = true
-	print("hitbox enabled!")
 
 func disable() -> void:
 	collision.disabled = true
 	monitoring = false
-	print("hitbox disabled!")
 
 func _on_area_entered(area: Area2D) -> void:
-	# Ignore if it's our own hurtbox
 	if area.get_parent() == owner_player:
 		return
 	var target := area.get_parent()
 	if not target is Player:
 		return
+	print("hitting " + target.name)
 	var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
 	var atk := attack_state.current_attack
 	if atk == null:

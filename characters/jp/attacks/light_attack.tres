@@ -5,5 +5,8 @@
 [resource]
 script = ExtResource("1_mghbe")
 animation = &"light_attack"
+damage = 1.0
+knockback = Vector2(5, 0)
+stun_duration = 0.2
 hitbox_size = Vector2(50, 15)
 hitbox_offset = Vector2(15, -5)

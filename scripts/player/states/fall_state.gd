@@ -10,7 +10,9 @@ func physics_process(delta: float) -> String:
 	player.move_and_slide()
 	if player.is_on_floor():
 		player.has_flip = true
-		return "Idle"
+		return "Land"
+	if player.block_held:
+		return "Block"
 	return ""
 
 func input(event: InputEvent) -> String:

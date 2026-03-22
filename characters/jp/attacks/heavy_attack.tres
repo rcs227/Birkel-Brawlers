@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://p1l47v38fsfu"]
-
-[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_uv0hw"]
-
-[resource]
-script = ExtResource("1_uv0hw")
