@@ -66,6 +66,12 @@ func _on_area_entered(area: Area2D) -> void:
 	var atk := attack_state.current_attack
 	if atk == null:
 		return
+	
+	# check block
+	if target.state_machine.current_state == target.state_machine.get_node("Block"):
+		target.take_block_damage(atk.damage, owner_player)
+		return
+	
 	# Flip knockback if target is to the left
 	var dir := signf(target.global_position.x - owner_player.global_position.x)
 	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)

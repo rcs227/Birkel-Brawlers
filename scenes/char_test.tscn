@@ -97,10 +97,12 @@ scale = Vector2(0.055907793, 0.055907793)
 texture = ExtResource("2_7lokh")
 
 [node name="Sun" type="Marker2D" parent="." unique_id=771234567]
+visible = false
 position = Vector2(161, 1)
 gizmo_extents = 12.0
 
 [node name="ShaderEnvironment" parent="." unique_id=231010736 instance=ExtResource("5_env")]
+visible = false
 sun_path = NodePath("../Sun")
 sun_color = Color(0.95336884, 0.7648712, 0.73764044, 1)
 sun_intensity = 0.55

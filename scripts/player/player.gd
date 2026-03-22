@@ -39,7 +39,26 @@ var has_flip := true
 
 var knockback := Vector2.ZERO
 
+# Block stats
+@export var max_block_health := 50
+@export var block_drain_rate := 5.0        # per second while blocking
+@export var block_regen_rate := 15        # per second when not blocking
+@export var block_break_stun := 2.0         # stun duration on block break
+@export var parry_window := 0.15            # seconds after starting block that counts as parry
+@export var parry_stun_duration := 0.3      # stun applied to attacker on parry
+
+var block_health := 0.0
+var is_block_broken := false                # prevents re-blocking until trigger released
+var parry_timer := 0.0                      # counts down from parry_window on block start
+var block_regen_timer := 0.0               # delay before regen starts
+@export var block_regen_delay := 1.5        # seconds before regen kicks in
+
+@onready var block_bar: ProgressBar = get_node("BlockBar")
+
 func _ready():
+	block_health = max_block_health
+	block_bar.max_value = max_block_health
+	block_bar.value = block_health
 	anim_sprite.animation_finished.connect(_on_animation_finished)
 	hitbox.owner_player = self
 	hitbox.disable()
@@ -131,3 +150,60 @@ func activate_hitbox() -> void:
 
 func deactivate_hitbox() -> void:
 	hitbox.disable()
+
+func start_block() -> void:
+	parry_timer = parry_window
+	block_bar.visible = true
+	block_bar.max_value = max_block_health
+	block_bar.value = block_health
+
+func end_block() -> void:
+	block_regen_timer = block_regen_delay
+
+func is_parrying() -> bool:
+	return parry_timer > 0.0
+
+func update_block_health(delta: float) -> void:
+	block_health -= block_drain_rate * delta
+	block_health = maxf(block_health, 0.0)
+	block_bar.value = block_health
+	if parry_timer > 0.0:
+		parry_timer -= delta
+	if block_health <= 0.0:
+		break_block()
+
+func update_block_regen(delta: float) -> void:
+	if is_block_broken:
+		# Check if trigger released so block can be used again
+		if not block_held:
+			is_block_broken = false
+		return
+	if block_health >= max_block_health:
+		block_bar.visible = false
+		return
+	if block_regen_timer > 0.0:
+		block_regen_timer -= delta
+		return
+	print("regenerating block health, block_health = " + str(block_health))
+	block_health = minf(block_health + block_regen_rate * delta, max_block_health)
+	block_bar.value = block_health
+	if block_health >= max_block_health:
+		block_bar.visible = false
+
+func break_block() -> void:
+	is_block_broken = true
+	block_bar.visible = false
+	apply_stun(block_break_stun)
+
+func take_block_damage(amount: float, attacker: Player) -> void:
+	if is_parrying():
+		attacker.apply_stun(parry_stun_duration)
+		is_block_broken = true
+		block_bar.visible = false
+		state_machine.transition_to("Parry")
+		return
+	# Reduce block health by a fraction of the damage
+	block_health -= amount * 0.5
+	block_bar.value = block_health
+	if block_health <= 0.0:
+		break_block()

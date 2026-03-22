@@ -11,6 +11,7 @@ func enter() -> void:
 
 func physics_process(delta: float) -> String:
 	# Locked out of everything — just apply gravity if airborne
+	player.update_block_regen(delta)
 	if not player.is_on_floor():
 		player.apply_horizontal(delta)
 		player.apply_gravity(delta)

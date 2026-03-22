@@ -6,11 +6,12 @@ func enter() -> void:
 
 func physics_process(delta: float) -> String:
 	player.apply_friction(delta)
+	player.apply_gravity(delta)
+	player.update_block_regen(delta)
 	if not player.is_on_floor():
 		return "Fall"
-	if player.block_held:
+	if player.block_held and not player.is_block_broken:
 		return "Block"
-	player.apply_gravity(delta)
 	player.move_and_slide()
 	return ""
 

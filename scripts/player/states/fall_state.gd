@@ -8,10 +8,11 @@ func physics_process(delta: float) -> String:
 	player.apply_horizontal(delta)
 	player.apply_gravity(delta)
 	player.move_and_slide()
+	player.update_block_regen(delta)
 	if player.is_on_floor():
 		player.has_flip = true
 		return "Land"
-	if player.block_held:
+	if player.block_held and not player.is_block_broken:
 		return "Block"
 	return ""
 

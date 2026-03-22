@@ -14,6 +14,7 @@ func physics_process(delta: float) -> String:
 	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.friction * delta)
 	player.apply_gravity(delta)
 	player.move_and_slide()
+	player.update_block_regen(delta)
 	if timer <= 0.0:
 		return "Idle"
 	return ""
