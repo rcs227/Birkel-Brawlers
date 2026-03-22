@@ -122,7 +122,6 @@ func _on_animation_finished() -> void:
 
 # In player.gd — called by AnimationPlayer method track
 func activate_hitbox() -> void:
-	print("activate hitbox called on ", name)
 	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
 	var offset := Vector2(atk.hitbox_offset.x * facing, atk.hitbox_offset.y)
 	hitbox.enable(atk.hitbox_size, offset)
