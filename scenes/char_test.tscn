@@ -97,22 +97,22 @@ scale = Vector2(0.055907793, 0.055907793)
 texture = ExtResource("2_7lokh")
 
 [node name="Sun" type="Marker2D" parent="." unique_id=771234567]
-position = Vector2(165, -136)
+position = Vector2(161, 1)
 gizmo_extents = 12.0
 
 [node name="ShaderEnvironment" parent="." unique_id=231010736 instance=ExtResource("5_env")]
 sun_path = NodePath("../Sun")
 sun_color = Color(0.95336884, 0.7648712, 0.73764044, 1)
 sun_intensity = 0.55
-sun_radius = 0.28
-ambient_color = Color(0.9477779, 0.7813399, 0.8008515, 1)
+sun_radius = 0.75
+ambient_color = Color(0.8568429, 0.8358269, 0.71152174, 1)
 ambient_intensity = 0.3
 vignette_intensity = 0.5
 vignette_smoothness = 1.0
 contrast = 1.6
 saturation = 0.73
 tint_color = Color(0.9850938, 0.704075, 0.62541085, 1)
-ray_intensity = 0.24
+ray_intensity = 0.49
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=371982769]
 layer = 128
