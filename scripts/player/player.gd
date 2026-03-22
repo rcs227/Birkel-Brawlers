@@ -87,8 +87,8 @@ func apply_horizontal(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, dir * speed, acceleration * delta)
 
 func apply_stun(duration: float):
-	state_machine.transition_to("Stun")
 	state_machine.get_node("Stun").duration = duration
+	state_machine.transition_to("Stun")
 	
 func apply_knockback(force: Vector2):
 	knockback = force
@@ -118,7 +118,7 @@ func _on_animation_finished() -> void:
 		queue_free()
 	elif not is_on_floor():
 		state_machine.transition_to("Fall")
-	else:
+	elif state_machine.current_state != state_machine.get_node("Stun"):
 		state_machine.transition_to("Idle")
 
 # ---- Attacks -----

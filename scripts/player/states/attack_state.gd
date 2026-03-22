@@ -5,6 +5,8 @@ extends State
 var current_attack: Attack
 
 func enter() -> void:
+	player.deactivate_hitbox()
+	player.anim_player.stop()
 	player.play_attack(current_attack.animation)
 
 func physics_process(delta: float) -> String:

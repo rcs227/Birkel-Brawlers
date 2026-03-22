@@ -29,7 +29,6 @@ func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
 	if not target is Player:
 		return
-	print("hitting " + target.name)
 	var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
 	var atk := attack_state.current_attack
 	if atk == null:
