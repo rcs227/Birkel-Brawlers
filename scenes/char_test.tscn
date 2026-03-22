@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bshhgpf106j1o"]
 
 [ext_resource type="Script" uid="uid://cq43gbcg075eg" path="res://scripts/game_manager.gd" id="1_jrcg6"]
+[ext_resource type="Texture2D" uid="uid://dbn7qou5kgmls" path="res://sprites/maps/basement_3.png" id="2_7lokh"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
 [ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
-[ext_resource type="Texture2D" uid="uid://cdncvb375g82m" path="res://sprites/maps/basement.png" id="4_jrcg6"]
+[ext_resource type="PackedScene" uid="uid://denvscene0001" path="res://scenes/shader_environment.tscn" id="5_env"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]
 size = Vector2(320, 10)
@@ -50,6 +51,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar2_fill")
 
 [node name="Main2" type="Node2D" unique_id=393302278]
 script = ExtResource("1_jrcg6")
+player_health_bar_paths = Array[NodePath]([NodePath("HUDLayer/health_bar"), NodePath("HUDLayer/health_bar2")])
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
 visible = false
@@ -84,25 +86,45 @@ position = Vector2(325, 90)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=2104789226]
 shape = SubResource("right_wall_shape")
 
-[node name="health_bar" parent="." unique_id=89258707 instance=ExtResource("2_jrcg6")]
+[node name="Players" type="Node2D" parent="." unique_id=683258137]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=215457273]
+z_index = -1
+offset_top = -24.000002
+offset_right = 5712.0
+offset_bottom = 4260.0
+scale = Vector2(0.055907793, 0.055907793)
+texture = ExtResource("2_7lokh")
+
+[node name="Sun" type="Marker2D" parent="." unique_id=771234567]
+position = Vector2(165, -136)
+gizmo_extents = 12.0
+
+[node name="ShaderEnvironment" parent="." unique_id=231010736 instance=ExtResource("5_env")]
+sun_path = NodePath("../Sun")
+sun_color = Color(0.95336884, 0.7648712, 0.73764044, 1)
+sun_intensity = 0.55
+sun_radius = 0.28
+ambient_color = Color(0.9477779, 0.7813399, 0.8008515, 1)
+ambient_intensity = 0.3
+vignette_intensity = 0.5
+vignette_smoothness = 1.0
+contrast = 1.6
+saturation = 0.73
+tint_color = Color(0.9850938, 0.704075, 0.62541085, 1)
+ray_intensity = 0.24
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=371982769]
+layer = 128
+
+[node name="health_bar" parent="HUDLayer" unique_id=89258707 instance=ExtResource("2_jrcg6")]
 offset_top = 2.0
 offset_bottom = 15.0
 theme = SubResource("Theme_jyhfs")
 
-[node name="health_bar2" parent="." unique_id=1503848420 instance=ExtResource("2_jrcg6")]
+[node name="health_bar2" parent="HUDLayer" unique_id=1503848420 instance=ExtResource("2_jrcg6")]
 offset_left = 215.0
 offset_top = 2.0
 offset_right = 318.0
 offset_bottom = 15.0
 theme = SubResource("Theme_7lokh")
-
-[node name="Players" type="Node2D" parent="." unique_id=683258137]
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=215457273]
-z_index = -1
-offset_left = -5.0
-offset_top = -60.0
-offset_right = 5707.0
-offset_bottom = 4224.0
-scale = Vector2(0.060546074, 0.060546074)
-texture = ExtResource("4_jrcg6")

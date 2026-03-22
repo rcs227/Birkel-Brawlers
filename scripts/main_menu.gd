@@ -37,4 +37,4 @@ func _on_play() -> void:
 
 
 func _on_settings() -> void:
-	get_tree().change_scene_to_file("res://scenes/settings.tscn")
+	SettingsManager.open_settings()

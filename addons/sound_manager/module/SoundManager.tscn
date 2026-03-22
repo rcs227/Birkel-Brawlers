@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://vqnqvndpsftt"]
+
+[ext_resource type="Script" uid="uid://etqim8en4sqa" path="res://addons/sound_manager/module/internal_scripts/SoundManager.gd" id="1"]
+[ext_resource type="Script" uid="uid://bd1qqdba26lgh" path="res://addons/sound_manager/module/internal_scripts/directions_canvas.gd" id="2_amowm"]
+
+[node name="SoundManager" type="Node" unique_id=2040447469]
+script = ExtResource("1")
+
+[node name="Directions" type="CanvasLayer" parent="." unique_id=725810007]
+script = ExtResource("2_amowm")
+
+[node name="Front" type="Node2D" parent="Directions" unique_id=547444975]
+position = Vector2(960, 540)
+
+[node name="East" type="Node2D" parent="Directions" unique_id=272265919]
+position = Vector2(1920, 540)
+
+[node name="West" type="Node2D" parent="Directions" unique_id=1017976556]
+position = Vector2(0, 540)

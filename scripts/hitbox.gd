@@ -3,25 +3,58 @@ class_name Hitbox
 extends Area2D
 
 @onready var collision := get_node("CollisionShape2D") as CollisionShape2D
-
 @onready var owner_player: Player = owner
 
-func _ready():
+var _is_active: bool = false
+
+
+func _ready() -> void:
 	print("hitbox owner: ", owner_player)
 	print("hitbox layer: ", collision_layer)
 	print("hitbox mask: ", collision_mask)
 	collision.shape = collision.shape.duplicate()
 	area_entered.connect(_on_area_entered)
+	SettingsManager.hitbox_debug_toggled.connect(_on_debug_toggled)
+	# Draw on top of character sprites.
+	z_index = 10
+
+
+func _process(_delta: float) -> void:
+	# Continuously redraw so the rect tracks the collision shape every frame.
+	if SettingsManager.show_hitboxes:
+		queue_redraw()
+
 
 func enable(size: Vector2, offset: Vector2) -> void:
 	(collision.shape as RectangleShape2D).size = size
 	collision.position = offset
 	collision.disabled = false
 	monitoring = true
+	_is_active = true
+	queue_redraw()
+
 
 func disable() -> void:
 	collision.disabled = true
 	monitoring = false
+	_is_active = false
+	queue_redraw()
+
+
+func _draw() -> void:
+	if not SettingsManager.show_hitboxes or not _is_active:
+		return
+	if collision == null or not collision.shape is RectangleShape2D:
+		return
+	var shape := collision.shape as RectangleShape2D
+	var rect  := Rect2(collision.position - shape.size * 0.5, shape.size)
+	draw_rect(rect, Color(1.0, 0.1, 0.1, 0.28))            # filled tint
+	draw_rect(rect, Color(1.0, 0.25, 0.25, 1.0), false, 1) # solid outline
+
+
+func _on_debug_toggled(_show: bool) -> void:
+	queue_redraw()
+
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() == owner_player:
