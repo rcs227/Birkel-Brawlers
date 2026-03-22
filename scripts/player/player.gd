@@ -116,6 +116,8 @@ func play_attack(anim: StringName) -> void:
 func _on_animation_finished() -> void:
 	if state_machine.current_state == state_machine.get_node("Dead"):
 		queue_free()
+	elif not is_on_floor():
+		state_machine.transition_to("Fall")
 	else:
 		state_machine.transition_to("Idle")
 

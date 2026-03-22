@@ -35,6 +35,4 @@ func _queue_attack(action: String) -> void:
 func process(_delta: float) -> String:
 	if player.get_stick_x() == 0.0:
 		return "Idle"
-	if player.get_stick_y() > player.CROUCH_THRESHOLD and player.is_on_floor():
-		return "Crouch"
 	return ""
