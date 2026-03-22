@@ -10,7 +10,8 @@ func enter() -> void:
 
 func physics_process(delta: float) -> String:
 	timer -= delta
-	player.apply_friction(delta)
+	player.velocity = player.knockback
+	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.friction * delta)
 	player.apply_gravity(delta)
 	player.move_and_slide()
 	if timer <= 0.0:

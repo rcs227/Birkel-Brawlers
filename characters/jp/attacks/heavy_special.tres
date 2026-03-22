@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_kp8f1")
 animation = &"heavy_special"
-damage = 4.0
-hitbox_size = Vector2(70, 30)
-hitbox_offset = Vector2(25, -8)
+damage = 15.0
+knockback = Vector2(-150, -150)
+stun_duration = 0.5
+hitbox_size = Vector2(80, 30)
+hitbox_offset = Vector2(30, 17)

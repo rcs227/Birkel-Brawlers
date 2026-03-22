@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var hitbox: Hitbox = get_node("Hitbox")
 
 # constants
-const STICK_DEADZONE := 0.1
+const STICK_DEADZONE := 0.3
 const TRIGGER_THRESHOLD := 0.5
 const CROUCH_THRESHOLD := .4
 

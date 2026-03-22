@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_mma64")
 animation = &"light_special"
-damage = 3.0
-hitbox_size = Vector2(50, 15)
-hitbox_offset = Vector2(15, 0)
+damage = 1.0
+knockback = Vector2(20, -15)
+stun_duration = 0.2
+hitbox_size = Vector2(53, 15)
+hitbox_offset = Vector2(18, -12)

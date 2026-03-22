@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_uv0hw")
 animation = &"heavy_attack"
-damage = 4.0
-hitbox_size = Vector2(70, 30)
-hitbox_offset = Vector2(25, -8)
+damage = 8.0
+knockback = Vector2(100, -50)
+stun_duration = 0.23
+hitbox_size = Vector2(76, 30)
+hitbox_offset = Vector2(28, 12)

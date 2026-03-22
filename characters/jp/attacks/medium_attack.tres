@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_ftm0i")
 animation = &"medium_attack"
-damage = 4.0
+damage = 6.0
+knockback = Vector2(200, -100)
+stun_duration = 0.3
 hitbox_size = Vector2(70, 30)
 hitbox_offset = Vector2(25, -8)
