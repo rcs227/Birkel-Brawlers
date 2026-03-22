@@ -33,8 +33,8 @@ func _queue_attack(action: String) -> void:
 	attack_state.current_attack = player.get_attack(action)
 
 func process(_delta: float) -> String:
-	if player.get_stick_x() != 0.0:
-		return "Walk"
 	if player.get_stick_y() > player.CROUCH_THRESHOLD and player.is_on_floor():
 		return "Crouch"
+	if player.get_stick_x() != 0.0:
+		return "Walk"
 	return ""

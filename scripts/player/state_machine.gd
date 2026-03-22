@@ -11,6 +11,7 @@ func init(initial_state: State):
 	current_state.enter()
 
 func transition_to(new_state_name: String) -> void:
+	print("next state: " + new_state_name)
 	var new_state = get_node_or_null(new_state_name)
 	if new_state == null:
 		push_error("State not found: " + new_state_name)

@@ -31,9 +31,7 @@ func _queue_attack(action: String) -> void:
 	attack_state.current_attack = player.get_attack(action)
 
 func process(_delta: float) -> String:
-	# Stop crouching if stick is released or moved horizontally
+	# Stop crouching if stick is released
 	if player.get_stick_y() < player.CROUCH_THRESHOLD:
 		return "Idle"
-	if player.get_stick_x() != 0.0:
-		return "Walk"
 	return ""

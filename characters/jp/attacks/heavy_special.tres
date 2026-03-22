@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://ig2t1e38dsx0"]
+
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_kp8f1"]
+
+[resource]
+script = ExtResource("1_kp8f1")
+animation = &"heavy_special"
+damage = 4.0
+hitbox_size = Vector2(70, 30)
+hitbox_offset = Vector2(25, -8)
