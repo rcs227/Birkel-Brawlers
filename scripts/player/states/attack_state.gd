@@ -16,6 +16,9 @@ func enter() -> void:
 	else:
 		player.play_attack(current_attack.animation)
 
+func exit() -> void:
+	player.anim_player.stop()
+
 func physics_process(delta: float) -> String:
 	# Locked out of everything — just apply gravity if airborne
 	player.update_block_regen(delta)
