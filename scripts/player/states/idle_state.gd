@@ -27,6 +27,9 @@ func input(event: InputEvent) -> String:
 	if event.is_action_pressed("heavy_attack"):
 		_queue_attack("heavy_attack")
 		return "Attack"
+	if event.is_action_pressed("grab"):
+		_queue_attack("grab")
+		return "Attack"
 	return ""
  
 func _queue_attack(action: String) -> void:

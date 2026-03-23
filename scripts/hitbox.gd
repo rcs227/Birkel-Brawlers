@@ -6,12 +6,10 @@ extends Area2D
 @onready var owner_player: Player = owner
 
 var _is_active: bool = false
+var is_grab_active: bool = false
 
 
 func _ready() -> void:
-	print("hitbox owner: ", owner_player)
-	print("hitbox layer: ", collision_layer)
-	print("hitbox mask: ", collision_mask)
 	collision.shape = collision.shape.duplicate()
 	area_entered.connect(_on_area_entered)
 	SettingsManager.hitbox_debug_toggled.connect(_on_debug_toggled)
@@ -70,14 +68,23 @@ func _on_area_entered(area: Area2D) -> void:
 	# check block or death
 	if target.state_machine.current_state == target.state_machine.get_node("Dead"):
 		return
+	
+	call_deferred("disable")
+	
+	var dir := signf(target.global_position.x - owner_player.global_position.x)
+	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
+	
+	if atk.is_grab:
+		owner_player.grab_target = target
+		attack_state.on_grab_hit()
+		if owner_player.on_grab_sound != null:
+			SoundManager.play_sfx(owner_player.on_grab_sound)
+		target.apply_grab(owner_player, atk)
+		return
+	
 	if target.state_machine.current_state == target.state_machine.get_node("Block"):
 		target.take_block_damage(atk.damage, owner_player)
 		return
 	
-	# Flip knockback if target is to the left
-	var dir := signf(target.global_position.x - owner_player.global_position.x)
-	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
-	
-	# freeze both players 
 	owner_player.apply_hit_stop(atk.hit_stop)
 	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)

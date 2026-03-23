@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://b22wb7ft7qx8f"]
+
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_8xc7v"]
+
+[resource]
+script = ExtResource("1_8xc7v")
+animation = &"grab"
+damage = 10.0
+knockback = Vector2(300, -75)
+stun_duration = 0.6
+hitbox_size = Vector2(40, 15)
+hitbox_offset = Vector2(17, -10)
+hit_stop = 0.0
+is_grab = true

@@ -13,4 +13,5 @@ func get_attack(action: String) -> Attack:
 		"light_attack":  return light_special_data if special_held else light_attack_data
 		"medium_attack": return medium_special_data if special_held else medium_attack_data
 		"heavy_attack":  return heavy_special_data if special_held else heavy_attack_data
+		"grab": return grab_data
 	return null

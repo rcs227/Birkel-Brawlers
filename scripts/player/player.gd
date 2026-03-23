@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var anim_sprite = get_node("AnimatedSprite2D") as AnimatedSprite2D
 @onready var anim_player = $AnimationPlayer
 @onready var state_machine: StateMachine = get_node("StateMachine")
-@onready var hitbox: Hitbox = get_node("Hitbox")
+@onready var hitbox: Hitbox = get_node("Hitbox") as Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox/CollisionShape2D2
 
 # constants
@@ -17,6 +17,8 @@ const CROUCH_THRESHOLD := .4
 # exports
 
 @export var device_id: int = 0 # assigned at game start
+@export var grab_data: Attack
+@export var on_grab_sound: StringName
 
 # MOVEMENT STATS
 @export var speed := 150.0
@@ -61,6 +63,8 @@ var block_regen_timer := 0.0               # delay before regen starts
 @export var block_regen_delay := 1.5        # seconds before regen kicks in
 
 @onready var block_bar: ProgressBar = get_node("BlockBar")
+
+var grab_target: Player
 
 # Sounds
 @export var hurt_sound: StringName
@@ -255,3 +259,36 @@ func set_crouch_hurtbox() -> void:
 func reset_hurtbox() -> void:
 	(hurtbox.shape as RectangleShape2D).size = original_hurtbox_size
 	hurtbox.position = original_hurtbox_offset
+
+func apply_grab(attacker: Player, atk: Attack) -> void:
+	var grab_state := state_machine.get_node("Grabbed") as GrabbedState
+	grab_state.damage = atk.damage
+	var dir := signf(global_position.x - attacker.global_position.x)
+	grab_state.knockback = Vector2(atk.knockback.x * dir, atk.knockback.y)
+	grab_state.stun_duration = atk.stun_duration
+	state_machine.transition_to("Grabbed")
+
+func apply_grab_target() -> void:
+	apply_grab_damage()
+	apply_grab_knockback()
+	apply_grab_stun()
+
+func apply_grab_damage() -> void:
+	grab_target.damage_player(grab_data.damage)
+
+func apply_grab_knockback() -> void:
+	var grab_state := grab_target.state_machine.get_node("Grabbed") as GrabbedState
+	grab_target.apply_knockback(grab_state.knockback)
+
+func apply_grab_stun() -> void:
+	grab_target.apply_stun(grab_data.stun_duration)
+
+func activate_grab_hitbox() -> void:
+	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
+	var offset := Vector2(atk.hitbox_offset.x * facing, atk.hitbox_offset.y)
+	hitbox.enable(atk.hitbox_size, offset)
+	hitbox.is_grab_active = true
+
+func deactivate_grab_hitbox() -> void:
+	hitbox.is_grab_active = false
+	hitbox.disable()
