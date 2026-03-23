@@ -31,10 +31,13 @@ func enable(atk: Attack, i: int = 0) -> void:
 	queue_redraw()
 
 func set_hitbox_specs(atk: Attack, i: int) -> void:
-	var size = (atk.hitbox_frames[i] as HitboxSpecs).size
-	var offset = Vector2(atk.hitbox_frames[i].offset.x * owner_player.facing, (atk.hitbox_frames[i] as HitboxSpecs).offset.y)
-	(collision.shape as RectangleShape2D).size = size
-	collision.position = offset
+	var spec = atk.hitbox_frames[i] as HitboxSpecs
+	if spec.change_size:
+		var size = spec.size
+		(collision.shape as RectangleShape2D).size = size
+	if spec.change_offset:
+		var offset = Vector2(atk.hitbox_frames[i].offset.x * owner_player.facing, (atk.hitbox_frames[i] as HitboxSpecs).offset.y)
+		collision.position = offset
 
 
 func disable() -> void:

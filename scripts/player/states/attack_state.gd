@@ -19,6 +19,7 @@ func enter() -> void:
 func exit() -> void:
 	player.hitbox.disable()
 	player.anim_player.stop()
+	player.reset_hurtbox()
 
 func physics_process(delta: float) -> String:
 	# Locked out of everything — just apply gravity if airborne

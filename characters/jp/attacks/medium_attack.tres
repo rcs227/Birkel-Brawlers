@@ -9,6 +9,12 @@ size = Vector2(67, 67)
 offset = Vector2(25, -2)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
+[sub_resource type="Resource" id="Resource_k68xq"]
+script = ExtResource("1_k68xq")
+offset = Vector2(-20, 0)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
 [resource]
 script = ExtResource("1_ftm0i")
 animation = &"medium_attack"
@@ -16,6 +22,7 @@ damage = 6.0
 knockback = Vector2(100, -180)
 stun_duration = 0.3
 hitbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_xlqxs")])
+hurtbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_k68xq")])
 hitbox_size = Vector2(67, 67)
 hitbox_offset = Vector2(25, -2)
 sound_effect = &"jp_medium"

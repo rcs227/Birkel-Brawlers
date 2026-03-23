@@ -259,7 +259,17 @@ func apply_hit(amount: float, kb: Vector2, stun: float, hit_stop: float) -> void
 
 func set_crouch_hurtbox() -> void:
 	(hurtbox.shape as RectangleShape2D).size = crouch_size
-	hurtbox.position = crouch_offset
+	hurtbox.position = Vector2(crouch_offset.x * facing, crouch_offset.y)
+
+func set_attack_hurtbox(i: int) -> void:
+	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
+	if atk.hurtbox_frames.size() <= i:
+		return
+	var spec = atk.hurtbox_frames[i] as HitboxSpecs
+	if spec.change_size:
+		(hurtbox.shape as RectangleShape2D).size = spec.size
+	if spec.change_offset:
+		hurtbox.position = Vector2(spec.offset.x * facing, spec.offset.y)
 
 func reset_hurtbox() -> void:
 	(hurtbox.shape as RectangleShape2D).size = original_hurtbox_size
