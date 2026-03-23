@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var anim_player = $AnimationPlayer
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var hitbox: Hitbox = get_node("Hitbox")
+@onready var hurtbox: CollisionShape2D = $Hurtbox/CollisionShape2D2
 
 # constants
 const STICK_DEADZONE := 0.8
@@ -28,6 +29,11 @@ var facing := 1.0
 
 @export_group("UI")
 @export var health_bar: ProgressBar
+
+var original_hurtbox_size: Vector2
+@export var crouch_size: Vector2
+@export var crouch_offset: Vector2
+var original_hurtbox_offset: Vector2
 
 # --- State ---
 var max_health := 100
@@ -60,6 +66,9 @@ var block_regen_timer := 0.0               # delay before regen starts
 @export var hurt_sound: StringName
 
 func _ready():
+	hurtbox.shape = hurtbox.shape.duplicate()
+	original_hurtbox_size = (hurtbox.shape as RectangleShape2D).size
+	original_hurtbox_offset = hurtbox.position
 	block_health = max_block_health
 	block_bar.max_value = max_block_health
 	block_bar.value = block_health
@@ -237,3 +246,11 @@ func apply_hit(amount: float, kb: Vector2, stun: float, hit_stop: float) -> void
 	await get_tree().create_timer(hit_stop).timeout
 	apply_knockback(kb)
 	apply_stun(stun)
+
+func set_crouch_hurtbox() -> void:
+	(hurtbox.shape as RectangleShape2D).size = crouch_size
+	hurtbox.position = crouch_offset
+
+func reset_hurtbox() -> void:
+	(hurtbox.shape as RectangleShape2D).size = original_hurtbox_size
+	hurtbox.position = original_hurtbox_offset

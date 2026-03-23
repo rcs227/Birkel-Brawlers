@@ -31,7 +31,15 @@ region = Rect2(256, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4wjq"]
 atlas = ExtResource("5_8hlw2")
-region = Rect2(0, 1280, 128, 128)
+region = Rect2(512, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wnay"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(640, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8240"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(768, 1280, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_30sqf"]
 atlas = ExtResource("5_8hlw2")
@@ -314,10 +322,16 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h4wjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wnay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8240")
 }],
 "loop": true,
 "name": &"crouch",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -771,6 +785,8 @@ heavy_attack_data = ExtResource("4_h4wjq")
 light_special_data = ExtResource("3_8hlw2")
 medium_special_data = ExtResource("6_h5w7u")
 heavy_special_data = ExtResource("7_fy61o")
+crouch_size = Vector2(20, 28)
+crouch_offset = Vector2(0, 19)
 hurt_sound = &"jp_hurt_2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
@@ -781,9 +797,8 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(3, -31)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"death"
-frame = 4
-frame_progress = 1.0
+animation = &"crouch"
+frame_progress = 0.06183592
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")

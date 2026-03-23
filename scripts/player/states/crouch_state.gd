@@ -3,6 +3,10 @@ extends State
 
 func enter() -> void:
 	player.safe_play("crouch")
+	player.set_crouch_hurtbox()
+
+func exit() -> void:
+	player.reset_hurtbox()
 
 func physics_process(delta: float) -> String:
 	player.apply_friction(delta)
