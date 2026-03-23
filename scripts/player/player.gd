@@ -292,3 +292,17 @@ func activate_grab_hitbox() -> void:
 func deactivate_grab_hitbox() -> void:
 	hitbox.is_grab_active = false
 	hitbox.disable()
+
+func start_grab_travel() -> void:
+	if grab_target == null:
+		return
+	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
+	# Flip anchor X based on facing direction
+	var anchor_local := Vector2(atk.grab_anchor.x * facing, atk.grab_anchor.y)
+	var anchor_world := global_position + anchor_local
+	# Offset so the grabee's edge meets the anchor, not their center
+	var hurtbox_half_width := (grab_target.hurtbox.shape as RectangleShape2D).size.x * 0.5
+	var edge_offset := hurtbox_half_width * -facing
+	var grabee_target_pos := anchor_world + Vector2(edge_offset, 0.0)
+	var grab_state := grab_target.state_machine.get_node("Grabbed") as GrabbedState
+	grab_state.start_travel(grabee_target_pos, atk.grab_anchor_frame)

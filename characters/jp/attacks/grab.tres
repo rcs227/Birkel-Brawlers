@@ -12,3 +12,5 @@ hitbox_size = Vector2(40, 15)
 hitbox_offset = Vector2(17, -10)
 hit_stop = 0.0
 is_grab = true
+grab_anchor = Vector2(20, 0)
+grab_anchor_frame = 0.167
