@@ -43,6 +43,7 @@ var health := 100
 
 var special_held := false
 var block_held := false
+var block_just_pressed := false
 var has_flip := true
 
 var knockback := Vector2.ZERO
@@ -89,7 +90,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# always read axes so any state can access them
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > TRIGGER_THRESHOLD
+	var was_blocking := block_held
 	block_held   = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > TRIGGER_THRESHOLD
+	block_just_pressed = block_held and not was_blocking
 	state_machine.physics_process(delta)
 	if is_on_floor():
 		has_flip = true
@@ -171,7 +174,10 @@ func deactivate_hitbox() -> void:
 	hitbox.disable()
 
 func start_block() -> void:
-	parry_timer = parry_window
+	if block_just_pressed:
+		parry_timer = parry_window
+	else:
+		parry_timer = 0.0
 	block_bar.visible = true
 	block_bar.max_value = max_block_health
 	block_bar.value = block_health
