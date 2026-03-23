@@ -5,13 +5,19 @@
 
 [sub_resource type="Resource" id="Resource_xlqxs"]
 script = ExtResource("1_k68xq")
-size = Vector2(67, 67)
-offset = Vector2(25, -2)
+size = Vector2(40, 67)
+offset = Vector2(38, -2)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [sub_resource type="Resource" id="Resource_k68xq"]
 script = ExtResource("1_k68xq")
-offset = Vector2(-20, 0)
+offset = Vector2(-11, 0)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_iql24"]
+script = ExtResource("1_k68xq")
+offset = Vector2(13, 0)
 change_size = false
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
@@ -22,7 +28,5 @@ damage = 6.0
 knockback = Vector2(100, -180)
 stun_duration = 0.3
 hitbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_xlqxs")])
-hurtbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_k68xq")])
-hitbox_size = Vector2(67, 67)
-hitbox_offset = Vector2(25, -2)
+hurtbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_k68xq"), SubResource("Resource_iql24")])
 sound_effect = &"jp_medium"

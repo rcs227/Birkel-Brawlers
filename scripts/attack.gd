@@ -7,8 +7,6 @@ extends Resource
 @export var stun_duration: float
 @export var hitbox_frames: Array[HitboxSpecs] = []
 @export var hurtbox_frames: Array[HitboxSpecs] = []
-@export var hitbox_size: Vector2
-@export var hitbox_offset: Vector2
 @export var sound_effect: StringName
 @export var hit_stop: float = 0.1   # seconds — 0.08 is a good default
 @export var is_grab: bool = false

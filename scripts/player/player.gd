@@ -273,7 +273,7 @@ func set_attack_hurtbox(i: int) -> void:
 
 func reset_hurtbox() -> void:
 	(hurtbox.shape as RectangleShape2D).size = original_hurtbox_size
-	hurtbox.position = original_hurtbox_offset
+	hurtbox.position = Vector2(original_hurtbox_offset.x * facing, original_hurtbox_offset.y)
 
 func apply_grab(attacker: Player, atk: Attack) -> void:
 	var grab_state := state_machine.get_node("Grabbed") as GrabbedState
