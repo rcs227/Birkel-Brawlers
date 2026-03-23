@@ -17,6 +17,7 @@ func enter() -> void:
 		player.play_attack(current_attack.animation)
 
 func exit() -> void:
+	player.hitbox.disable()
 	player.anim_player.stop()
 
 func physics_process(delta: float) -> String:

@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 
 
 func enable(size: Vector2, offset: Vector2) -> void:
+	print(owner_player.name + " hitbox enabled")
 	(collision.shape as RectangleShape2D).size = size
 	collision.position = offset
 	collision.disabled = false
@@ -33,6 +34,7 @@ func enable(size: Vector2, offset: Vector2) -> void:
 
 
 func disable() -> void:
+	print(owner_player.name + " hitbox disabled")
 	collision.disabled = true
 	monitoring = false
 	_is_active = false
