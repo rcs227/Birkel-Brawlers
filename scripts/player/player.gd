@@ -64,6 +64,7 @@ var block_regen_timer := 0.0               # delay before regen starts
 
 # Sounds
 @export var hurt_sound: StringName
+@export var death_sound: StringName
 
 func _ready():
 	hurtbox.shape = hurtbox.shape.duplicate()

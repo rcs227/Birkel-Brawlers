@@ -10,3 +10,4 @@ knockback = Vector2(-150, -150)
 stun_duration = 0.5
 hitbox_size = Vector2(80, 30)
 hitbox_offset = Vector2(30, 17)
+sound_effect = &"jp_heavy_special"

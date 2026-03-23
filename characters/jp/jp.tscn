@@ -788,6 +788,7 @@ heavy_special_data = ExtResource("7_fy61o")
 crouch_size = Vector2(20, 28)
 crouch_offset = Vector2(0, 19)
 hurt_sound = &"jp_hurt_2"
+death_sound = &"jp_owie"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 position = Vector2(0, -1)
@@ -798,7 +799,7 @@ position = Vector2(3, -31)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
 animation = &"crouch"
-frame_progress = 0.06183592
+frame_progress = 0.19920033
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")
