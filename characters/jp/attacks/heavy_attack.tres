@@ -8,5 +8,5 @@ animation = &"heavy_attack"
 damage = 8.0
 knockback = Vector2(70, 350)
 stun_duration = 0.23
-hitbox_size = Vector2(76, 30)
-hitbox_offset = Vector2(28, 12)
+hitbox_size = Vector2(40, 30)
+hitbox_offset = Vector2(46, 12)

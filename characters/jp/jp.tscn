@@ -67,6 +67,14 @@ region = Rect2(384, 1152, 128, 128)
 atlas = ExtResource("5_8hlw2")
 region = Rect2(256, 256, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lufnq"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(384, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnhl6"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(256, 384, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3b8l"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(256, 768, 128, 128)
@@ -413,6 +421,12 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lufnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnhl6")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j3b8l")
 }, {
 "duration": 1.0,
@@ -484,7 +498,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v4mis")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_f5rws")
 }],
 "loop": false,
@@ -711,7 +725,7 @@ length = 0.5
 
 [sub_resource type="Animation" id="Animation_u6jbq"]
 resource_name = "grab_hit"
-length = 0.5
+length = 0.6666
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -719,7 +733,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.3334),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -751,7 +765,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.4),
+"times": PackedFloat32Array(0.25, 0.375),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -764,7 +778,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mi45g"]
 resource_name = "heavy_attack"
-length = 0.6667
+length = 0.8333
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -772,7 +786,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.416, 0.666),
+"times": PackedFloat32Array(0.5, 0.5833),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -840,7 +854,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1875, 0.312),
+"times": PackedFloat32Array(0.125, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -861,7 +875,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -939,9 +953,7 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(3, -31)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"grab_miss"
-frame = 4
-frame_progress = 1.0
+animation = &"medium_attack"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")
