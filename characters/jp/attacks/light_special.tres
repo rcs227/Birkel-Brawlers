@@ -1,6 +1,13 @@
 [gd_resource type="Resource" script_class="Attack" format=3 uid="uid://cvk0hf2lsaaln"]
 
+[ext_resource type="Script" uid="uid://va4j4xwiqy5k" path="res://scripts/hitbox_specs.gd" id="1_j02xi"]
 [ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_mma64"]
+
+[sub_resource type="Resource" id="Resource_qadnc"]
+script = ExtResource("1_j02xi")
+size = Vector2(53, 15)
+offset = Vector2(18, -12)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [resource]
 script = ExtResource("1_mma64")
@@ -8,5 +15,6 @@ animation = &"light_special"
 damage = 1.0
 knockback = Vector2(20, -15)
 stun_duration = 0.2
+hitbox_frames = Array[ExtResource("1_j02xi")]([SubResource("Resource_qadnc")])
 hitbox_size = Vector2(53, 15)
 hitbox_offset = Vector2(18, -12)

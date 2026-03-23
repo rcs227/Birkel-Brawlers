@@ -165,10 +165,9 @@ func _on_animation_finished() -> void:
 # ---- Attacks -----
 
 # In player.gd — called by AnimationPlayer method track
-func activate_hitbox() -> void:
+func activate_hitbox(index: int = 0) -> void:
 	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
-	var offset := Vector2(atk.hitbox_offset.x * facing, atk.hitbox_offset.y)
-	hitbox.enable(atk.hitbox_size, offset)
+	hitbox.enable(atk, index)
 
 func deactivate_hitbox() -> void:
 	hitbox.disable()
@@ -289,10 +288,9 @@ func apply_grab_knockback() -> void:
 func apply_grab_stun() -> void:
 	grab_target.apply_stun(grab_data.stun_duration)
 
-func activate_grab_hitbox() -> void:
+func activate_grab_hitbox(index: int = 0) -> void:
 	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
-	var offset := Vector2(atk.hitbox_offset.x * facing, atk.hitbox_offset.y)
-	hitbox.enable(atk.hitbox_size, offset)
+	hitbox.enable(atk, index)
 	hitbox.is_grab_active = true
 
 func deactivate_grab_hitbox() -> void:

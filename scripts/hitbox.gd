@@ -3,7 +3,7 @@ class_name Hitbox
 extends Area2D
 
 @onready var collision := get_node("CollisionShape2D") as CollisionShape2D
-@onready var owner_player: Player = owner
+@onready var owner_player: Player = owner as Player
 
 var _is_active: bool = false
 var is_grab_active: bool = false
@@ -23,14 +23,18 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 
 
-func enable(size: Vector2, offset: Vector2) -> void:
-	print(owner_player.name + " hitbox enabled")
-	(collision.shape as RectangleShape2D).size = size
-	collision.position = offset
+func enable(atk: Attack, i: int = 0) -> void:
+	set_hitbox_specs(atk, i)
 	collision.disabled = false
 	monitoring = true
 	_is_active = true
 	queue_redraw()
+
+func set_hitbox_specs(atk: Attack, i: int) -> void:
+	var size = (atk.hitbox_frames[i] as HitboxSpecs).size
+	var offset = Vector2(atk.hitbox_frames[i].offset.x * owner_player.facing, (atk.hitbox_frames[i] as HitboxSpecs).offset.y)
+	(collision.shape as RectangleShape2D).size = size
+	collision.position = offset
 
 
 func disable() -> void:

@@ -1,6 +1,13 @@
 [gd_resource type="Resource" script_class="Attack" format=3 uid="uid://p1l47v38fsfu"]
 
 [ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="1_ftm0i"]
+[ext_resource type="Script" uid="uid://va4j4xwiqy5k" path="res://scripts/hitbox_specs.gd" id="1_k68xq"]
+
+[sub_resource type="Resource" id="Resource_xlqxs"]
+script = ExtResource("1_k68xq")
+size = Vector2(67, 67)
+offset = Vector2(25, -2)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [resource]
 script = ExtResource("1_ftm0i")
@@ -8,6 +15,7 @@ animation = &"medium_attack"
 damage = 6.0
 knockback = Vector2(100, -180)
 stun_duration = 0.3
+hitbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_xlqxs")])
 hitbox_size = Vector2(67, 67)
 hitbox_offset = Vector2(25, -2)
 sound_effect = &"jp_medium"
