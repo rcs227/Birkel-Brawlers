@@ -16,4 +16,5 @@ damage = 1.0
 knockback = Vector2(20, -15)
 stun_duration = 0.2
 hitbox_frames = Array[ExtResource("1_j02xi")]([SubResource("Resource_qadnc")])
-sound_effect = &"jp_light_special"
+sound_effect = &"jp_light_attack"
+on_hit_sound = &"jp_light_special"

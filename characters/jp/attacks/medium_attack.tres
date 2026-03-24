@@ -30,3 +30,4 @@ stun_duration = 0.3
 hitbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_xlqxs")])
 hurtbox_frames = Array[ExtResource("1_k68xq")]([SubResource("Resource_k68xq"), SubResource("Resource_iql24")])
 sound_effect = &"jp_medium"
+on_hit_sound = &"kick"

@@ -10,7 +10,7 @@ func enter() -> void:
 	player.deactivate_hitbox()
 	player.anim_player.stop()
 	if current_attack.sound_effect != null:
-		SoundManager.play_sfx(current_attack.sound_effect)
+		SoundManager.play_bgs(current_attack.sound_effect)
 	if current_attack.is_grab:
 		player.play_attack("grab_miss")
 	else:

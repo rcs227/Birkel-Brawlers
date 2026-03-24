@@ -16,6 +16,5 @@ damage = 3.0
 knockback = Vector2(100, -50)
 stun_duration = 0.2
 hitbox_frames = Array[ExtResource("1_oa64o")]([SubResource("Resource_kmcok")])
-hitbox_size = Vector2(50, 15)
-hitbox_offset = Vector2(15, -5)
 sound_effect = &"jp_light_attack"
+on_hit_sound = &"bang"

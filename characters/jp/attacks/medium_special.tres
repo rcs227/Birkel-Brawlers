@@ -16,5 +16,4 @@ damage = 9.0
 knockback = Vector2(200, 0)
 stun_duration = 0.56
 hitbox_frames = Array[ExtResource("1_vxceh")]([SubResource("Resource_ximj1")])
-hitbox_size = Vector2(70, 30)
-hitbox_offset = Vector2(25, -8)
+on_hit_sound = &"kick"

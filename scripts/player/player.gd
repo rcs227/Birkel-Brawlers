@@ -18,7 +18,6 @@ const CROUCH_THRESHOLD := .4
 
 @export var device_id: int = 0 # assigned at game start
 @export var grab_data: Attack
-@export var on_grab_sound: StringName
 
 # MOVEMENT STATS
 @export var speed := 150.0
@@ -134,7 +133,7 @@ func apply_knockback(force: Vector2):
 	knockback = force
 
 func damage_player(amount: float):
-	SoundManager.play_sfx(hurt_sound)
+	SoundManager.play_bgs(hurt_sound)
 	health -= amount
 	health_bar.value = health
 	if health <= 0:
@@ -320,3 +319,16 @@ func start_grab_travel() -> void:
 	var grabee_target_pos := anchor_world + Vector2(edge_offset, 0.0)
 	var grab_state := grab_target.state_machine.get_node("Grabbed") as GrabbedState
 	grab_state.start_travel(grabee_target_pos, atk.grab_anchor_frame)
+
+# Sound Manager wrappers
+func play_sound_sfx(sound: StringName) -> void:
+	SoundManager.play_sfx(sound)
+	
+func play_sound_bgm(sound: StringName) -> void:
+	SoundManager.play_bgm(sound)
+
+func play_sound_bgs(sound: StringName) -> void:
+	SoundManager.play_bgs(sound)
+
+func play_sound_mfx(sound: StringName) -> void:
+	SoundManager.play_mfx(sound)

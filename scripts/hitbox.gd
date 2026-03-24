@@ -86,8 +86,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if atk.is_grab:
 		owner_player.grab_target = target
 		attack_state.on_grab_hit()
-		if owner_player.on_grab_sound != null:
-			SoundManager.play_sfx(owner_player.on_grab_sound)
+		if atk.on_hit_sound != null:
+			SoundManager.play_bgs(atk.on_hit_sound)
 		target.apply_grab(owner_player, atk)
 		return
 	
@@ -96,4 +96,6 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	owner_player.apply_hit_stop(atk.hit_stop)
+	if atk.on_hit_sound != null:
+		SoundManager.play_sfx(atk.on_hit_sound)
 	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)

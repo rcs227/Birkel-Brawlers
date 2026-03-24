@@ -2,6 +2,7 @@ class_name ParryState
 extends State
 
 func enter() -> void:
+	SoundManager.play_sfx("chirp")
 	player.safe_play("parry")
 
 func physics_process(delta: float) -> String:
