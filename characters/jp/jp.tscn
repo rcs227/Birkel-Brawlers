@@ -982,6 +982,7 @@ heavy_special_data = ExtResource("7_fy61o")
 grab_data = ExtResource("8_qwne8")
 crouch_size = Vector2(20, 28)
 crouch_offset = Vector2(0, 19)
+parry_window = 0.2
 hurt_sound = &"jp_hurt_2"
 death_sound = &"jp_owie"
 

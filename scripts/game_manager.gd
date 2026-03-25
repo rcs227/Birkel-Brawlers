@@ -19,6 +19,8 @@ extends Node2D
 @export var rounds_to_win: int = 2  # best of 3
 @export var round_reset_delay: float = 2.0  # seconds before next round starts
 
+@export var color_players: bool = false
+
 const _default_character_scenes: Array[PackedScene] = [
 	preload("res://characters/jp/jp.tscn"),
 ]
@@ -56,10 +58,11 @@ func _ready() -> void:
 		fighters_parent.add_child(fighter)
 		_spawned_fighters.append(fighter)
 		_round_wins.append(0)
-		if i == 0:
-			fighter.anim_sprite.modulate = Color.GREEN
-		elif i == 1:
-			fighter.anim_sprite.modulate = Color.BLUE
+		if color_players:
+			if i == 0:
+				fighter.anim_sprite.modulate = Color.GREEN
+			elif i == 1:
+				fighter.anim_sprite.modulate = Color.BLUE
 
 	_assign_input_devices()
 	_round_in_progress = true
