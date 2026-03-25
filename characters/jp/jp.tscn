@@ -63,6 +63,10 @@ region = Rect2(0, 640, 128, 128)
 atlas = ExtResource("5_8hlw2")
 region = Rect2(384, 1152, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ier3c"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(1280, 1280, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ii53"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(256, 256, 128, 128)
@@ -406,6 +410,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_51riw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ier3c")
 }],
 "loop": false,
 "name": &"death",
@@ -987,7 +994,7 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"idle"
+animation = &"death"
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]

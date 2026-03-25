@@ -83,6 +83,32 @@ func _ready():
 	health_bar.value = health
 	state_machine.init(state_machine.get_node("Idle"))
 
+func reset(spawn_pos: Vector2) -> void:
+	# Stop any in-progress animations and physics
+	anim_sprite.stop()
+	anim_player.stop()
+	set_physics_process(true)
+	set_process(true)
+	# Reset stats
+	health = max_health
+	health_bar.value = health
+	block_health = max_block_health
+	block_bar.value = block_health
+	block_bar.visible = false
+	is_block_broken = false
+	knockback = Vector2.ZERO
+	velocity = Vector2.ZERO
+	grab_target = null
+	# Reset position
+	global_position = spawn_pos
+	# Reset hurtbox
+	reset_hurtbox()
+	# Disable hitbox
+	hitbox.disable()
+	# Transition out of Dead last
+	state_machine.current_state = state_machine.get_node("Idle")
+	state_machine.transition_to("Idle")
+
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 
@@ -155,11 +181,14 @@ func play_attack(anim: StringName) -> void:
 
 func _on_animation_finished() -> void:
 	if state_machine.current_state == state_machine.get_node("Dead"):
-		queue_free()
+		died.emit(self)
+		return
 	elif not is_on_floor():
 		state_machine.transition_to("Fall")
 	elif state_machine.current_state != state_machine.get_node("Stun"):
 		state_machine.transition_to("Idle")
+
+signal died(player: Player)
 
 # ---- Attacks -----
 
