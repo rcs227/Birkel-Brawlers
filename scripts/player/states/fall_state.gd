@@ -12,7 +12,7 @@ func physics_process(delta: float) -> String:
 	if player.is_on_floor():
 		player.has_flip = true
 		return "Land"
-	if player.block_held and not player.is_block_broken:
+	if player.block_held and not player.is_block_broken and player.block_timer >= player.block_cooldown:
 		return "Block"
 	return ""
 

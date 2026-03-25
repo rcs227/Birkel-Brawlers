@@ -18,8 +18,10 @@ const CROUCH_THRESHOLD := .4
 
 @export var device_id: int = 0 # assigned at game start
 @export var grab_data: Attack
+@export var hit_speed_multiplier: float = 3.0
 
 # MOVEMENT STATS
+@export_group("Movement")
 @export var speed := 150.0
 @export var acceleration := 1000.0
 @export var friction := 750.0
@@ -30,11 +32,13 @@ var facing := 1.0
 
 @export_group("UI")
 @export var health_bar: ProgressBar
+@onready var block_bar: ProgressBar = get_node("BlockBar")
 
+@export_group("Crouch")
 var original_hurtbox_size: Vector2
+var original_hurtbox_offset: Vector2
 @export var crouch_size: Vector2
 @export var crouch_offset: Vector2
-var original_hurtbox_offset: Vector2
 
 # --- State ---
 var max_health := 100
@@ -48,6 +52,7 @@ var has_flip := true
 var knockback := Vector2.ZERO
 
 # Block stats
+@export_group("Block stats")
 @export var max_block_health := 50
 @export var block_drain_rate := 5.0        # per second while blocking
 @export var block_regen_rate := 15        # per second when not blocking
@@ -55,6 +60,8 @@ var knockback := Vector2.ZERO
 @export var parry_window := 0.15            # seconds after starting block that counts as parry
 @export var parry_stun_duration := 0.55      # stun applied to attacker on parry
 @export var block_cost := 1.5                 # the amount it costs to block each time
+@export var block_cooldown := 0.2
+var block_timer = block_cooldown
 
 var block_health := 0.0
 var is_block_broken := false                # prevents re-blocking until trigger released
@@ -62,11 +69,10 @@ var parry_timer := 0.0                      # counts down from parry_window on b
 var block_regen_timer := 0.0               # delay before regen starts
 @export var block_regen_delay := 1.5        # seconds before regen kicks in
 
-@onready var block_bar: ProgressBar = get_node("BlockBar")
-
 var grab_target: Player
 
 # Sounds
+@export_group("Sounds")
 @export var hurt_sound: StringName
 @export var death_sound: StringName
 
@@ -110,6 +116,8 @@ func reset(spawn_pos: Vector2) -> void:
 	state_machine.transition_to("Idle")
 
 func _process(delta: float) -> void:
+	if not block_held:
+		block_timer += delta
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
@@ -252,7 +260,7 @@ func update_block_regen(delta: float) -> void:
 
 func break_block() -> void:
 	is_block_broken = true
-	block_health = max_block_health
+	#block_health = max_block_health
 	block_bar.visible = false
 	apply_stun(block_break_stun)
 

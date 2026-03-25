@@ -93,10 +93,12 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if target.state_machine.current_state == target.state_machine.get_node("Block"):
+		owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
 		target.take_block_damage(atk.damage, owner_player)
 		return
 	
 	owner_player.apply_hit_stop(atk.hit_stop)
 	if atk.on_hit_sound != null:
 		SoundManager.play_sfx(atk.on_hit_sound)
+	owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
 	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)

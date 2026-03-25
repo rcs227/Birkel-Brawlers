@@ -18,6 +18,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.hitbox.disable()
+	player.anim_player.speed_scale = 1.0
 	player.anim_player.stop()
 	player.reset_hurtbox()
 

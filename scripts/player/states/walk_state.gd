@@ -10,7 +10,7 @@ func physics_process(delta: float) -> String:
 	player.update_block_regen(delta)
 	if not player.is_on_floor():
 		return "Fall"
-	if player.block_held and not player.is_block_broken:
+	if player.block_held and not player.is_block_broken and player.block_timer >= player.block_cooldown:
 		return "Block"
 	player.move_and_slide()
 	return ""

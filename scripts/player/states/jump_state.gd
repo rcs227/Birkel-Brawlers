@@ -12,7 +12,7 @@ func physics_process(delta: float) -> String:
 	player.update_block_regen(delta)
 	if player.velocity.y > 0.0:
 		return "Fall"
-	if player.block_held and not player.is_block_broken:
+	if player.block_held and not player.is_block_broken and player.block_timer >= player.block_cooldown:
 		return "Block"
 	return ""
  
