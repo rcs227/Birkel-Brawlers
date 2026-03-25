@@ -80,7 +80,7 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	call_deferred("disable")
 	
-	var dir := signf(target.global_position.x - owner_player.global_position.x)
+	var dir := owner_player.facing
 	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
 	
 	if atk.is_grab:

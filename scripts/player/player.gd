@@ -310,7 +310,7 @@ func reset_hurtbox() -> void:
 func apply_grab(attacker: Player, atk: Attack) -> void:
 	var grab_state := state_machine.get_node("Grabbed") as GrabbedState
 	grab_state.damage = atk.damage
-	var dir := signf(global_position.x - attacker.global_position.x)
+	var dir := attacker.facing
 	grab_state.knockback = Vector2(atk.knockback.x * dir, atk.knockback.y)
 	grab_state.stun_duration = atk.stun_duration
 	state_machine.transition_to("Grabbed")
