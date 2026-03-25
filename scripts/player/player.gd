@@ -152,6 +152,10 @@ func apply_horizontal(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, dir * speed, acceleration * delta)
 
 func apply_stun(duration: float):
+	if state_machine.current_state == state_machine.get_node("Attack"):
+		var atk := (state_machine.get_node("Attack") as AttackState).current_attack
+		if atk.sound_effect:
+			SoundManager.stop(atk.sound_effect)
 	state_machine.get_node("Stun").duration = duration
 	state_machine.transition_to("Stun")
 	

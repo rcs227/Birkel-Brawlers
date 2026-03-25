@@ -56,6 +56,10 @@ func _ready() -> void:
 		fighters_parent.add_child(fighter)
 		_spawned_fighters.append(fighter)
 		_round_wins.append(0)
+		if i == 0:
+			fighter.anim_sprite.modulate = Color.GREEN
+		elif i == 1:
+			fighter.anim_sprite.modulate = Color.BLUE
 
 	_assign_input_devices()
 	_round_in_progress = true

@@ -456,10 +456,10 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_4ls8m")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_f4q5l")
 }, {
 "duration": 1.0,
@@ -630,7 +630,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_special",
-"speed": 16.0
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -800,7 +800,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25, 0.375),
+"times": PackedFloat32Array(0.5, 0.625),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -842,7 +842,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.625, 1.124),
+"times": PackedFloat32Array(0.625, 0.874),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -881,7 +881,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_v3aiu"]
 resource_name = "light_special"
-length = 0.3125
+length = 0.3846
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -889,7 +889,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.125, 0.25),
+"times": PackedFloat32Array(0.2308, 0.3846),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -994,7 +994,9 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"death"
+animation = &"grab_miss"
+frame = 4
+frame_progress = 1.0
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
