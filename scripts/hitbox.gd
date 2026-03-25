@@ -65,6 +65,16 @@ func _on_debug_toggled(_show: bool) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	if area is Hitbox:
+		if area.owner_player == owner_player:
+			return
+		# Cancel both attacks
+		call_deferred("disable")
+		area.call_deferred("disable")
+		owner_player.state_machine.transition_to("Idle")
+		area.owner_player.state_machine.transition_to("Idle")
+		owner_player.play_sound_sfx("chirp")
+		return
 	if area.get_parent() == owner_player:
 		return
 	var target := area.get_parent()
@@ -78,6 +88,17 @@ func _on_area_entered(area: Area2D) -> void:
 	# check block or death
 	if target.state_machine.current_state == target.state_machine.get_node("Dead"):
 		return
+	
+	var target_attack_state := target.state_machine.get_node("Attack") as AttackState
+	if target.state_machine.current_state == target.state_machine.get_node("Attack") and target.hitbox._is_active:
+		var time_diff := absf(attack_state.hitbox_active_timer - target_attack_state.hitbox_active_timer)
+		if time_diff <= attack_state.clash_window:
+			call_deferred("disable")
+			target.hitbox.call_deferred("disable")
+			owner_player.state_machine.transition_to("Idle")
+			target.state_machine.transition_to("Idle")
+			owner_player.play_sound_sfx("chirp")
+			return
 	
 	call_deferred("disable")
 	

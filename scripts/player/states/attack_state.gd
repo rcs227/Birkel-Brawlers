@@ -5,6 +5,9 @@ extends State
 var current_attack: Attack
 var has_hit: bool = false
 
+var hitbox_active_timer: float = 0.0
+var clash_window: float = .1  # seconds
+
 func enter() -> void:
 	has_hit = false
 	player.deactivate_hitbox()
@@ -23,6 +26,11 @@ func exit() -> void:
 	player.reset_hurtbox()
 
 func physics_process(delta: float) -> String:
+	if player.hitbox._is_active:
+		hitbox_active_timer += delta
+	else:
+		hitbox_active_timer = 0.0
+	
 	# Locked out of everything — just apply gravity if airborne
 	player.update_block_regen(delta)
 	if not player.is_on_floor():
