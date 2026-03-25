@@ -198,10 +198,15 @@ signal died(player: Player)
 
 # In player.gd — called by AnimationPlayer method track
 func activate_hitbox(index: int = 0) -> void:
+	#print(name + " activate hitbox called")
+	if state_machine.current_state != state_machine.get_node("Attack"):
+		#print(name + " current state is not attack, hitbox not activated")
+		return
 	var atk := (state_machine.get_node("Attack") as AttackState).current_attack
 	hitbox.enable(atk, index)
 
 func deactivate_hitbox() -> void:
+	#print(name + " deactivate hitbox called")
 	hitbox.disable()
 
 func start_block() -> void:
@@ -308,6 +313,11 @@ func reset_hurtbox() -> void:
 	hurtbox.position = Vector2(original_hurtbox_offset.x * facing, original_hurtbox_offset.y)
 
 func apply_grab(attacker: Player, atk: Attack) -> void:
+	# Stop any running attack animation so its method tracks don't fire
+	#print("apply grab called on " + name)
+	anim_player.stop()
+	hitbox.disable()
+
 	var grab_state := state_machine.get_node("Grabbed") as GrabbedState
 	grab_state.damage = atk.damage
 	var dir := attacker.facing

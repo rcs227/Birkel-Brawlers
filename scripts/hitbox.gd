@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 
 
 func enable(atk: Attack, i: int = 0) -> void:
+	#print(owner_player.name + " hitbox enabled")
 	set_hitbox_specs(atk, i)
 	collision.disabled = false
 	monitoring = true
@@ -41,7 +42,7 @@ func set_hitbox_specs(atk: Attack, i: int) -> void:
 
 
 func disable() -> void:
-	print(owner_player.name + " hitbox disabled")
+	#print(owner_player.name + " hitbox disabled")
 	collision.disabled = true
 	monitoring = false
 	_is_active = false
