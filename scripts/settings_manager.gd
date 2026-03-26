@@ -1,11 +1,12 @@
-## Global singleton that manages the settings overlay from any scene.
-## Registered in Project → Project Settings → Autoload as "SettingsManager".
+# Global singleton that manages the settings overlay from any scene.
+# Project → Project Settings → Autoload as "SettingsManager".
+
 extends Node
 
-## Emitted whenever the hitbox debug visibility is toggled.
+# Emitted whenever the hitbox debug visibility is toggled.
 signal hitbox_debug_toggled(show: bool)
 
-## Whether in-game hitboxes should draw a visible debug rectangle.
+# Whether in-game hitboxes should draw a visible debug rectangle.
 var show_hitboxes: bool = false:
 	set(value):
 		show_hitboxes = value
@@ -32,8 +33,8 @@ func _input(event: InputEvent) -> void:
 			open_settings()
 
 
-## Open the settings panel as an overlay on top of the current scene.
-## Pauses the scene tree so gameplay freezes underneath.
+# open the settings panel as an overlay on top of the current scene.
+# pauses the scene tree so gameplay freezes underneath.
 func open_settings() -> void:
 	if _overlay:
 		return
@@ -50,7 +51,7 @@ func open_settings() -> void:
 	_overlay.add_child(settings)
 
 
-## Close the settings overlay and resume the scene tree.
+# close the settings overlay and resume the scene tree.
 func close_settings() -> void:
 	if not _overlay:
 		return
@@ -59,8 +60,8 @@ func close_settings() -> void:
 	_overlay = null
 
 
-## Close settings and navigate to the character selection screen.
-## Called by the settings panel's "Return to Character Select" button.
+# close settings and navigate to the character selection screen.
+# called by the settings panel's "Return to Character Select" button.
 func go_to_character_select() -> void:
 	if _overlay:
 		_overlay.queue_free()

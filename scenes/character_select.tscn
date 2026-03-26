@@ -3,7 +3,18 @@
 [ext_resource type="Script" uid="uid://dtp6xfjgwttr2" path="res://scripts/character_select.gd" id="1_cs"]
 [ext_resource type="Texture2D" uid="uid://d0hbkqf33njwb" path="res://icon.svg" id="2_icon"]
 [ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp/jp_idle.png" id="3_jp"]
-[ext_resource type="Theme" path="res://resources/character_selection_theme.tres" id="4_theme"]
+[ext_resource type="Theme" uid="uid://2r8uf14xd5fc" path="res://resources/character_selection_theme.tres" id="4_theme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_preview"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_icon")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AT_jp0"]
 atlas = ExtResource("3_jp")
@@ -48,32 +59,21 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_preview"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_icon")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[node name="CharacterSelect" type="Control"]
+[node name="CharacterSelect" type="Control" unique_id=1204534943]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_filter = 1
 theme = ExtResource("4_theme")
 script = ExtResource("1_cs")
-player_count = 2
 default_sprite_frames = SubResource("SpriteFrames_preview")
 character_sprite_frames = Array[SpriteFrames]([SubResource("SF_jp"), null, null, null])
+character_button_textures = Array[Texture2D]([SubResource("AT_jp0"), null, null, null])
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1647135001]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.93, 0.88, 0.8, 1)
 
-[node name="PreviewBg" type="ColorRect" parent="."]
+[node name="PreviewBg" type="ColorRect" parent="." unique_id=1435235390]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -90,7 +90,7 @@ offset_bottom = 96.0
 grow_horizontal = 2
 color = Color(0.35, 0.2, 0.08, 1)
 
-[node name="TopAccent" type="ColorRect" parent="."]
+[node name="TopAccent" type="ColorRect" parent="." unique_id=838265710]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -98,19 +98,19 @@ offset_bottom = 1.0
 grow_horizontal = 2
 color = Color(0.45, 0.28, 0.12, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1615218368]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_top = 2.0
 offset_bottom = 12.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 9
 theme_override_colors/font_color = Color(0.98, 0.95, 0.9, 1)
+theme_override_font_sizes/font_size = 9
 text = "CHOOSE YOUR CHARACTER"
 horizontal_alignment = 1
 
-[node name="PromptLabel" type="Label" parent="."]
+[node name="PromptLabel" type="Label" parent="." unique_id=642168572]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -118,10 +118,47 @@ offset_top = 13.0
 offset_bottom = 22.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 7
-text = ""
 horizontal_alignment = 1
 
-[node name="ButtonPanel" type="PanelContainer" parent="."]
+[node name="VSLabel" type="Label" parent="." unique_id=1474141848]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 144.0
+offset_top = 44.0
+offset_right = 176.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.98, 0.95, 0.9, 0.5)
+theme_override_font_sizes/font_size = 14
+text = "VS"
+horizontal_alignment = 1
+
+[node name="AddProfileBtn" type="Button" parent="." unique_id=206419760]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 232.0
+offset_top = 8.0
+offset_right = 316.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 7
+text = "+ Add Profile"
+
+[node name="AddProfileDialog" type="ConfirmationDialog" parent="." unique_id=908615042]
+position = Vector2i(71, 56)
+size = Vector2i(178, 67)
+title = "Add Profile"
+ok_button_text = "Save"
+dialog_text = "Enter profile name (max 10):"
+
+[node name="ProfileNameInput" type="LineEdit" parent="AddProfileDialog" unique_id=1197734408]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 170.0
+offset_bottom = 56.0
+max_length = 10
+clear_button_enabled = true
+
+[node name="ButtonPanel" type="PanelContainer" parent="." unique_id=164319105]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -129,13 +166,13 @@ offset_top = 96.0
 offset_bottom = 180.0
 grow_horizontal = 2
 
-[node name="VBox" type="VBoxContainer" parent="ButtonPanel"]
+[node name="VBox" type="VBoxContainer" parent="ButtonPanel" unique_id=1130106605]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
 
-[node name="ButtonGrid" type="GridContainer" parent="ButtonPanel/VBox"]
+[node name="ButtonGrid" type="GridContainer" parent="ButtonPanel/VBox" unique_id=784558519]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -143,7 +180,36 @@ theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 4
 
-[node name="ActionBar" type="HBoxContainer" parent="ButtonPanel/VBox"]
+[node name="ActionBar" type="HBoxContainer" parent="ButtonPanel/VBox" unique_id=598975615]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
+
+[node name="RemoveBtn" type="Button" parent="ButtonPanel/VBox/ActionBar" unique_id=1423450542]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 7
+text = "- PLAYER"
+
+[node name="AddBtn" type="Button" parent="ButtonPanel/VBox/ActionBar" unique_id=1040753652]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 7
+text = "+ PLAYER"
+
+[node name="StartBtn" type="Button" parent="ButtonPanel/VBox/ActionBar" unique_id=1597019998]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 8
+text = "START"
+
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/RemoveBtn" to="." method="_on_remove_player"]
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/AddBtn" to="." method="_on_add_player"]
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/StartBtn" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="AddProfileBtn" to="." method="_on_add_profile_pressed"]
+[connection signal="confirmed" from="AddProfileDialog" to="." method="_on_add_profile_confirmed"]
+[connection signal="text_submitted" from="AddProfileDialog/ProfileNameInput" to="." method="_on_profile_name_submitted"]
