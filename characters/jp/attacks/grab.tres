@@ -9,6 +9,18 @@ size = Vector2(30, 15)
 offset = Vector2(17, -10)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
+[sub_resource type="Resource" id="Resource_4ybcc"]
+script = ExtResource("1_4ybcc")
+offset = Vector2(-12.4, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_v3wug"]
+script = ExtResource("1_4ybcc")
+offset = Vector2(0, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
 [resource]
 script = ExtResource("1_8xc7v")
 animation = &"grab"
@@ -16,6 +28,7 @@ damage = 10.0
 knockback = Vector2(400, -100)
 stun_duration = 0.5
 hitbox_frames = Array[ExtResource("1_4ybcc")]([SubResource("Resource_5yxbt")])
+hurtbox_frames = Array[ExtResource("1_4ybcc")]([SubResource("Resource_4ybcc"), SubResource("Resource_v3wug")])
 sound_effect = &"noe_laugh_2"
 on_hit_sound = &"bang"
 hit_stop = 0.0
