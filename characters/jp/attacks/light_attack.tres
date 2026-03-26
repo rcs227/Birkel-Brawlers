@@ -9,6 +9,18 @@ size = Vector2(35, 15)
 offset = Vector2(20, -10)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
+[sub_resource type="Resource" id="Resource_oa64o"]
+script = ExtResource("1_oa64o")
+offset = Vector2(-7.655, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_aq5jo"]
+script = ExtResource("1_oa64o")
+offset = Vector2(0, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
 [resource]
 script = ExtResource("1_mghbe")
 animation = &"light_attack"
@@ -16,5 +28,6 @@ damage = 3.0
 knockback = Vector2(200, 0)
 stun_duration = 0.2
 hitbox_frames = Array[ExtResource("1_oa64o")]([SubResource("Resource_kmcok")])
+hurtbox_frames = Array[ExtResource("1_oa64o")]([SubResource("Resource_oa64o"), SubResource("Resource_aq5jo")])
 sound_effect = &"jp_light_attack"
 on_hit_sound = &"bang"

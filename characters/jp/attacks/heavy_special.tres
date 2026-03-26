@@ -9,6 +9,42 @@ size = Vector2(73, 30)
 offset = Vector2(30, 17)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
+[sub_resource type="Resource" id="Resource_o6q67"]
+script = ExtResource("1_o6q67")
+size = Vector2(42, 36)
+offset = Vector2(-32, 18)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_uc53a"]
+script = ExtResource("1_o6q67")
+size = Vector2(52, 53)
+offset = Vector2(-37, 9.5)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_fh3uf"]
+script = ExtResource("1_o6q67")
+size = Vector2(40, 34)
+offset = Vector2(-13, 19)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_tqoyx"]
+script = ExtResource("1_o6q67")
+offset = Vector2(-31, 19)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_ig7eh"]
+script = ExtResource("1_o6q67")
+size = Vector2(20, 72)
+offset = Vector2(-15, -1)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_c0tw8"]
+script = ExtResource("1_o6q67")
+offset = Vector2(0, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
 [resource]
 script = ExtResource("1_kp8f1")
 animation = &"heavy_special"
@@ -16,5 +52,6 @@ damage = 15.0
 knockback = Vector2(-150, -150)
 stun_duration = 0.5
 hitbox_frames = Array[ExtResource("1_o6q67")]([SubResource("Resource_sd8oa")])
+hurtbox_frames = Array[ExtResource("1_o6q67")]([SubResource("Resource_o6q67"), SubResource("Resource_uc53a"), SubResource("Resource_fh3uf"), SubResource("Resource_tqoyx"), SubResource("Resource_ig7eh"), SubResource("Resource_c0tw8")])
 sound_effect = &"jp_heavy_special"
 on_hit_sound = &"jp_light_special"

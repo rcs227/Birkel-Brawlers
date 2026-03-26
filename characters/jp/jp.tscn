@@ -939,7 +939,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mi45g"]
 resource_name = "heavy_attack"
-length = 0.8333
+length = 1.0833
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -947,10 +947,42 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.4167, 0.5, 0.9167, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [3],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.5, 0.5833),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
+"args": [0],
 "method": &"activate_hitbox"
 }, {
 "args": [],
@@ -960,7 +992,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7d0xu"]
 resource_name = "heavy_special"
-length = 1.125
+length = 1.625
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -978,6 +1010,41 @@ tracks/0/keys = {
 "method": &"deactivate_hitbox"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375, 0.5, 0.625, 1, 1.125, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [3],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [4],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [5],
+"method": &"set_attack_hurtbox"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fy61o"]
 resource_name = "idle"
@@ -986,7 +1053,7 @@ loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_h4wjq"]
 resource_name = "light_attack"
-length = 0.2778
+length = 0.5555
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -994,14 +1061,23 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1677, 0.277),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.1677, 0.277, 0.3889),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
 "args": [],
 "method": &"activate_hitbox"
 }, {
 "args": [],
 "method": &"deactivate_hitbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
 }]
 }
 
@@ -1028,7 +1104,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qwne8"]
 resource_name = "medium_attack"
-length = 0.6
+length = 0.9
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1036,8 +1112,8 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [0],
 "method": &"set_attack_hurtbox"
@@ -1050,12 +1126,14 @@ tracks/0/keys = {
 }, {
 "args": [],
 "method": &"deactivate_hitbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_4cwt5"]
 resource_name = "medium_special"
-length = 0.7
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1071,6 +1149,35 @@ tracks/0/keys = {
 }, {
 "args": [],
 "method": &"deactivate_hitbox"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [3],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [4],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
 }]
 }
 
@@ -1122,7 +1229,8 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"heavy_attack"
+animation = &"heavy_special"
+frame = 12
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]

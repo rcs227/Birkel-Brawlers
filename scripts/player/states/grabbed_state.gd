@@ -12,8 +12,15 @@ var is_traveling: bool = false
 
 func enter() -> void:
 	player.safe_play("grabbed")
+	target_position = player.global_position
+	start_position = player.global_position
+	is_traveling = false
 
 func start_travel(world_target: Vector2, duration: float) -> void:
+	if duration <= 0.0:
+		player.global_position = world_target
+		is_traveling = false
+		return
 	start_position = player.global_position
 	target_position = world_target
 	travel_duration = duration

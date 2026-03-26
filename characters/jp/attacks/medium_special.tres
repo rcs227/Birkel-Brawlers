@@ -5,8 +5,38 @@
 
 [sub_resource type="Resource" id="Resource_ximj1"]
 script = ExtResource("1_vxceh")
-size = Vector2(55, 24)
+size = Vector2(35, 24)
 offset = Vector2(25, -8)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_vxceh"]
+script = ExtResource("1_vxceh")
+offset = Vector2(-10.3, -1)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_7t23p"]
+script = ExtResource("1_vxceh")
+offset = Vector2(-22.5, -5)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_ibxlu"]
+script = ExtResource("1_vxceh")
+offset = Vector2(-12.4, -11.9)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_50oat"]
+script = ExtResource("1_vxceh")
+offset = Vector2(13.1, -6)
+change_size = false
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_2c7jj"]
+script = ExtResource("1_vxceh")
+offset = Vector2(-22.3, -1)
+change_size = false
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [resource]
@@ -16,4 +46,5 @@ damage = 9.0
 knockback = Vector2(200, 0)
 stun_duration = 0.5
 hitbox_frames = Array[ExtResource("1_vxceh")]([SubResource("Resource_ximj1")])
+hurtbox_frames = Array[ExtResource("1_vxceh")]([SubResource("Resource_vxceh"), SubResource("Resource_7t23p"), SubResource("Resource_ibxlu"), SubResource("Resource_50oat"), SubResource("Resource_2c7jj")])
 on_hit_sound = &"kick"
