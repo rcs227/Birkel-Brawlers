@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_ximj1"]
 script = ExtResource("1_vxceh")
-size = Vector2(70, 30)
+size = Vector2(55, 24)
 offset = Vector2(25, -8)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 

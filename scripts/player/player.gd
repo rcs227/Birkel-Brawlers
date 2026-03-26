@@ -261,7 +261,7 @@ func update_block_regen(delta: float) -> void:
 func break_block() -> void:
 	is_block_broken = true
 	#block_health = max_block_health
-	block_bar.visible = false
+	#block_bar.visible = false
 	apply_stun(block_break_stun)
 
 func take_block_damage(amount: float, attacker: Player) -> void:

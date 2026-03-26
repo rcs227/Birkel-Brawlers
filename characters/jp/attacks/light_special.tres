@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_qadnc"]
 script = ExtResource("1_j02xi")
-size = Vector2(53, 15)
-offset = Vector2(18, -12)
+size = Vector2(45, 15)
+offset = Vector2(23, -12)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [resource]

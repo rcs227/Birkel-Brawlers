@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_kmcok"]
 script = ExtResource("1_oa64o")
-size = Vector2(50, 15)
-offset = Vector2(15, -5)
+size = Vector2(35, 15)
+offset = Vector2(20, -10)
 metadata/_custom_type_script = "uid://va4j4xwiqy5k"
 
 [resource]
