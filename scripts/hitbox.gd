@@ -5,6 +5,7 @@ extends Area2D
 @onready var collision := get_node("CollisionShape2D") as CollisionShape2D
 @onready var owner_player: Player = owner as Player
 
+var _clash_processed: bool = false
 var _is_active: bool = false
 var is_grab_active: bool = false
 
@@ -46,6 +47,7 @@ func disable() -> void:
 	collision.disabled = true
 	monitoring = false
 	_is_active = false
+	_clash_processed = false
 	queue_redraw()
 
 
@@ -68,12 +70,15 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		if area.owner_player == owner_player:
 			return
-		# Cancel both attacks
+		if _clash_processed or area._clash_processed:
+			return
+		_clash_processed = true
+		area._clash_processed = true
 		call_deferred("disable")
 		area.call_deferred("disable")
 		owner_player.state_machine.transition_to("Idle")
 		area.owner_player.state_machine.transition_to("Idle")
-		owner_player.play_sound_sfx("chirp")
+		owner_player.play_sfx(Player.parry_sound)  # whoever fires first plays it
 		return
 	if area.get_parent() == owner_player:
 		return
@@ -93,11 +98,14 @@ func _on_area_entered(area: Area2D) -> void:
 	if target.state_machine.current_state == target.state_machine.get_node("Attack") and target.hitbox._is_active:
 		var time_diff := absf(attack_state.hitbox_active_timer - target_attack_state.hitbox_active_timer)
 		if time_diff <= attack_state.clash_window:
+			if _clash_processed or target.hitbox._clash_processed:
+				return
+			_clash_processed = true
 			call_deferred("disable")
 			target.hitbox.call_deferred("disable")
 			owner_player.state_machine.transition_to("Idle")
 			target.state_machine.transition_to("Idle")
-			owner_player.play_sound_sfx("chirp")
+			owner_player.play_sfx(Player.parry_sound)
 			return
 	
 	call_deferred("disable")
@@ -109,7 +117,7 @@ func _on_area_entered(area: Area2D) -> void:
 		owner_player.grab_target = target
 		attack_state.on_grab_hit()
 		if atk.on_hit_sound != null:
-			SoundManager.play_bgs(atk.on_hit_sound)
+			owner_player.play_sfx(atk.on_hit_sound)
 		owner_player.grab_landed.emit(owner_player)
 		target.apply_grab(owner_player, atk)
 		return
@@ -121,6 +129,6 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	owner_player.apply_hit_stop(atk.hit_stop)
 	if atk.on_hit_sound != null:
-		SoundManager.play_sfx(atk.on_hit_sound)
+		owner_player.play_sfx(atk.on_hit_sound)
 	owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
 	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)

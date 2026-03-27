@@ -185,5 +185,10 @@ func _get_pack_for_character_index(char_idx: int) -> PackedScene:
 
 
 func _assign_input_devices() -> void:
+	var connected := Input.get_connected_joypads()
 	for i in range(_spawned_fighters.size()):
-		_spawned_fighters[i].device_id = i
+		if i < connected.size():
+			_spawned_fighters[i].device_id = connected[i]
+			_spawned_fighters[i].is_keyboard_player = false
+		else:
+			_spawned_fighters[i].is_keyboard_player = true

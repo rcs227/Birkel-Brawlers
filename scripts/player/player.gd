@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var hitbox: Hitbox = get_node("Hitbox") as Hitbox
 @onready var hurtbox: CollisionShape2D = $Hurtbox/CollisionShape2D2
+@onready var sfx_player: AudioStreamPlayer = get_node("SFXPlayer")
+@onready var voice_player: AudioStreamPlayer = get_node("VoicePlayer")
 
 # constants
 const STICK_DEADZONE := 0.8
@@ -19,6 +21,8 @@ const CROUCH_THRESHOLD := .4
 @export var device_id: int = 0 # assigned at game start
 @export var grab_data: Attack
 @export var hit_speed_multiplier: float = 3.0
+@export var is_keyboard_player: bool = false
+static var parry_sound: String = "res://audio/wav/__chirp.wav"
 
 # MOVEMENT STATS
 @export_group("Movement")
@@ -73,8 +77,8 @@ var grab_target: Player
 
 # Sounds
 @export_group("Sounds")
-@export var hurt_sound: StringName
-@export var death_sound: StringName
+@export var hurt_sound: String
+@export var death_sound: String
 
 func _ready():
 	hurtbox.shape = hurtbox.shape.duplicate()
@@ -135,15 +139,17 @@ func _physics_process(delta: float) -> void:
 		has_flip = true
 
 func _input(event: InputEvent) -> void:
-	# if event.device != device_id:
-	#	return
-	if event.device != device_id and not (_is_keyboard_player() and event.device == -1):
-		return
-	state_machine.input(event)
+	if is_keyboard_player:
+		if event is InputEventKey or event is InputEventMouse:
+			state_machine.input(event)
+	else:
+		if event.device != device_id:
+			return
+		state_machine.input(event)
 
 
 func _is_keyboard_player() -> bool:
-	return device_id == 0
+	return is_keyboard_player
 
 
 # ----- Helpers for States -------
@@ -397,15 +403,13 @@ func start_grab_travel() -> void:
 	var grab_state := grab_target.state_machine.get_node("Grabbed") as GrabbedState
 	grab_state.start_travel(grabee_target_pos, atk.grab_anchor_frame)
 
-# Sound Manager wrappers
-func play_sound_sfx(sound: StringName) -> void:
-	SoundManager.play_sfx(sound)
-	
-func play_sound_bgm(sound: StringName) -> void:
-	SoundManager.play_bgm(sound)
+# Sounds
+func play_sfx(path: String) -> void:
+	if path != null and path != "":
+		sfx_player.stream = load(path).duplicate()
+		sfx_player.play()
 
-func play_sound_bgs(sound: StringName) -> void:
-	SoundManager.play_bgs(sound)
-
-func play_sound_mfx(sound: StringName) -> void:
-	SoundManager.play_mfx(sound)
+func play_voice(path: String) -> void:
+	if path != null and path != "":
+		voice_player.stream = load(path).duplicate()
+		voice_player.play()

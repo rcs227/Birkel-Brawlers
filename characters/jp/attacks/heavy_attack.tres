@@ -41,5 +41,5 @@ knockback = Vector2(70, 350)
 stun_duration = 0.23
 hitbox_frames = Array[ExtResource("1_hsi3k")]([SubResource("Resource_2t1cv")])
 hurtbox_frames = Array[ExtResource("1_hsi3k")]([SubResource("Resource_hsi3k"), SubResource("Resource_j1cs3"), SubResource("Resource_ie7mo"), SubResource("Resource_0v5oc")])
-sound_effect = &"jp_medium"
-on_hit_sound = &"kick"
+sound_effect = "res://audio/wav/jp_medium.wav"
+on_hit_sound = "res://audio/wav/__bang.wav"

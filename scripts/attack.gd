@@ -7,8 +7,8 @@ extends Resource
 @export var stun_duration: float
 @export var hitbox_frames: Array[HitboxSpecs] = []
 @export var hurtbox_frames: Array[HitboxSpecs] = []
-@export var sound_effect: StringName
-@export var on_hit_sound: StringName
+@export var sound_effect: String
+@export var on_hit_sound: String
 @export var hit_stop: float = 0.1   # seconds — 0.08 is a good default
 @export var is_grab: bool = false
 @export var grab_anchor: Vector2 # local position on attacker the grabee is pulled to
