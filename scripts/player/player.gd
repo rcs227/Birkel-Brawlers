@@ -71,6 +71,7 @@ var knockback := Vector2.ZERO
 @export var parry_stun_duration := 0.55      # stun applied to attacker on parry
 @export var block_cost := 1.5                 # the amount it costs to block each time
 @export var block_cooldown := 0.2
+@export var block_reset_percentage: float = 0.33
 var block_timer = block_cooldown
 
 var block_health := 0.0
@@ -291,6 +292,7 @@ func update_block_regen(delta: float) -> void:
 	if block_regen_timer > 0.0:
 		block_regen_timer -= delta
 		return
+	block_bar.visible = true
 	block_health = minf(block_health + block_regen_rate * delta, max_block_health)
 	block_bar.value = block_health
 	if block_health >= max_block_health:
@@ -298,15 +300,15 @@ func update_block_regen(delta: float) -> void:
 
 func break_block() -> void:
 	is_block_broken = true
-	#block_health = max_block_health
-	#block_bar.visible = false
+	block_health = max_block_health * block_reset_percentage
+	block_bar.visible = false
 	apply_stun(block_break_stun)
 
 func take_block_damage(amount: float, attacker: Player) -> void:
 	if is_parrying():
 		attacker.apply_stun(parry_stun_duration)
 		is_block_broken = true
-		block_bar.visible = false
+		#block_bar.visible = false
 		parried.emit(self)
 		state_machine.transition_to("Parry")
 		return

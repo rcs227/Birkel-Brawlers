@@ -4,7 +4,6 @@ extends State
 func enter() -> void:
 	player.block_timer = 0
 	player.safe_play("block")
-	player.block_health -= player.block_cost
 	player.start_block()
 
 func exit() -> void:
