@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://c7gw3f1dmo8pf" path="res://scripts/player/states/dead_state.gd" id="16_gov72"]
 [ext_resource type="Script" uid="uid://3qm0nq5etn13" path="res://scripts/player/states/parry_state.gd" id="20_h4wjq"]
 [ext_resource type="Script" uid="uid://c1lhct5hx155u" path="res://scripts/player/states/grabbed_state.gd" id="21_h5w7u"]
+[ext_resource type="Script" uid="uid://civ1b2ihshs0i" path="res://scripts/player/states/dash_state.gd" id="23_qwne8"]
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
@@ -1286,6 +1287,9 @@ script = ExtResource("20_h4wjq")
 
 [node name="Grabbed" type="Node" parent="StateMachine" unique_id=2057014340]
 script = ExtResource("21_h5w7u")
+
+[node name="Dash" type="Node" parent="StateMachine" unique_id=526921671]
+script = ExtResource("23_qwne8")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=13361986]
 collision_layer = 8

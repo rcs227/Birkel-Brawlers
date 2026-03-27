@@ -52,6 +52,12 @@ var special_held := false
 var block_held := false
 var block_just_pressed := false
 var has_flip := true
+var has_dash := true
+
+# Dash
+@export_group("Dash")
+@export var dash_force: float = 400  # initial velocity applied
+@export var dash_up_force: float = -100.0  # slight upward angle, set to 0 for horizontal
 
 var knockback := Vector2.ZERO
 
@@ -137,6 +143,7 @@ func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
 	if is_on_floor():
 		has_flip = true
+		has_dash = true
 
 func _input(event: InputEvent) -> void:
 	if is_keyboard_player:
