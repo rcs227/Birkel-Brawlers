@@ -58,6 +58,8 @@ var has_dash := true
 @export_group("Dash")
 @export var dash_force: float = 400  # initial velocity applied
 @export var dash_up_force: float = -100.0  # slight upward angle, set to 0 for horizontal
+@export var dash_cooldown: float = 1.0
+var dash_timer: float = 0.0
 
 var knockback := Vector2.ZERO
 
@@ -129,6 +131,7 @@ func reset(spawn_pos: Vector2) -> void:
 func _process(delta: float) -> void:
 	if not block_held:
 		block_timer += delta
+	dash_timer += delta
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:

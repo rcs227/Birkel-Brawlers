@@ -20,7 +20,7 @@ func input(event: InputEvent) -> String:
 	if event.is_action_pressed("jump") and player.has_flip:
 		player.velocity.y = player.jump_force
 		player.has_flip = false
-	if event.is_action_pressed("dash") and player.has_dash:
+	if event.is_action_pressed("dash") and player.has_dash and player.dash_timer >= player.dash_cooldown:
 		return "Dash"
 	if event.is_action_pressed("light_attack"):
 		_queue_attack("light_attack")

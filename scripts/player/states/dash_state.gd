@@ -35,3 +35,6 @@ func input(event: InputEvent) -> String:
 func _queue_attack(action: String) -> void:
 	var attack_state := player.state_machine.get_node("Attack") as AttackState
 	attack_state.current_attack = player.get_attack(action)
+
+func exit() -> void:
+	player.dash_timer = 0.0
