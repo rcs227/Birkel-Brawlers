@@ -26,6 +26,7 @@ const _default_character_scenes: Array[PackedScene] = [
 ]
 
 var _spawned_fighters: Array[Player] = []
+var _profile_names: Array[String] = []
 var _round_wins: Array[int] = []
 var _current_round: int = 1
 var _total_rounds: int = 3
@@ -36,6 +37,8 @@ func _ready() -> void:
 	var selections: Array[int] = CharacterSelectScreen.last_selections.duplicate()
 	if selections.is_empty():
 		selections = fallback_selections.duplicate()
+
+	var profile_names: Array[String] = CharacterSelectScreen.last_profile_names.duplicate()
 
 	for i in range(selections.size()):
 		var char_idx: int = selections[i]
@@ -55,8 +58,11 @@ func _ready() -> void:
 			if hb:
 				fighter.health_bar = hb
 		fighter.died.connect(_on_player_died)
+		fighter.parried.connect(_on_player_parried)
+		fighter.grab_landed.connect(_on_player_grab_landed)
 		fighters_parent.add_child(fighter)
 		_spawned_fighters.append(fighter)
+		_profile_names.append(profile_names[i] if i < profile_names.size() else "")
 		_round_wins.append(0)
 		if color_players:
 			if i == 0:
@@ -69,10 +75,33 @@ func _ready() -> void:
 	print("Round %d — Fight!" % _current_round)
 
 
+func _on_player_parried(parrier: Player) -> void:
+	var idx := _spawned_fighters.find(parrier)
+	if idx >= 0:
+		_increment_stat(idx, "parries")
+
+
+func _on_player_grab_landed(grabber: Player) -> void:
+	var idx := _spawned_fighters.find(grabber)
+	if idx >= 0:
+		_increment_stat(idx, "grabs_landed")
+
+
+func _increment_stat(player_idx: int, stat_name: String) -> void:
+	if player_idx < 0 or player_idx >= _profile_names.size():
+		return
+	var profile_name := _profile_names[player_idx]
+	if profile_name.is_empty():
+		return
+	SaveManager.increment_stat(profile_name, stat_name)
+
+
 func _on_player_died(dead_player: Player) -> void:
 	if not _round_in_progress:
 		return
 	_round_in_progress = false
+
+	var dead_idx := _spawned_fighters.find(dead_player)
 
 	# Find the winner of this round (the one who didn't die)
 	var winner_index := -1
@@ -80,6 +109,12 @@ func _on_player_died(dead_player: Player) -> void:
 		if _spawned_fighters[i] != dead_player:
 			winner_index = i
 			break
+
+	# Save stats before any early returns
+	if dead_idx >= 0:
+		_increment_stat(dead_idx, "deaths")
+	if winner_index >= 0:
+		_increment_stat(winner_index, "kills")
 
 	if winner_index == -1:
 		print("Draw!")

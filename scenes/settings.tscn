@@ -1,29 +1,21 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ccdnjmxpj6dm3"]
 
-[ext_resource type="Script" path="res://scripts/settings.gd" id="1_sg"]
-[ext_resource type="Theme" path="res://resources/menu_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://bc7xp58ev1psj" path="res://scripts/settings.gd" id="1_sg"]
+[ext_resource type="Theme" uid="uid://xpjxo6rlqujp" path="res://resources/menu_theme.tres" id="2_theme"]
+[ext_resource type="Theme" uid="uid://2r8uf14xd5fc" path="res://resources/character_selection_theme.tres" id="3_6wm04"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
-bg_color = Color(0.98, 0.95, 0.9, 1)
-border_color = Color(0.45, 0.28, 0.12, 1)
-border_width_top = 1
-content_margin_left = 10.0
-content_margin_top = 8.0
-content_margin_right = 10.0
-content_margin_bottom = 8.0
-
-[node name="Settings" type="Control"]
+[node name="Settings" type="Control" unique_id=419091454]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_filter = 1
 theme = ExtResource("2_theme")
 script = ExtResource("1_sg")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1056947829]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.98, 0.95, 0.9, 1)
 
-[node name="TopAccent" type="ColorRect" parent="."]
+[node name="TopAccent" type="ColorRect" parent="." unique_id=1356916723]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -40,28 +32,34 @@ offset_bottom = 1.0
 grow_horizontal = 2
 color = Color(0.45, 0.28, 0.12, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=524549042]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_top = 2.0
 offset_bottom = 12.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 9
 theme_override_colors/font_color = Color(0.45, 0.28, 0.12, 1)
+theme_override_font_sizes/font_size = 9
 text = "SETTINGS"
 horizontal_alignment = 1
 
-[node name="SettingsPanel" type="PanelContainer" parent="."]
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=534786944]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_top = 16.0
 offset_bottom = 168.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBox_panel")
 
-[node name="VBox" type="VBoxContainer" parent="SettingsPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsPanel" unique_id=1105739150]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel/ScrollContainer" unique_id=197663877]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

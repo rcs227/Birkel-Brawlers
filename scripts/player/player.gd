@@ -123,27 +123,48 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# always read axes so any state can access them
 	special_held = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_LEFT) > TRIGGER_THRESHOLD
+	if _is_keyboard_player() and not special_held:
+		special_held = Input.is_action_pressed("special")
 	var was_blocking := block_held
 	block_held   = Input.get_joy_axis(device_id, JOY_AXIS_TRIGGER_RIGHT) > TRIGGER_THRESHOLD
+	if _is_keyboard_player() and not block_held:
+		block_held = Input.is_action_pressed("block")
 	block_just_pressed = block_held and not was_blocking
 	state_machine.physics_process(delta)
 	if is_on_floor():
 		has_flip = true
 
 func _input(event: InputEvent) -> void:
-	if event.device != device_id:
+	# if event.device != device_id:
+	#	return
+	if event.device != device_id and not (_is_keyboard_player() and event.device == -1):
 		return
 	state_machine.input(event)
+
+
+func _is_keyboard_player() -> bool:
+	return device_id == 0
 
 
 # ----- Helpers for States -------
 
 func get_stick_x() -> float:
 	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
-	return 0.0 if abs(raw) < STICK_DEADZONE else raw
- 
+	#return 0.0 if abs(raw) < STICK_DEADZONE else raw
+	if abs(raw) >= STICK_DEADZONE:
+		return raw
+	if _is_keyboard_player():
+		return Input.get_axis("left", "right")
+	return 0.0
+
 func get_stick_y() -> float:
-	return Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
+	#return Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
+	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
+	if abs(raw) > 0.1:
+		return raw
+	if _is_keyboard_player():
+		return Input.get_axis("up", "down")
+	return 0.0
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -154,6 +175,8 @@ func apply_friction(delta: float) -> void:
 func apply_horizontal(delta: float) -> void:
 	var raw := Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
 	var dir := 0.0 if abs(raw) < STICK_DEADZONE else raw
+	if _is_keyboard_player() and dir == 0.0:
+		dir = Input.get_axis("left", "right")
 	if dir != 0.0:
 		facing = sign(dir)
 		anim_sprite.flip_h = dir < 0.0
@@ -201,6 +224,8 @@ func _on_animation_finished() -> void:
 		state_machine.transition_to("Idle")
 
 signal died(player: Player)
+signal parried(player: Player)
+signal grab_landed(player: Player)
 
 # ---- Attacks -----
 
@@ -269,6 +294,7 @@ func take_block_damage(amount: float, attacker: Player) -> void:
 		attacker.apply_stun(parry_stun_duration)
 		is_block_broken = true
 		block_bar.visible = false
+		parried.emit(self)
 		state_machine.transition_to("Parry")
 		return
 	# Reduce block health by a fraction of the damage

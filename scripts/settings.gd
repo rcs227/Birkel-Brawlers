@@ -2,7 +2,7 @@ extends Control
 
 # The VBox inside SettingsPanel is defined in settings.tscn.
 # All rows are built dynamically at runtime and added to it.
-@onready var settings_box: VBoxContainer = $SettingsPanel/VBox
+@onready var settings_box: VBoxContainer = $SettingsPanel/ScrollContainer/VBox
 
 # These track the actual current state of each setting.
 var _master_vol: int = 100
@@ -15,6 +15,15 @@ var _vol_value_label: Label
 var _fullscreen_btn: Button
 var _vsync_btn: Button
 var _hitbox_btn: Button
+
+var _view_stats_btn: Button
+var _stats_panel: VBoxContainer
+var _stats_dropdown: ProfileDropdown
+var _stats_container: HBoxContainer
+var _kills_label: Label
+var _deaths_label: Label
+var _parries_label: Label
+var _grabs_label: Label
 
 # Color scheme constants.
 const BROWN_PRIMARY  := Color(0.45, 0.28, 0.12, 1)
@@ -61,6 +70,11 @@ func _build_settings() -> void:
 	# ── Debug ────────────────────────────────────────────────────────────────
 	_hitbox_btn = _add_toggle_row("SHOW HITBOXES", _show_hitboxes)
 	_hitbox_btn.pressed.connect(_toggle_hitboxes)
+
+	_add_separator()
+
+	# ── Player Stats ─────────────────────────────────────────────────────────
+	_build_stats_section()
 
 	_add_separator()
 
@@ -200,6 +214,80 @@ func _make_style(bg: Color, border: Color, width: int) -> StyleBoxFlat:
 	s.content_margin_top    = 2.0
 	s.content_margin_bottom = 2.0
 	return s
+
+
+# ---------------------------------------------------------------------------
+# Stats section
+# ---------------------------------------------------------------------------
+
+func _build_stats_section() -> void:
+	_view_stats_btn = _make_back_btn("VIEW STATS")
+	_view_stats_btn.pressed.connect(_toggle_stats_panel)
+	settings_box.add_child(_view_stats_btn)
+
+	_stats_panel = VBoxContainer.new()
+	_stats_panel.add_theme_constant_override("separation", 2)
+	_stats_panel.visible = false
+	settings_box.add_child(_stats_panel)
+
+	var inner := HBoxContainer.new()
+	inner.add_theme_constant_override("separation", 4)
+	_stats_panel.add_child(inner)
+
+	_stats_dropdown = preload("res://scenes/profile_dropdown.tscn").instantiate() as ProfileDropdown
+	_stats_dropdown.add_theme_font_size_override("font_size", 6)
+	_stats_dropdown.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_stats_dropdown.profile_selected.connect(_on_stats_profile_selected)
+	inner.add_child(_stats_dropdown)
+
+	_stats_container = HBoxContainer.new()
+	_stats_container.add_theme_constant_override("separation", 6)
+	_stats_container.visible = false
+	inner.add_child(_stats_container)
+
+	_kills_label = _add_stat_pair("K")
+	_deaths_label = _add_stat_pair("D")
+	_parries_label = _add_stat_pair("P")
+	_grabs_label = _add_stat_pair("G")
+
+
+func _add_stat_pair(short_name: String) -> Label:
+	var pair := HBoxContainer.new()
+	pair.add_theme_constant_override("separation", 1)
+
+	var name_label := Label.new()
+	name_label.text = short_name
+	name_label.add_theme_font_size_override("font_size", 6)
+	name_label.add_theme_color_override("font_color", BROWN_MUTED)
+	pair.add_child(name_label)
+
+	var value_label := Label.new()
+	value_label.text = "0"
+	value_label.add_theme_font_size_override("font_size", 6)
+	value_label.add_theme_color_override("font_color", BROWN_DARK)
+	pair.add_child(value_label)
+
+	_stats_container.add_child(pair)
+	return value_label
+
+
+func _toggle_stats_panel() -> void:
+	_stats_panel.visible = not _stats_panel.visible
+
+
+func _on_stats_profile_selected(profile_name: String) -> void:
+	if profile_name.is_empty():
+		_stats_container.visible = false
+		return
+	var data := SaveManager.load_profile(profile_name)
+	if data == null:
+		_stats_container.visible = false
+		return
+	_stats_container.visible = true
+	_kills_label.text = str(data.kills)
+	_deaths_label.text = str(data.deaths)
+	_parries_label.text = str(data.parries)
+	_grabs_label.text = str(data.grabs_landed)
 
 
 # ---------------------------------------------------------------------------

@@ -26,16 +26,47 @@ static func get_profile_names() -> Array[String]:
 	names.sort()
 	return names
 
+static func load_profile(profile_name: String) -> ProfileData:
+	var name := profile_name.strip_edges()
+	if name.is_empty():
+		return null
+	_ensure_profile_dir()
+	var path := _profile_path_for_name(name)
+	return ResourceLoader.load(path) as ProfileData
+
+
 static func save_profile(profile_name: String) -> bool:
 	var name := profile_name.strip_edges()
 	if name.is_empty():
 		return false
 	_ensure_profile_dir()
+	var path := _profile_path_for_name(name)
+	var existing := ResourceLoader.load(path) as ProfileData
+	if existing != null:
+		return true
 	var data := ProfileData.new()
 	data.profile_name = name
-	var path := _profile_path_for_name(name)
 	var result := ResourceSaver.save(data, path)
 	return result == OK
+
+
+static func save_profile_data(data: ProfileData) -> bool:
+	if data == null or data.profile_name.is_empty():
+		return false
+	_ensure_profile_dir()
+	var path := _profile_path_for_name(data.profile_name)
+	var result := ResourceSaver.save(data, path)
+	return result == OK
+
+
+static func increment_stat(profile_name: String, stat_name: String) -> void:
+	var data := load_profile(profile_name)
+	if data == null:
+		return
+	var current: int = data.get(stat_name)
+	data.set(stat_name, current + 1)
+	save_profile_data(data)
+
 
 static func _ensure_profile_dir() -> void:
 	var abs_dir := ProjectSettings.globalize_path(PROFILE_DIR)

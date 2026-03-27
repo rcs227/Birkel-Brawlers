@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d0hbkqf33njwb" path="res://icon.svg" id="2_icon"]
 [ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp/jp_idle.png" id="3_jp"]
 [ext_resource type="Theme" uid="uid://2r8uf14xd5fc" path="res://resources/character_selection_theme.tres" id="4_theme"]
+[ext_resource type="PackedScene" uid="uid://bpbjj5f2rcr8y" path="res://scenes/profile_dropdown.tscn" id="5_profile_dropdown"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_preview"]
 animations = [{
@@ -143,18 +144,18 @@ theme_override_font_sizes/font_size = 7
 text = "+ Add Profile"
 
 [node name="AddProfileDialog" type="ConfirmationDialog" parent="." unique_id=908615042]
-position = Vector2i(71, 56)
-size = Vector2i(178, 67)
 title = "Add Profile"
+position = Vector2i(71, 56)
+size = Vector2i(200, 70)
 ok_button_text = "Save"
 dialog_text = "Enter profile name (max 10):"
 
 [node name="ProfileNameInput" type="LineEdit" parent="AddProfileDialog" unique_id=1197734408]
-layout_mode = 0
 offset_left = 8.0
 offset_top = 36.0
 offset_right = 170.0
 offset_bottom = 56.0
+theme = ExtResource("4_theme")
 max_length = 10
 clear_button_enabled = true
 
@@ -207,9 +208,35 @@ size_flags_stretch_ratio = 1.5
 theme_override_font_sizes/font_size = 8
 text = "START"
 
-[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/RemoveBtn" to="." method="_on_remove_player"]
-[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/AddBtn" to="." method="_on_add_player"]
-[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/StartBtn" to="." method="_on_start_pressed"]
+[node name="ProfileDropdownP1" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635010]
+layout_mode = 0
+position = Vector2(63, 78)
+size = Vector2(44, 14)
+theme_override_font_sizes/font_size = 5
+
+[node name="ProfileDropdownP2" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635011]
+layout_mode = 0
+position = Vector2(213, 78)
+size = Vector2(44, 14)
+theme_override_font_sizes/font_size = 5
+
+[node name="ProfileDropdownP3" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635012]
+layout_mode = 0
+position = Vector2(38, 78)
+size = Vector2(44, 14)
+visible = false
+theme_override_font_sizes/font_size = 5
+
+[node name="ProfileDropdownP4" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635013]
+layout_mode = 0
+position = Vector2(14, 78)
+size = Vector2(44, 14)
+visible = false
+theme_override_font_sizes/font_size = 5
+
 [connection signal="pressed" from="AddProfileBtn" to="." method="_on_add_profile_pressed"]
 [connection signal="confirmed" from="AddProfileDialog" to="." method="_on_add_profile_confirmed"]
 [connection signal="text_submitted" from="AddProfileDialog/ProfileNameInput" to="." method="_on_profile_name_submitted"]
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/RemoveBtn" to="." method="_on_remove_player"]
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/AddBtn" to="." method="_on_add_player"]
+[connection signal="pressed" from="ButtonPanel/VBox/ActionBar/StartBtn" to="." method="_on_start_pressed"]

@@ -110,6 +110,7 @@ func _on_area_entered(area: Area2D) -> void:
 		attack_state.on_grab_hit()
 		if atk.on_hit_sound != null:
 			SoundManager.play_bgs(atk.on_hit_sound)
+		owner_player.grab_landed.emit(owner_player)
 		target.apply_grab(owner_player, atk)
 		return
 	

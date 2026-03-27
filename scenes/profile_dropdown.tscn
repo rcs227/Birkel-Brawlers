@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bpbjj5f2rcr8y"]
+
+[ext_resource type="Script" uid="uid://crtrn4w2a1q6d" path="res://scripts/profile_dropdown.gd" id="1_pd"]
+[ext_resource type="Theme" uid="uid://2r8uf14xd5fc" path="res://resources/character_selection_theme.tres" id="1_wgq4k"]
+
+[node name="ProfileDropdown" type="OptionButton" unique_id=287104274]
+offset_right = 38.0
+offset_bottom = 16.0
+scale = Vector2(0.5136653, 0.5136653)
+theme = ExtResource("1_wgq4k")
+script = ExtResource("1_pd")

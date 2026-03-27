@@ -22,6 +22,12 @@ static var last_profile_names: Array[String] = []
 @onready var _start_btn: Button = $ButtonPanel/VBox/ActionBar/StartBtn
 @onready var _add_profile_dialog: ConfirmationDialog = $AddProfileDialog
 @onready var _profile_name_input: LineEdit = $AddProfileDialog/ProfileNameInput
+@onready var _profile_dropdown_nodes: Array[ProfileDropdown] = [
+	$ProfileDropdownP1,
+	$ProfileDropdownP2,
+	$ProfileDropdownP3,
+	$ProfileDropdownP4,
+]
 
 const PLAYER_COLORS := [
 	Color(0.27, 0.53, 1.0),   # P1 blue
@@ -60,14 +66,13 @@ var _player_labels: Array[Label] = []
 var _slot_panels: Array[Panel] = []
 var _slot_styles: Array[StyleBoxFlat] = []
 var _highlight_bars: Array[ColorRect] = []
-var _profile_buttons: Array[OptionButton] = []
+var _profile_buttons: Array[ProfileDropdown] = []
 
 var _active_tween: Tween
-var profile_list: Array[String] = []
 
 
 func _ready() -> void:
-	profile_list = SaveManager.get_profile_names()
+	_profile_buttons = _profile_dropdown_nodes
 	selections.resize(player_count)
 	selections.fill(-1)
 	_create_preview_slots()
@@ -92,13 +97,8 @@ func _on_add_profile_confirmed() -> void:
 	var profile_name := _profile_name_input.text.strip_edges()
 	if profile_name.is_empty():
 		return
-	if profile_list.has(profile_name):
-		_profile_name_input.clear()
-		_add_profile_dialog.hide()
-		return
 	if not SaveManager.save_profile(profile_name):
 		return
-	profile_list.append(profile_name)
 	_refresh_profile_dropdowns()
 	_profile_name_input.clear()
 	_add_profile_dialog.hide()
@@ -182,14 +182,11 @@ func _create_preview_slots() -> void:
 		add_child(preview)
 		_previews.append(preview)
 
-		var profile_btn := OptionButton.new()
-		profile_btn.position = Vector2(cx - 26, SLOT_Y + SLOT_HEIGHT + 2)
-		profile_btn.size = Vector2(52, 14)
-		profile_btn.add_theme_font_size_override("font_size", 6)
-		add_child(profile_btn)
-		_profile_buttons.append(profile_btn)
-
 	_refresh_profile_dropdowns()
+	_position_profile_dropdowns()
+
+	for i in range(_profile_buttons.size()):
+		_profile_buttons[i].visible = i < player_count
 
 
 func _build_buttons() -> void:
@@ -313,7 +310,8 @@ func _on_start_pressed() -> void:
 func _rebuild_all() -> void:
 	_stop_active_pulse()
 
-	for node: Node in _previews + _player_labels + _slot_panels + _highlight_bars + _profile_buttons:
+	# for node: Node in _previews + _player_labels + _slot_panels + _highlight_bars + _profile_buttons:
+	for node: Node in _previews + _player_labels + _slot_panels + _highlight_bars:
 		node.queue_free()
 
 	_previews.clear()
@@ -321,7 +319,7 @@ func _rebuild_all() -> void:
 	_slot_panels.clear()
 	_slot_styles.clear()
 	_highlight_bars.clear()
-	_profile_buttons.clear()
+	# _profile_buttons are created in-editor, never cleared or freed.
 
 	current_player = 0
 	selections.resize(player_count)
@@ -362,26 +360,22 @@ func _flash_ready() -> void:
 
 func _refresh_profile_dropdowns() -> void:
 	for btn in _profile_buttons:
-		var previous := ""
-		if btn.item_count > 0 and btn.selected >= 0:
-			previous = btn.get_item_text(btn.selected)
-		btn.clear()
-		btn.add_item("choose your profile")
-		for p in profile_list:
-			btn.add_item(p)
-		var restore_idx := 0
-		for i in range(btn.item_count):
-			if btn.get_item_text(i) == previous:
-				restore_idx = i
-				break
-		btn.select(restore_idx)
+		btn.refresh()
+
+func _position_profile_dropdowns() -> void:
+	var centers: Array = SLOT_CENTERS.get(player_count, SLOT_CENTERS[2])
+	for i in range(_profile_buttons.size()):
+		var btn := _profile_buttons[i]
+		if i >= player_count:
+			continue
+		var cx: int = centers[i]
+		btn.position = Vector2(cx - SLOT_WIDTH / 2, SLOT_Y + SLOT_HEIGHT + 2)
+		btn.size = Vector2(SLOT_WIDTH, 14)
+		btn.add_theme_font_size_override("font_size", 5)
 
 
 func _get_selected_profile_names() -> Array[String]:
 	var out: Array[String] = []
-	for btn in _profile_buttons:
-		if btn.selected <= 0:
-			out.append("")
-		else:
-			out.append(btn.get_item_text(btn.selected))
+	for i in range(player_count):
+		out.append(_profile_buttons[i].get_selected_profile())
 	return out
