@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://c1lhct5hx155u" path="res://scripts/player/states/grabbed_state.gd" id="21_h5w7u"]
 [ext_resource type="Script" uid="uid://civ1b2ihshs0i" path="res://scripts/player/states/dash_state.gd" id="23_qwne8"]
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
+[ext_resource type="Texture2D" uid="uid://blpmtub22r473" path="res://sprites/shield_icon.png" id="25_7d0xu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
@@ -1219,7 +1220,7 @@ _data = {
 bg_color = Color(0.15799038, 0.15799038, 0.15799038, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4wjq"]
-bg_color = Color(0.72486883, 0.5837368, 0, 1)
+bg_color = Color(3.85046e-06, 0.65085226, 0.89311373, 1)
 
 [node name="jp" type="CharacterBody2D" unique_id=1985438771]
 collision_layer = 2
@@ -1243,7 +1244,7 @@ shape = SubResource("RectangleShape2D_hr5o0")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"grab_miss"
+animation = &"block"
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
@@ -1323,3 +1324,9 @@ bus = &"player_sfx"
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1477177132]
 bus = &"player_voice"
+
+[node name="ShieldIcon" type="Sprite2D" parent="." unique_id=978835577]
+visible = false
+z_index = 1
+position = Vector2(0, -27)
+texture = ExtResource("25_7d0xu")

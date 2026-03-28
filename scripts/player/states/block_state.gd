@@ -3,10 +3,12 @@ extends State
 
 func enter() -> void:
 	player.block_timer = 0
+	player.shield_icon.visible = true
 	player.safe_play("block")
 	player.start_block()
 
 func exit() -> void:
+	player.shield_icon.visible = false
 	player.end_block()
 
 func physics_process(delta: float) -> String:
