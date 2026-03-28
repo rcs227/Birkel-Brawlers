@@ -9,7 +9,6 @@ extends CharacterBody2D
 @onready var hurtbox: CollisionShape2D = $Hurtbox/CollisionShape2D2
 @onready var sfx_player: AudioStreamPlayer = get_node("SFXPlayer")
 @onready var voice_player: AudioStreamPlayer = get_node("VoicePlayer")
-@onready var shield_icon: Sprite2D = get_node("ShieldIcon")
 
 # constants
 const STICK_DEADZONE := 0.8

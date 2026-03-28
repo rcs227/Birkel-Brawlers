@@ -23,15 +23,14 @@
 [ext_resource type="Script" uid="uid://c1lhct5hx155u" path="res://scripts/player/states/grabbed_state.gd" id="21_h5w7u"]
 [ext_resource type="Script" uid="uid://civ1b2ihshs0i" path="res://scripts/player/states/dash_state.gd" id="23_qwne8"]
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
-[ext_resource type="Texture2D" uid="uid://blpmtub22r473" path="res://sprites/shield_icon.png" id="25_7d0xu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
 size = Vector2(20, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mi45g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_614fm"]
 atlas = ExtResource("5_8hlw2")
-region = Rect2(256, 384, 128, 128)
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4wjq"]
 atlas = ExtResource("5_8hlw2")
@@ -449,7 +448,7 @@ region = Rect2(640, 128, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mi45g")
+"texture": SubResource("AtlasTexture_614fm")
 }],
 "loop": true,
 "name": &"block",
@@ -1324,9 +1323,3 @@ bus = &"player_sfx"
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1477177132]
 bus = &"player_voice"
-
-[node name="ShieldIcon" type="Sprite2D" parent="." unique_id=978835577]
-visible = false
-z_index = 1
-position = Vector2(0, -27)
-texture = ExtResource("25_7d0xu")
