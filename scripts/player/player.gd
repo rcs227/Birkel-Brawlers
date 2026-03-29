@@ -23,6 +23,7 @@ const CROUCH_THRESHOLD := .4
 @export var hit_speed_multiplier: float = 5.0
 @export var is_keyboard_player: bool = false
 static var parry_sound: String = "res://audio/wav/__chirp.wav"
+@export var min_knockback_amount: float = 115
 
 # MOVEMENT STATS
 @export_group("Movement")
@@ -319,7 +320,9 @@ func take_block_damage(amount: float, kb: float, attacker: Player) -> void:
 		return
 	# Reduce block health by a fraction of the damage
 	block_health -= amount * 0.5
-	apply_knockback(Vector2(kb * block_knockback_percent, 0))
+	var kb_amount: float
+	kb_amount = kb * block_knockback_percent if abs(kb * block_knockback_percent) >= min_knockback_amount else min_knockback_amount * sign(kb)
+	apply_knockback(Vector2(kb_amount, 0))
 	block_bar.value = block_health
 	
 	if block_health <= 0.0:
