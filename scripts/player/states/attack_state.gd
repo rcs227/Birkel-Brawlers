@@ -8,7 +8,10 @@ var has_hit: bool = false
 var hitbox_active_timer: float = 0.0
 var clash_window: float = .1  # seconds
 
+var state_timer: float = 0.0
+
 func enter() -> void:
+	state_timer = 0.0
 	has_hit = false
 	player.deactivate_hitbox()
 	player.anim_player.stop()
@@ -22,8 +25,14 @@ func enter() -> void:
 func exit() -> void:
 	player.hitbox.disable()
 	player.anim_player.speed_scale = 1.0
+	player.anim_sprite.speed_scale = 1.0
 	player.anim_player.stop()
 	player.reset_hurtbox()
+	print("Attack time: " + str(state_timer))
+
+func process(delta: float) -> String:
+	state_timer += delta
+	return ""
 
 func physics_process(delta: float) -> String:
 	if player.hitbox._is_active:

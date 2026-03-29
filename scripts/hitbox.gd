@@ -123,8 +123,9 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	if target.state_machine.current_state == target.state_machine.get_node("Block"):
-		owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
-		target.take_block_damage(atk.damage, owner_player)
+		print("multiplying hit speed")
+		owner_player.apply_hit_stop(atk.hit_stop, false, true)
+		target.take_block_damage(atk.damage, kb.x, owner_player)
 		return
 	
 	owner_player.apply_hit_stop(atk.hit_stop)

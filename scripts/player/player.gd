@@ -20,7 +20,7 @@ const CROUCH_THRESHOLD := .4
 
 @export var device_id: int = 0 # assigned at game start
 @export var grab_data: Attack
-@export var hit_speed_multiplier: float = 3.0
+@export var hit_speed_multiplier: float = 5.0
 @export var is_keyboard_player: bool = false
 static var parry_sound: String = "res://audio/wav/__chirp.wav"
 
@@ -75,6 +75,8 @@ var knockback := Vector2.ZERO
 @export var block_cooldown := 0.2
 @export var block_reset_percentage: float = 0.33
 var block_timer = block_cooldown
+@export var block_knockback_percent: float = 0.5
+@export var block_hit_speed_multiplier: float = 2.5
 
 var block_health := 0.0
 var is_block_broken := false                # prevents re-blocking until trigger released
@@ -307,7 +309,7 @@ func break_block() -> void:
 	block_bar.visible = false
 	apply_stun(block_break_stun)
 
-func take_block_damage(amount: float, attacker: Player) -> void:
+func take_block_damage(amount: float, kb: float, attacker: Player) -> void:
 	if is_parrying():
 		attacker.apply_stun(parry_stun_duration)
 		is_block_broken = true
@@ -317,13 +319,15 @@ func take_block_damage(amount: float, attacker: Player) -> void:
 		return
 	# Reduce block health by a fraction of the damage
 	block_health -= amount * 0.5
+	apply_knockback(Vector2(kb * block_knockback_percent, 0))
 	block_bar.value = block_health
+	
 	if block_health <= 0.0:
 		break_block()
 
 # duration: how long to freeze the player for
 # attackee: if the player is the one being attacked
-func apply_hit_stop(duration: float, attackee: bool = false) -> void:
+func apply_hit_stop(duration: float, attackee: bool = false, attackee_blocking: bool = false) -> void:
 	anim_sprite.pause()
 	if not attackee:
 		anim_player.pause()
@@ -332,10 +336,16 @@ func apply_hit_stop(duration: float, attackee: bool = false) -> void:
 	await get_tree().create_timer(duration).timeout
 	anim_sprite.play()
 	if not attackee:
+		if attackee_blocking:
+			anim_player.speed_scale = block_hit_speed_multiplier
+			anim_sprite.speed_scale = block_hit_speed_multiplier
+		else:
+			anim_player.speed_scale = hit_speed_multiplier
+			anim_sprite.speed_scale = hit_speed_multiplier
 		anim_player.play()
 	set_physics_process(true)
 	set_process(true)
-	state_machine.transition_to("Idle")
+	#state_machine.transition_to("Idle")
 
 func apply_hit(amount: float, kb: Vector2, stun: float, hit_stop: float) -> void:
 	damage_player(amount)

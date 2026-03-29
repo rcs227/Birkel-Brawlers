@@ -2,6 +2,7 @@ class_name BlockState
 extends State
 
 func enter() -> void:
+	print("block started")
 	player.block_timer = 0
 	player.safe_play("block")
 	player.start_block()
@@ -10,6 +11,8 @@ func exit() -> void:
 	player.end_block()
 
 func physics_process(delta: float) -> String:
+	player.velocity = player.knockback
+	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.friction * delta)
 	player.apply_friction(delta)
 	player.apply_gravity(delta)
 	player.move_and_slide()
