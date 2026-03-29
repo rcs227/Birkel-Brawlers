@@ -1,20 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bq15wj0fi408t"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_mm"]
-[ext_resource type="Theme" path="res://resources/menu_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://cr0ei4dumrdkq" path="res://scripts/main_menu.gd" id="1_mm"]
+[ext_resource type="Theme" uid="uid://xpjxo6rlqujp" path="res://resources/menu_theme.tres" id="2_theme"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=2014095001]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_filter = 1
 theme = ExtResource("2_theme")
 script = ExtResource("1_mm")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=542375333]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.98, 0.95, 0.9, 1)
 
-[node name="TopAccent" type="ColorRect" parent="."]
+[node name="TopAccent" type="ColorRect" parent="." unique_id=22134399]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -31,19 +31,19 @@ offset_bottom = 1.0
 grow_horizontal = 2
 color = Color(0.45, 0.28, 0.12, 1)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1965211578]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_top = 28.0
 offset_bottom = 48.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(0.45, 0.28, 0.12, 1)
+theme_override_font_sizes/font_size = 16
 text = "BIRKEL BRAWLERS"
 horizontal_alignment = 1
 
-[node name="TitleDecor" type="ColorRect" parent="."]
+[node name="TitleDecor" type="ColorRect" parent="." unique_id=1750864122]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 120.0
@@ -52,7 +52,7 @@ offset_right = 200.0
 offset_bottom = 51.0
 color = Color(0.45, 0.28, 0.12, 0.4)
 
-[node name="ButtonBox" type="VBoxContainer" parent="."]
+[node name="ButtonBox" type="VBoxContainer" parent="." unique_id=109182229]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 90.0

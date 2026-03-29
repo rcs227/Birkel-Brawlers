@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cq43gbcg075eg" path="res://scripts/game_manager.gd" id="1_jrcg6"]
 [ext_resource type="Texture2D" uid="uid://dbn7qou5kgmls" path="res://sprites/maps/basement_3.png" id="2_7lokh"]
 [ext_resource type="PackedScene" uid="uid://ckcua3is255on" path="res://scenes/health_bar.tscn" id="2_jrcg6"]
-[ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="3_7lokh"]
+[ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://fonts/Ithaca-LVB75.ttf" id="3_7lokh"]
 [ext_resource type="PackedScene" uid="uid://denvscene0001" path="res://scenes/shader_environment.tscn" id="5_env"]
 
 [sub_resource type="RectangleShape2D" id="ground_shape"]

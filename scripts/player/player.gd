@@ -65,7 +65,7 @@ var knockback := Vector2.ZERO
 
 # Block stats
 @export_group("Block stats")
-@export var max_block_health := 50
+@export var max_block_health := 30
 @export var block_drain_rate := 5.0        # per second while blocking
 @export var block_regen_rate := 15        # per second when not blocking
 @export var block_break_stun := 2.0         # stun duration on block break

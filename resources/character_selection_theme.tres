@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://2r8uf14xd5fc"]
 
-[ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://Ithaca-LVB75.ttf" id="1_font"]
+[ext_resource type="FontFile" uid="uid://bjen5u8jmjvqf" path="res://fonts/Ithaca-LVB75.ttf" id="1_bhdpx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_disabled"]
 content_margin_left = 2.0
@@ -150,7 +150,7 @@ border_width_bottom = 1
 border_color = Color(0.08, 0.05, 0.02, 1)
 
 [resource]
-default_font = ExtResource("1_font")
+default_font = ExtResource("1_bhdpx")
 Button/colors/font_color = Color(0.98, 0.95, 0.9, 1)
 Button/colors/font_disabled_color = Color(0.62, 0.52, 0.42, 1)
 Button/colors/font_focus_color = Color(0.98, 0.95, 0.9, 1)

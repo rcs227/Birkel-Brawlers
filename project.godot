@@ -39,9 +39,23 @@ mouse_cursor/custom_image="uid://plos3jipvdlv"
 
 enabled=PackedStringArray("res://addons/sound_manager/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://audio/": "orange",
+"res://characters/": "yellow",
+"res://fonts/": "green",
+"res://resources/": "teal",
+"res://scenes/": "blue",
+"res://scripts/": "purple",
+"res://shaders/": "pink",
+"res://sprites/": "gray"
+}
+
 [gui]
 
-theme/custom_font="res://Ithaca-LVB75.ttf"
+theme/custom_font="res://fonts/Ithaca-LVB75.ttf"
 
 [input]
 
