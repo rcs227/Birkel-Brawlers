@@ -3,6 +3,7 @@ extends State
 
 func enter() -> void:
 	SoundManager.play_sfx(player.death_sound)
+	player.block_bar.visible = false
 	player.safe_play("death")
 	# queue_free is called after the death animation
 	# via _on_animation_finished in player.gd

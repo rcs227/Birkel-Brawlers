@@ -11,7 +11,7 @@ func exit() -> void:
 	player.end_block()
 
 func physics_process(delta: float) -> String:
-	player.velocity = player.knockback
+	player.velocity.x = player.knockback.x
 	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.friction * delta)
 	player.apply_friction(delta)
 	player.apply_gravity(delta)

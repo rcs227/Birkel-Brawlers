@@ -20,7 +20,7 @@ const CROUCH_THRESHOLD := .4
 
 @export var device_id: int = 0 # assigned at game start
 @export var grab_data: Attack
-@export var hit_speed_multiplier: float = 5.0
+@export var hit_speed_multiplier: float = 7.0
 @export var is_keyboard_player: bool = false
 static var parry_sound: String = "res://audio/wav/__chirp.wav"
 @export var min_knockback_amount: float = 115
@@ -68,7 +68,7 @@ var knockback := Vector2.ZERO
 @export_group("Block stats")
 @export var max_block_health := 30
 @export var block_drain_rate := 5.0        # per second while blocking
-@export var block_regen_rate := 15        # per second when not blocking
+@export var block_regen_rate := 6        # per second when not blocking
 @export var block_break_stun := 2.0         # stun duration on block break
 @export var parry_window := 0.15            # seconds after starting block that counts as parry
 @export var parry_stun_duration := 0.55      # stun applied to attacker on parry
