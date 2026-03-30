@@ -53,6 +53,10 @@ region = Rect2(384, 256, 128, 128)
 atlas = ExtResource("5_8hlw2")
 region = Rect2(512, 256, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax11r"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(640, 256, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kll31"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(768, 256, 128, 128)
@@ -63,17 +67,25 @@ region = Rect2(896, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhr6p"]
 atlas = ExtResource("5_8hlw2")
-region = Rect2(768, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ax11r"]
-atlas = ExtResource("5_8hlw2")
-region = Rect2(640, 256, 128, 128)
+region = Rect2(1024, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qayv"]
 atlas = ExtResource("5_8hlw2")
-region = Rect2(512, 256, 128, 128)
+region = Rect2(1152, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvtt6"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(1280, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmbbq"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(768, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2egw"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1mxr"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(384, 256, 128, 128)
 
@@ -502,11 +514,14 @@ animations = [{
 "speed": 7.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4dnj1")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7ypfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax11r")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kll31")
@@ -517,18 +532,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mhr6p")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ax11r")
-}, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_7qayv")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uvtt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmbbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2egw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1mxr")
 }],
 "loop": false,
 "name": &"crouch_attack",
-"speed": 16.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1306,7 +1327,8 @@ position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
 animation = &"crouch_attack"
-frame = 3
+frame = 10
+frame_progress = 1.0
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
