@@ -26,7 +26,7 @@
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3aiu"]
 size = Vector2(20, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_614fm"]
@@ -1296,6 +1296,9 @@ _data = {
 &"medium_special": SubResource("Animation_4cwt5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
+size = Vector2(20, 72)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d0xu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi45g"]
@@ -1315,20 +1318,21 @@ medium_special_data = ExtResource("6_h5w7u")
 heavy_special_data = ExtResource("7_fy61o")
 crouch_attack_data = ExtResource("8_v3aiu")
 grab_data = ExtResource("8_qwne8")
+crouch_size = Vector2(38, 29)
+crouch_offset = Vector2(-3, 20.5)
 hurt_sound = "res://audio/wav/jp_hurt_2.wav"
 death_sound = "res://audio/wav/jp_owie.wav"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_hr5o0")
+shape = SubResource("RectangleShape2D_v3aiu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66600063]
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"crouch_attack"
-frame = 10
-frame_progress = 1.0
+animation = &"crouch"
+frame_progress = 0.6736404
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
