@@ -21,13 +21,7 @@ func input(event: InputEvent) -> String:
 	if event.is_action_pressed("jump"):
 		return "Jump"
 	if event.is_action_pressed("light_attack"):
-		_queue_attack("light_attack")
-		return "Attack"
-	if event.is_action_pressed("medium_attack"):
-		_queue_attack("medium_attack")
-		return "Attack"
-	if event.is_action_pressed("heavy_attack"):
-		_queue_attack("heavy_attack")
+		_queue_attack("crouch_attack")
 		return "Attack"
 	return ""
 

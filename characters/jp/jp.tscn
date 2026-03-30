@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_h5w7u"]
 [ext_resource type="Script" uid="uid://kfxfdpxy4muh" path="res://scripts/player/states/idle_state.gd" id="8_fy61o"]
 [ext_resource type="Resource" uid="uid://b22wb7ft7qx8f" path="res://characters/jp/attacks/grab.tres" id="8_qwne8"]
+[ext_resource type="Resource" uid="uid://10knddkc2joy" path="res://characters/jp/attacks/crouch_attack.tres" id="8_v3aiu"]
 [ext_resource type="Script" uid="uid://w2w0s7v86jh4" path="res://scripts/player/states/walk_state.gd" id="9_qwne8"]
 [ext_resource type="Script" uid="uid://cqwqubgkmfh58" path="res://scripts/player/states/attack_state.gd" id="10_v3aiu"]
 [ext_resource type="Script" uid="uid://45ekjxna8ejp" path="res://scripts/player/states/block_state.gd" id="11_7d0xu"]
@@ -1291,12 +1292,12 @@ heavy_attack_data = ExtResource("4_h4wjq")
 light_special_data = ExtResource("3_8hlw2")
 medium_special_data = ExtResource("6_h5w7u")
 heavy_special_data = ExtResource("7_fy61o")
+crouch_attack_data = ExtResource("8_v3aiu")
 grab_data = ExtResource("8_qwne8")
 hurt_sound = "res://audio/wav/jp_hurt_2.wav"
 death_sound = "res://audio/wav/jp_owie.wav"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
-visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_hr5o0")
 
@@ -1305,8 +1306,7 @@ position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
 animation = &"crouch_attack"
-frame = 7
-frame_progress = 1.0
+frame = 3
 offset = Vector2(0, -0.971)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
