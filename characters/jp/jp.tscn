@@ -940,6 +940,50 @@ animations = [{
 [sub_resource type="Animation" id="Animation_h5w7u"]
 length = 0.5
 
+[sub_resource type="Animation" id="Animation_3y1rc"]
+resource_name = "crouch_attack"
+length = 1.1818
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4545, 0.5455),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0],
+"method": &"activate_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_hitbox"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1818, 0.3636, 0.4545),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_u6jbq"]
 resource_name = "grab_hit"
 length = 0.6666
@@ -1285,6 +1329,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h5w7u"]
 _data = {
 &"RESET": SubResource("Animation_h5w7u"),
+&"crouch_attack": SubResource("Animation_3y1rc"),
 &"grab_hit": SubResource("Animation_u6jbq"),
 &"grab_miss": SubResource("Animation_j3b8l"),
 &"heavy_attack": SubResource("Animation_mi45g"),
@@ -1331,9 +1376,9 @@ shape = SubResource("RectangleShape2D_v3aiu")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"crouch"
-frame_progress = 0.6736404
-offset = Vector2(0, -0.971)
+animation = &"crouch_attack"
+frame = 5
+offset = Vector2(0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")
