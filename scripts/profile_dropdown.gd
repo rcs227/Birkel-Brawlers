@@ -4,7 +4,7 @@ extends OptionButton
 signal profile_selected(profile_name: String)
 
 var _placeholder_text: String = "choose your profile"
-
+var dropdown_width: float = 40
 
 func _ready() -> void:
 	refresh()

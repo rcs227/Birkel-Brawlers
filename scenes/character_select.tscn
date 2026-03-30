@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://lsgld8yayhbj" path="res://sprites/jp/jp_idle.png" id="3_jp"]
 [ext_resource type="Theme" uid="uid://2r8uf14xd5fc" path="res://resources/character_selection_theme.tres" id="4_theme"]
 [ext_resource type="PackedScene" uid="uid://bpbjj5f2rcr8y" path="res://scenes/profile_dropdown.tscn" id="5_profile_dropdown"]
+[ext_resource type="Script" uid="uid://duceteekqvhst" path="res://scripts/selection_slots.gd" id="6_slots"]
+[ext_resource type="Script" uid="uid://cv6fbor2mitbo" path="res://scripts/character_button_grid.gd" id="7_grid"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_preview"]
 animations = [{
@@ -73,6 +75,9 @@ script = ExtResource("1_cs")
 default_sprite_frames = SubResource("SpriteFrames_preview")
 character_sprite_frames = Array[SpriteFrames]([SubResource("SF_jp"), null, null, null])
 character_button_textures = Array[Texture2D]([SubResource("AT_jp0"), null, null, null])
+
+[node name="SelectionSlots" type="Node" parent="." unique_id=61371366]
+script = ExtResource("6_slots")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1647135001]
 layout_mode = 1
@@ -180,6 +185,7 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 4
+script = ExtResource("7_grid")
 
 [node name="ActionBar" type="HBoxContainer" parent="ButtonPanel/VBox" unique_id=598975615]
 layout_mode = 2
@@ -208,30 +214,38 @@ size_flags_stretch_ratio = 1.5
 theme_override_font_sizes/font_size = 8
 text = "START"
 
-[node name="ProfileDropdownP1" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635010]
+[node name="ProfileDropdownP1" parent="." unique_id=1954635010 instance=ExtResource("5_profile_dropdown")]
 layout_mode = 0
-position = Vector2(63, 78)
-size = Vector2(44, 14)
+offset_left = 63.0
+offset_top = 78.0
+offset_right = 107.0
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 5
 
-[node name="ProfileDropdownP2" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635011]
+[node name="ProfileDropdownP2" parent="." unique_id=1954635011 instance=ExtResource("5_profile_dropdown")]
 layout_mode = 0
-position = Vector2(213, 78)
-size = Vector2(44, 14)
+offset_left = 213.0
+offset_top = 78.0
+offset_right = 257.0
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 5
 
-[node name="ProfileDropdownP3" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635012]
-layout_mode = 0
-position = Vector2(38, 78)
-size = Vector2(44, 14)
+[node name="ProfileDropdownP3" parent="." unique_id=1954635012 instance=ExtResource("5_profile_dropdown")]
 visible = false
+layout_mode = 0
+offset_left = 38.0
+offset_top = 78.0
+offset_right = 82.0
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 5
 
-[node name="ProfileDropdownP4" parent="." instance=ExtResource("5_profile_dropdown") unique_id=1954635013]
-layout_mode = 0
-position = Vector2(14, 78)
-size = Vector2(44, 14)
+[node name="ProfileDropdownP4" parent="." unique_id=1954635013 instance=ExtResource("5_profile_dropdown")]
 visible = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 78.0
+offset_right = 58.0
+offset_bottom = 98.0
 theme_override_font_sizes/font_size = 5
 
 [connection signal="pressed" from="AddProfileBtn" to="." method="_on_add_profile_pressed"]
