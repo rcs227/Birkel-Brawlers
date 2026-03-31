@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="7_h5w7u"]
 [ext_resource type="Script" uid="uid://kfxfdpxy4muh" path="res://scripts/player/states/idle_state.gd" id="8_fy61o"]
 [ext_resource type="Resource" uid="uid://b22wb7ft7qx8f" path="res://characters/jp/attacks/grab.tres" id="8_qwne8"]
+[ext_resource type="Resource" uid="uid://10knddkc2joy" path="res://characters/jp/attacks/crouch_attack.tres" id="8_v3aiu"]
 [ext_resource type="Script" uid="uid://w2w0s7v86jh4" path="res://scripts/player/states/walk_state.gd" id="9_qwne8"]
 [ext_resource type="Script" uid="uid://cqwqubgkmfh58" path="res://scripts/player/states/attack_state.gd" id="10_v3aiu"]
 [ext_resource type="Script" uid="uid://45ekjxna8ejp" path="res://scripts/player/states/block_state.gd" id="11_7d0xu"]
@@ -25,7 +26,7 @@
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3aiu"]
 size = Vector2(20, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_614fm"]
@@ -43,6 +44,50 @@ region = Rect2(640, 1280, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8240"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(768, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dnj1"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ypfw"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax11r"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kll31"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(768, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e5e8"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(896, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhr6p"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(1024, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qayv"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(1152, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvtt6"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(1280, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmbbq"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(768, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2egw"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1mxr"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(384, 256, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_30sqf"]
 atlas = ExtResource("5_8hlw2")
@@ -470,6 +515,44 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4dnj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ypfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax11r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kll31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e5e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhr6p")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_7qayv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvtt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmbbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2egw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1mxr")
+}],
+"loop": false,
+"name": &"crouch_attack",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_30sqf")
 }, {
 "duration": 1.0,
@@ -857,6 +940,50 @@ animations = [{
 [sub_resource type="Animation" id="Animation_h5w7u"]
 length = 0.5
 
+[sub_resource type="Animation" id="Animation_3y1rc"]
+resource_name = "crouch_attack"
+length = 1.1818
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4545, 0.5455),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0],
+"method": &"activate_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_hitbox"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1818, 0.3636, 0.4545),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [2],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [0],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [1],
+"method": &"set_attack_hurtbox"
+}, {
+"args": [2],
+"method": &"set_attack_hurtbox"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_u6jbq"]
 resource_name = "grab_hit"
 length = 0.6666
@@ -1202,6 +1329,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h5w7u"]
 _data = {
 &"RESET": SubResource("Animation_h5w7u"),
+&"crouch_attack": SubResource("Animation_3y1rc"),
 &"grab_hit": SubResource("Animation_u6jbq"),
 &"grab_miss": SubResource("Animation_j3b8l"),
 &"heavy_attack": SubResource("Animation_mi45g"),
@@ -1212,6 +1340,9 @@ _data = {
 &"medium_attack": SubResource("Animation_qwne8"),
 &"medium_special": SubResource("Animation_4cwt5")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
+size = Vector2(20, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d0xu"]
 
@@ -1230,21 +1361,24 @@ heavy_attack_data = ExtResource("4_h4wjq")
 light_special_data = ExtResource("3_8hlw2")
 medium_special_data = ExtResource("6_h5w7u")
 heavy_special_data = ExtResource("7_fy61o")
+crouch_attack_data = ExtResource("8_v3aiu")
 grab_data = ExtResource("8_qwne8")
+crouch_size = Vector2(38, 29)
+crouch_offset = Vector2(-3, 20.5)
 hurt_sound = "res://audio/wav/jp_hurt_2.wav"
 death_sound = "res://audio/wav/jp_owie.wav"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
-visible = false
 position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_hr5o0")
+shape = SubResource("RectangleShape2D_v3aiu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66600063]
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"block"
-offset = Vector2(0, -0.971)
+animation = &"crouch_attack"
+frame = 5
+offset = Vector2(0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
 libraries/ = SubResource("AnimationLibrary_h5w7u")

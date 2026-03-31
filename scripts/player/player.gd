@@ -241,7 +241,10 @@ func _on_animation_finished() -> void:
 	elif not is_on_floor():
 		state_machine.transition_to("Fall")
 	elif state_machine.current_state != state_machine.get_node("Stun"):
-		state_machine.transition_to("Idle")
+		if get_stick_y() >= CROUCH_THRESHOLD and is_on_floor():
+			state_machine.transition_to("Crouch")
+		else:
+			state_machine.transition_to("Idle")
 
 signal died(player: Player)
 signal parried(player: Player)

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://10knddkc2joy"]
+
+[ext_resource type="Script" uid="uid://va4j4xwiqy5k" path="res://scripts/hitbox_specs.gd" id="1_vek5k"]
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="2_idnhg"]
+
+[sub_resource type="Resource" id="Resource_vek5k"]
+script = ExtResource("1_vek5k")
+size = Vector2(44, 19)
+offset = Vector2(32, 26)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_idnhg"]
+script = ExtResource("1_vek5k")
+size = Vector2(31, 34)
+offset = Vector2(-6.5, 18)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_tewda"]
+script = ExtResource("1_vek5k")
+size = Vector2(38.5, 31)
+offset = Vector2(-19.25, 19.5)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[sub_resource type="Resource" id="Resource_kl8mr"]
+script = ExtResource("1_vek5k")
+size = Vector2(38, 29)
+offset = Vector2(-3, 20.5)
+metadata/_custom_type_script = "uid://va4j4xwiqy5k"
+
+[resource]
+script = ExtResource("2_idnhg")
+animation = &"crouch_attack"
+damage = 4.0
+knockback = Vector2(150, 100)
+hitbox_frames = Array[ExtResource("1_vek5k")]([SubResource("Resource_vek5k")])
+hurtbox_frames = Array[ExtResource("1_vek5k")]([SubResource("Resource_idnhg"), SubResource("Resource_tewda"), SubResource("Resource_kl8mr")])
+on_hit_sound = "res://audio/wav/jp_light_special.wav"
