@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 
 func enable(atk: Attack, i: int = 0) -> void:
 	#print(owner_player.name + " hitbox enabled")
+	_clash_processed = false
 	set_hitbox_specs(atk, i)
 	collision.disabled = false
 	monitoring = true
@@ -54,7 +55,6 @@ func disable() -> void:
 	collision.disabled = true
 	monitoring = false
 	_is_active = false
-	_clash_processed = false
 	queue_redraw()
 
 
@@ -75,79 +75,90 @@ func _on_debug_toggled(_show: bool) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
-	# --- Clash: two hitboxes met in the same frame ---
-	if area is Hitbox:
-		# Ignore our own hitboxes (e.g. multi-part attacks)
-		if area.owner_player == owner_player:
-			return
+	if target == owner_player:
+		return
 
-		# Only process a clash once — whichever signal fires second skips out
+	# 1. DIRECT HITBOX CLASH (Hitbox touches Hitbox)
+	if area is Hitbox:
 		if _clash_processed or area._clash_processed:
 			return
-
-		# A clash only happens when the two hitboxes point INTO each other.
-		# If they share the same hit_direction (e.g. a backwards kick vs a
-		# forward punch both pointing left), there's no clash — fall through
-		# so the hit logic can handle it instead.
-		if hit_direction == area.hit_direction:
-			return
-
-		_clash_processed = true
-		area._clash_processed = true
-		call_deferred("disable")
-		area.call_deferred("disable")
-		owner_player.state_machine.transition_to("Idle")
-		area.owner_player.state_machine.transition_to("Idle")
-		owner_player.play_sfx(Player.parry_sound)
+		
+		if hit_direction != area.hit_direction:
+			_trigger_clash(area)
 		return
+
+	# 2. POTENTIAL INDIRECT CLASH (Hitbox touches Hurtbox)
+	if target is Player:
+		var opponent_hitbox = target.hitbox 
+		
+		# If their hitbox is out and facing us, it's a clash, even if the boxes didn't touch yet
+		if opponent_hitbox._is_active and opponent_hitbox.hit_direction != hit_direction:
+			_trigger_clash(opponent_hitbox)
+		else:
+			# Normal hit: defer to ensure all area signals are checked
+			call_deferred("_process_hit", area)
+
+
+func _trigger_clash(other: Hitbox) -> void:
+	if _clash_processed or other._clash_processed:
+		return
+		
+	_clash_processed = true
+	other._clash_processed = true
 	
+	call_deferred("disable")
+	other.call_deferred("disable")
 	
-	# --- Hit: this hitbox entered the target's hurtbox or body ---
-	if area is not Hitbox and target is Player and target != owner_player:
-		var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
-		var atk := attack_state.current_attack
-		if atk == null:
-			return
+	owner_player.state_machine.transition_to("Idle")
+	other.owner_player.state_machine.transition_to("Idle")
+	
+	owner_player.play_sfx(Player.parry_sound)
 
-		# Can't hit a dead player
-		if target.state_machine.current_state == target.state_machine.get_node("Dead"):
-			return
 
-		# Guard against the simultaneous hitbox+hurtbox overlap edge case.
-		# If the two hitboxes are pointing toward each other AND the target's
-		# hitbox is already overlapping us this frame, the clash path owns it —
-		# the hitbox signal will fire (or already fired) and handle the cancel.
-		# We only skip here when the directions oppose; same-direction hits
-		# (cross-ups, backwards kicks) should always land.
-		if hit_direction != target.hitbox.hit_direction:
-			for overlapping in get_overlapping_areas():
-				if overlapping is Hitbox and overlapping.owner_player == target:
-					return
+func _process_hit(area: Area2D) -> void:
+	var target := area.get_parent()
 
-		call_deferred("disable")
+	# A clash was resolved this frame — suppress the hit entirely
+	if _clash_processed:
+		return
 
-		var dir := owner_player.facing
-		var kb  := Vector2(atk.knockback.x * dir, atk.knockback.y)
+	var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
+	var atk := attack_state.current_attack
+	if atk == null:
+		return
 
-		# Grab handling — skip normal hit/block logic entirely
-		if atk.is_grab:
-			owner_player.grab_target = target
-			attack_state.on_grab_hit()
-			if atk.on_hit_sound != null:
-				owner_player.play_sfx(atk.on_hit_sound)
-			owner_player.grab_landed.emit(owner_player)
-			target.apply_grab(owner_player, atk)
-			return
+	if target.state_machine.current_state == target.state_machine.get_node("Dead"):
+		return
 
-		# Block handling — reduced damage, no stun, push back attacker
-		if target.state_machine.current_state == target.state_machine.get_node("Block"):
-			owner_player.apply_hit_stop(atk.hit_stop, false, true)
-			target.take_block_damage(atk.damage, kb.x, owner_player)
-			return
+	# Secondary guard: if their hitbox is still active and pointing at us, let
+	# the clash handle it. Covers the case where hitboxes didn't directly overlap
+	# but both hit the other's hurtbox.
+	if hit_direction != target.hitbox.hit_direction:
+		for overlapping in get_overlapping_areas():
+			if overlapping is Hitbox and overlapping.owner_player == target:
+				return
 
-		# Normal hit
-		owner_player.apply_hit_stop(atk.hit_stop)
+	call_deferred("disable")
+
+	var dir := owner_player.facing
+	var kb  := Vector2(atk.knockback.x * dir, atk.knockback.y)
+
+	if atk.is_grab:
+		owner_player.grab_target = target
+		attack_state.on_grab_hit()
 		if atk.on_hit_sound != null:
 			owner_player.play_sfx(atk.on_hit_sound)
-		owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
-		target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)
+		owner_player.grab_landed.emit(owner_player)
+		target.apply_grab(owner_player, atk)
+		return
+
+	if target.state_machine.current_state == target.state_machine.get_node("Block"):
+		owner_player.apply_hit_stop(atk.hit_stop, false, true)
+		target.take_block_damage(atk.damage, kb.x, owner_player)
+		return
+
+	owner_player.apply_hit_stop(atk.hit_stop)
+	if atk.on_hit_sound != null:
+		owner_player.play_sfx(atk.on_hit_sound)
+	owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
+	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)
