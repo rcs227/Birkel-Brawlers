@@ -2,6 +2,8 @@ class_name DeadState
 extends State
 
 func enter() -> void:
+	player.anim_player.speed_scale = 1.0
+	player.anim_sprite.speed_scale = 1.0
 	SoundManager.play_sfx(player.death_sound)
 	player.block_bar.visible = false
 	player.safe_play("death")
