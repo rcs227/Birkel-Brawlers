@@ -59,7 +59,7 @@ var has_flip := true
 @export var dash_force: float = 400  # initial velocity applied
 @export var dash_up_force: float = -100.0  # slight upward angle, set to 0 for horizontal
 @export var dash_cooldown: float = 1.0
-var dash_timer: float = 0.0
+var dash_timer: float = dash_cooldown
 
 var knockback := Vector2.ZERO
 
