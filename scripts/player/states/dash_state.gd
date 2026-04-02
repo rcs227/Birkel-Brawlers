@@ -2,7 +2,6 @@ class_name DashState
 extends State
 
 func enter() -> void:
-	player.has_dash = false
 	player.safe_play("dash")
 	# Apply impulse in facing direction
 	player.velocity.x = player.dash_force * player.facing
@@ -14,7 +13,6 @@ func physics_process(delta: float) -> String:
 	player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)
 	player.move_and_slide()
 	if player.is_on_floor():
-		player.has_dash = true
 		return "Idle"
 	if player.velocity.y > 0.0:
 		return "Fall"

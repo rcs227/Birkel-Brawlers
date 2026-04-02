@@ -53,7 +53,6 @@ var special_held := false
 var block_held := false
 var block_just_pressed := false
 var has_flip := true
-var has_dash := true
 
 # Dash
 @export_group("Dash")
@@ -150,7 +149,6 @@ func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
 	if is_on_floor():
 		has_flip = true
-		has_dash = true
 
 func _input(event: InputEvent) -> void:
 	if is_keyboard_player:
