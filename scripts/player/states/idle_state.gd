@@ -20,6 +20,8 @@ func physics_process(delta: float) -> String:
 func input(event: InputEvent) -> String:
 	if event.is_action_pressed("jump"):
 		return "Jump"
+	if event.is_action_pressed("dash") and player.dash_timer >= player.dash_cooldown:
+		return "Dash"
 	if event.is_action_pressed("light_attack"):
 		_queue_attack("light_attack")
 		return "Attack"

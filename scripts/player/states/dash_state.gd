@@ -16,7 +16,6 @@ func physics_process(delta: float) -> String:
 	player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)
 	player.move_and_slide()
 	if player.is_on_floor():
-		player.has_dash = true
 		return "Idle"
 	if player.velocity.y > 0.0:
 		return "Fall"
