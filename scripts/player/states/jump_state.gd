@@ -2,8 +2,6 @@ class_name JumpState
 extends State
  
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
 	player.safe_play("jump")
 	player.velocity.y = player.jump_force
  

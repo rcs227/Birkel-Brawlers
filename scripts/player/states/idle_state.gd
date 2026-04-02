@@ -2,8 +2,6 @@ class_name IdleState
 extends State
 
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
 	player.safe_play("idle")
 
 func physics_process(delta: float) -> String:

@@ -11,8 +11,6 @@ var start_position: Vector2
 var is_traveling: bool = false
 
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
 	player.safe_play("grabbed")
 	target_position = player.global_position
 	start_position = player.global_position

@@ -336,7 +336,7 @@ func apply_hit_stop(duration: float, attackee: bool = false, attackee_blocking: 
 	set_process(false)
 	await get_tree().create_timer(duration).timeout
 	anim_sprite.play()
-	if not attackee:
+	if not attackee and state_machine.current_state == state_machine.get_node("Attack"):
 		if attackee_blocking:
 			anim_player.speed_scale = block_hit_speed_multiplier
 			anim_sprite.speed_scale = block_hit_speed_multiplier

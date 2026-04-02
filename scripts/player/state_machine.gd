@@ -11,7 +11,6 @@ func init(initial_state: State):
 	current_state.enter()
 
 func transition_to(new_state_name: String) -> void:
-	#print(owner.name + " transitioning to " + new_state_name)
 	var new_state = get_node_or_null(new_state_name)
 	if new_state == null:
 		push_error("State not found: " + new_state_name)
@@ -20,6 +19,8 @@ func transition_to(new_state_name: String) -> void:
 		return
 	current_state.exit()
 	current_state = new_state
+	owner.anim_player.speed_scale = 1.0
+	owner.anim_sprite.speed_scale = 1.0
 	current_state.enter()
 
 func process(delta: float) -> void:

@@ -2,8 +2,6 @@ class_name BlockState
 extends State
 
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
 	print("block started")
 	player.block_timer = 0
 	player.safe_play("block")
