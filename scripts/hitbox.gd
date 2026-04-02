@@ -67,7 +67,44 @@ func _on_debug_toggled(_show: bool) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is Hitbox:
+	var target := area.get_parent()
+	if area is not Hitbox and target is Player and target != owner_player:
+		var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
+		var atk := attack_state.current_attack
+		if atk == null:
+			return
+		
+		# check block or death
+		if target.state_machine.current_state == target.state_machine.get_node("Dead"):
+			return
+		
+		call_deferred("disable")
+		
+		var dir := owner_player.facing
+		var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
+		
+		if atk.is_grab:
+			owner_player.grab_target = target
+			attack_state.on_grab_hit()
+			if atk.on_hit_sound != null:
+				owner_player.play_sfx(atk.on_hit_sound)
+			owner_player.grab_landed.emit(owner_player)
+			target.apply_grab(owner_player, atk)
+			return
+		
+		if target.state_machine.current_state == target.state_machine.get_node("Block"):
+			owner_player.apply_hit_stop(atk.hit_stop, false, true)
+			target.take_block_damage(atk.damage, kb.x, owner_player)
+			return
+		
+		owner_player.apply_hit_stop(atk.hit_stop)
+		if atk.on_hit_sound != null:
+			owner_player.play_sfx(atk.on_hit_sound)
+		owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
+		target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)
+	
+	# handle clash (hitboxes touch each other)
+	elif area is Hitbox:
 		if area.owner_player == owner_player:
 			return
 		if _clash_processed or area._clash_processed:
@@ -80,56 +117,3 @@ func _on_area_entered(area: Area2D) -> void:
 		area.owner_player.state_machine.transition_to("Idle")
 		owner_player.play_sfx(Player.parry_sound)  # whoever fires first plays it
 		return
-	if area.get_parent() == owner_player:
-		return
-	var target := area.get_parent()
-	if not target is Player:
-		return
-	var attack_state := owner_player.state_machine.get_node("Attack") as AttackState
-	var atk := attack_state.current_attack
-	if atk == null:
-		return
-	
-	# check block or death
-	if target.state_machine.current_state == target.state_machine.get_node("Dead"):
-		return
-	
-	var target_attack_state := target.state_machine.get_node("Attack") as AttackState
-	if target.state_machine.current_state == target.state_machine.get_node("Attack") and target.hitbox._is_active:
-		var time_diff := absf(attack_state.hitbox_active_timer - target_attack_state.hitbox_active_timer)
-		if time_diff <= attack_state.clash_window:
-			if _clash_processed or target.hitbox._clash_processed:
-				return
-			_clash_processed = true
-			call_deferred("disable")
-			target.hitbox.call_deferred("disable")
-			owner_player.state_machine.transition_to("Idle")
-			target.state_machine.transition_to("Idle")
-			owner_player.play_sfx(Player.parry_sound)
-			return
-	
-	call_deferred("disable")
-	
-	var dir := owner_player.facing
-	var kb := Vector2(atk.knockback.x * dir, atk.knockback.y)
-	
-	if atk.is_grab:
-		owner_player.grab_target = target
-		attack_state.on_grab_hit()
-		if atk.on_hit_sound != null:
-			owner_player.play_sfx(atk.on_hit_sound)
-		owner_player.grab_landed.emit(owner_player)
-		target.apply_grab(owner_player, atk)
-		return
-	
-	if target.state_machine.current_state == target.state_machine.get_node("Block"):
-		print("multiplying hit speed")
-		owner_player.apply_hit_stop(atk.hit_stop, false, true)
-		target.take_block_damage(atk.damage, kb.x, owner_player)
-		return
-	
-	owner_player.apply_hit_stop(atk.hit_stop)
-	if atk.on_hit_sound != null:
-		owner_player.play_sfx(atk.on_hit_sound)
-	owner_player.anim_player.speed_scale = owner_player.hit_speed_multiplier
-	target.apply_hit(atk.damage, kb, atk.stun_duration, atk.hit_stop)

@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://c1lhct5hx155u" path="res://scripts/player/states/grabbed_state.gd" id="21_h5w7u"]
 [ext_resource type="Script" uid="uid://civ1b2ihshs0i" path="res://scripts/player/states/dash_state.gd" id="23_qwne8"]
 [ext_resource type="Script" uid="uid://c4au1q3a58j54" path="res://scripts/player/states/land_state.gd" id="24_v3aiu"]
+[ext_resource type="Script" uid="uid://dw34u55x1xwuv" path="res://scripts/player/states/start_parry_state.gd" id="25_7d0xu"]
 [ext_resource type="Script" uid="uid://bv3wm23wwwp1h" path="res://scripts/hitbox.gd" id="25_v3aiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3aiu"]
@@ -452,6 +453,10 @@ region = Rect2(0, 896, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_11fnw"]
 atlas = ExtResource("5_8hlw2")
 region = Rect2(384, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dm62"]
+atlas = ExtResource("5_8hlw2")
+region = Rect2(256, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17t0o"]
 atlas = ExtResource("5_8hlw2")
@@ -898,6 +903,14 @@ animations = [{
 "loop": false,
 "name": &"parry",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_7dm62")
+}],
+"loop": false,
+"name": &"start_parry",
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 2.0,
@@ -1376,8 +1389,7 @@ shape = SubResource("RectangleShape2D_v3aiu")
 position = Vector2(0, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"crouch_attack"
-frame = 5
+animation = &"start_parry"
 offset = Vector2(0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
@@ -1424,6 +1436,9 @@ script = ExtResource("21_h5w7u")
 
 [node name="Dash" type="Node" parent="StateMachine" unique_id=526921671]
 script = ExtResource("23_qwne8")
+
+[node name="StartParry" type="Node" parent="StateMachine" unique_id=943256900]
+script = ExtResource("25_7d0xu")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=13361986]
 collision_layer = 8

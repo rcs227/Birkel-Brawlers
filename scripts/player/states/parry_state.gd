@@ -1,3 +1,4 @@
+# the state where the player successfully hits a parry
 class_name ParryState
 extends State
 

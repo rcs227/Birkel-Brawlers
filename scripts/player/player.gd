@@ -69,8 +69,6 @@ var knockback := Vector2.ZERO
 @export var block_drain_rate := 5.0        # per second while blocking
 @export var block_regen_rate := 6        # per second when not blocking
 @export var block_break_stun := 2.0         # stun duration on block break
-@export var parry_window := 0.15            # seconds after starting block that counts as parry
-@export var parry_stun_duration := 0.55      # stun applied to attacker on parry
 @export var block_cost := 1.5                 # the amount it costs to block each time
 @export var block_cooldown := 0.15
 @export var block_reset_percentage: float = 0.33
@@ -80,11 +78,16 @@ var block_timer = block_cooldown
 
 var block_health := 0.0
 var is_block_broken := false                # prevents re-blocking until trigger released
-var parry_timer := 0.0                      # counts down from parry_window on block start
 var block_regen_timer := 0.0               # delay before regen starts
 @export var block_regen_delay := 1.5        # seconds before regen kicks in
 
 var grab_target: Player
+
+@export var parry_window := 0.15            # seconds after inputing parry that counts as parry
+@export var parry_stun_duration := 0.55      # stun applied to attacker on parry
+@export var parry_cooldown := 0.2
+var parry_cooldown_timer = parry_cooldown
+var parry_timer := 0.0                      # counts down from parry_window on parry input
 
 # Sounds
 @export_group("Sounds")
@@ -264,10 +267,6 @@ func deactivate_hitbox() -> void:
 	hitbox.call_deferred("disable")
 
 func start_block() -> void:
-	if block_just_pressed:
-		parry_timer = parry_window
-	else:
-		parry_timer = 0.0
 	block_bar.visible = true
 	block_bar.max_value = max_block_health
 	block_bar.value = block_health
@@ -282,8 +281,6 @@ func update_block_health(delta: float) -> void:
 	block_health -= block_drain_rate * delta
 	block_health = maxf(block_health, 0.0)
 	block_bar.value = block_health
-	if parry_timer > 0.0:
-		parry_timer -= delta
 	if block_health <= 0.0:
 		break_block()
 
