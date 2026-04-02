@@ -2,6 +2,8 @@ class_name DashState
 extends State
 
 func enter() -> void:
+	player.anim_player.speed_scale = 1.0
+	player.anim_sprite.speed_scale = 1.0
 	player.has_dash = false
 	player.safe_play("dash")
 	# Apply impulse in facing direction

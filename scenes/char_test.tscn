@@ -52,6 +52,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_hbar2_fill")
 [node name="Main2" type="Node2D" unique_id=393302278]
 script = ExtResource("1_jrcg6")
 player_health_bar_paths = Array[NodePath]([NodePath("HUDLayer/health_bar"), NodePath("HUDLayer/health_bar2")])
+color_players = true
 
 [node name="Ground" type="ColorRect" parent="." unique_id=541780883]
 visible = false
