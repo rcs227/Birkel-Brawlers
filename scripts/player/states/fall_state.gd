@@ -17,6 +17,8 @@ func physics_process(delta: float) -> String:
 	return ""
 
 func input(event: InputEvent) -> String:
+	if event.is_action_pressed("parry") and player.parry_cooldown_timer >= player.parry_cooldown:
+		return "StartParry"
 	if event.is_action_pressed("jump") and player.has_flip:
 		player.has_flip = false
 		return "Jump"

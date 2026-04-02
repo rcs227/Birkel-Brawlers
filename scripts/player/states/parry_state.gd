@@ -3,10 +3,9 @@ class_name ParryState
 extends State
 
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
-	SoundManager.play_sfx("chirp")
+	player.play_sfx(Player.parry_sound)
 	player.safe_play("parry")
+	player.parry_cooldown_timer = player.parry_cooldown
 
 func physics_process(delta: float) -> String:
 	player.apply_friction(delta)

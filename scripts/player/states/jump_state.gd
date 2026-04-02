@@ -2,8 +2,6 @@ class_name JumpState
 extends State
  
 func enter() -> void:
-	player.anim_player.speed_scale = 1.0
-	player.anim_sprite.speed_scale = 1.0
 	player.safe_play("jump")
 	player.velocity.y = player.jump_force
  
@@ -19,6 +17,8 @@ func physics_process(delta: float) -> String:
 	return ""
  
 func input(event: InputEvent) -> String:
+	if event.is_action_pressed("parry") and player.parry_cooldown_timer >= player.parry_cooldown:
+		return "StartParry"
 	if event.is_action_pressed("jump") and player.has_flip:
 		player.velocity.y = player.jump_force
 		player.has_flip = false

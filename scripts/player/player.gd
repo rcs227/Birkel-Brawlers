@@ -137,6 +137,8 @@ func _process(delta: float) -> void:
 	if not block_held:
 		block_timer += delta
 	dash_timer += delta
+	if not is_parrying():
+		parry_cooldown_timer += delta
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
@@ -275,7 +277,7 @@ func end_block() -> void:
 	block_regen_timer = block_regen_delay
 
 func is_parrying() -> bool:
-	return parry_timer > 0.0
+	return parry_timer > 0.0 and parry_timer <= parry_window
 
 func update_block_health(delta: float) -> void:
 	block_health -= block_drain_rate * delta
@@ -336,7 +338,7 @@ func apply_hit_stop(duration: float, attackee: bool = false, attackee_blocking: 
 	set_process(false)
 	await get_tree().create_timer(duration).timeout
 	anim_sprite.play()
-	if not attackee:
+	if not attackee and state_machine.current_state == state_machine.get_node("Attack"):
 		if attackee_blocking:
 			anim_player.speed_scale = block_hit_speed_multiplier
 			anim_sprite.speed_scale = block_hit_speed_multiplier

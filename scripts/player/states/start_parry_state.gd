@@ -3,11 +3,12 @@ class_name StartParryState
 extends State
 
 func enter() -> void:
+	print("start parry state")
 	player.safe_play("start_parry")
-	player.parry_timer = 0.0
 
 func exit() -> void:
 	player.parry_cooldown_timer = 0.0
+	player.parry_timer = 0.0
 
 func physics_process(delta: float) -> String:
 	player.velocity.x = player.knockback.x
