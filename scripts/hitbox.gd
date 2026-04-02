@@ -156,6 +156,10 @@ func _process_hit(area: Area2D) -> void:
 		owner_player.apply_hit_stop(atk.hit_stop, false, true)
 		target.take_block_damage(atk.damage, kb.x, owner_player)
 		return
+	elif target.is_parrying():
+		owner_player.apply_stun(target.parry_stun_duration)
+		target.state_machine.transition_to("Parry")
+		return
 
 	owner_player.apply_hit_stop(atk.hit_stop)
 	if atk.on_hit_sound != null:

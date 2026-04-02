@@ -905,7 +905,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.5,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_7dm62")
 }],
 "loop": false,
