@@ -5,6 +5,8 @@ var duration := 0.0
 var timer    := 0.0
 
 func enter() -> void:
+	player.anim_player.speed_scale = 1.0
+	player.anim_sprite.speed_scale = 1.0
 	timer = duration
 	player.safe_play("stun")
 

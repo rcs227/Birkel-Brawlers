@@ -2,6 +2,8 @@ class_name CrouchState
 extends State
 
 func enter() -> void:
+	player.anim_player.speed_scale = 1.0
+	player.anim_sprite.speed_scale = 1.0
 	player.safe_play("crouch")
 	player.set_crouch_hurtbox()
 
