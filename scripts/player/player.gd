@@ -70,7 +70,7 @@ var knockback := Vector2.ZERO
 @export var block_regen_rate := 6        # per second when not blocking
 @export var block_break_stun := 2.0         # stun duration on block break
 @export var block_cost := 1.5                 # the amount it costs to block each time
-@export var block_cooldown := 0.2
+@export var block_cooldown := 0.15
 @export var block_reset_percentage: float = 0.33
 var block_timer = block_cooldown
 @export var block_knockback_percent: float = 0.5
@@ -264,7 +264,7 @@ func activate_hitbox(index: int = 0) -> void:
 
 func deactivate_hitbox() -> void:
 	#print(name + " deactivate hitbox called")
-	hitbox.disable()
+	hitbox.call_deferred("disable")
 
 func start_block() -> void:
 	block_bar.visible = true
