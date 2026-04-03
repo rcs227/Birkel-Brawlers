@@ -83,6 +83,14 @@ region = Rect2(128, 128, 128, 128)
 atlas = ExtResource("11_fuylf")
 region = Rect2(0, 128, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuylf"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrjgt"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(512, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_70irc"]
 animations = [{
 "frames": [],
@@ -224,10 +232,16 @@ animations = [{
 "name": &"stun",
 "speed": 12.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuylf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrjgt")
+}],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="Animation" id="Animation_h5w7u"]
