@@ -649,7 +649,8 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5o0"]
-size = Vector2(20, 72)
+resource_local_to_scene = true
+size = Vector2(20, 77.51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d0xu"]
 
@@ -681,7 +682,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_v3aiu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=66600063]
-position = Vector2(0, -30)
+position = Vector2(-3, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
 animation = &"light_attack"
@@ -742,8 +743,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=406635198]
-visible = false
-position = Vector2(0, -1)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_hr5o0")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1605629383]
@@ -752,7 +752,6 @@ collision_mask = 12
 script = ExtResource("26_1vick")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=454401017]
-visible = false
 shape = SubResource("RectangleShape2D_7d0xu")
 
 [node name="BlockBar" type="ProgressBar" parent="." unique_id=1162859933]
