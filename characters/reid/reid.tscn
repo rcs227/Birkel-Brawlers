@@ -83,6 +83,10 @@ region = Rect2(384, 0, 128, 128)
 atlas = ExtResource("11_fuylf")
 region = Rect2(512, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l4fm"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(896, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7v7ll"]
 atlas = ExtResource("11_fuylf")
 region = Rect2(640, 0, 128, 128)
@@ -90,6 +94,10 @@ region = Rect2(640, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qw5wg"]
 atlas = ExtResource("11_fuylf")
 region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5ubn"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(896, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70irc"]
 animations = [{
@@ -240,14 +248,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_g4isk")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5l4fm")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7v7ll")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qw5wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5ubn")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="Animation" id="Animation_h5w7u"]
@@ -680,7 +694,6 @@ position = Vector2(-3, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
 animation = &"walk"
-frame_progress = 0.23491128
 offset = Vector2(0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
