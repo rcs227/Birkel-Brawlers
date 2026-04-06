@@ -1,14 +1,6 @@
 [gd_scene format=3 uid="uid://54640pjg3qk8"]
 
-[ext_resource type="Script" uid="uid://cxpgkoay126ka" path="res://characters/jp/jp.gd" id="1_f7xl5"]
-[ext_resource type="Resource" uid="uid://cmtyjj7teu8wk" path="res://characters/jp/attacks/light_attack.tres" id="2_mnpo0"]
-[ext_resource type="Resource" uid="uid://p1l47v38fsfu" path="res://characters/jp/attacks/medium_attack.tres" id="3_tyqoe"]
-[ext_resource type="Resource" uid="uid://d2014jpro83iw" path="res://characters/jp/attacks/heavy_attack.tres" id="4_niyy6"]
-[ext_resource type="Resource" uid="uid://cvk0hf2lsaaln" path="res://characters/jp/attacks/light_special.tres" id="5_3tmtv"]
-[ext_resource type="Resource" uid="uid://cpj8cfh3sfddt" path="res://characters/jp/attacks/medium_special.tres" id="6_dvyio"]
-[ext_resource type="Resource" uid="uid://ig2t1e38dsx0" path="res://characters/jp/attacks/heavy_special.tres" id="7_ja627"]
-[ext_resource type="Resource" uid="uid://10knddkc2joy" path="res://characters/jp/attacks/crouch_attack.tres" id="8_7vhrl"]
-[ext_resource type="Resource" uid="uid://b22wb7ft7qx8f" path="res://characters/jp/attacks/grab.tres" id="9_ff8id"]
+[ext_resource type="Script" uid="uid://cs3tg408l5x10" path="res://characters/reid/reid.gd" id="1_5l4fm"]
 [ext_resource type="Texture2D" uid="uid://duvuwv5cknphb" path="res://characters/jp/jp_sprite_sheet.png" id="10_dkt5o"]
 [ext_resource type="Script" uid="uid://bewnpuayg7c65" path="res://scripts/player/state_machine.gd" id="11_ewwwi"]
 [ext_resource type="Texture2D" uid="uid://cpnketlfi2voo" path="res://characters/reid/reid_sprite_sheet.png" id="11_fuylf"]
@@ -83,13 +75,21 @@ region = Rect2(128, 128, 128, 128)
 atlas = ExtResource("11_fuylf")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fuylf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5k1c"]
 atlas = ExtResource("11_fuylf")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrjgt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4isk"]
 atlas = ExtResource("11_fuylf")
 region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v7ll"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw5wg"]
+atlas = ExtResource("11_fuylf")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70irc"]
 animations = [{
@@ -234,14 +234,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fuylf")
+"texture": SubResource("AtlasTexture_q5k1c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lrjgt")
+"texture": SubResource("AtlasTexture_g4isk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v7ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw5wg")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_h5w7u"]
@@ -662,19 +668,7 @@ bg_color = Color(3.85046e-06, 0.65085226, 0.89311373, 1)
 
 [node name="reid" type="CharacterBody2D" unique_id=1985438771]
 collision_layer = 2
-script = ExtResource("1_f7xl5")
-light_attack_data = ExtResource("2_mnpo0")
-medium_attack_data = ExtResource("3_tyqoe")
-heavy_attack_data = ExtResource("4_niyy6")
-light_special_data = ExtResource("5_3tmtv")
-medium_special_data = ExtResource("6_dvyio")
-heavy_special_data = ExtResource("7_ja627")
-crouch_attack_data = ExtResource("8_7vhrl")
-grab_data = ExtResource("9_ff8id")
-crouch_size = Vector2(38, 29)
-crouch_offset = Vector2(-3, 20.5)
-hurt_sound = "res://audio/wav/jp_hurt_2.wav"
-death_sound = "res://audio/wav/jp_owie.wav"
+script = ExtResource("1_5l4fm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768447400]
 visible = false
@@ -685,9 +679,8 @@ shape = SubResource("RectangleShape2D_v3aiu")
 position = Vector2(-3, -30)
 scale = Vector2(1, 1.030303)
 sprite_frames = SubResource("SpriteFrames_70irc")
-animation = &"light_attack"
-frame = 8
-frame_progress = 1.0
+animation = &"walk"
+frame_progress = 0.23491128
 offset = Vector2(0, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1948561704]
