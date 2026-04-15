@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://dhpnvy04uqoqk"]
+
+[ext_resource type="Script" uid="uid://va4j4xwiqy5k" path="res://scripts/hitbox_specs.gd" id="1_xitjo"]
+[ext_resource type="Script" uid="uid://dsrgbolr53xgw" path="res://scripts/attack.gd" id="2_rnvgm"]
+
+[resource]
+script = ExtResource("2_rnvgm")
+animation = &"light_attack"
+metadata/_custom_type_script = "uid://dsrgbolr53xgw"
